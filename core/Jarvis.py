@@ -62,7 +62,7 @@ def jarvis(points):
 
         result.append(cos_max_index)
 
-    return result
+    return np.array(result)
 
 
 def main():
