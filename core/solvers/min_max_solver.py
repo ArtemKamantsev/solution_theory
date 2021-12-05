@@ -11,7 +11,7 @@ class MinMaxSolver(BaseSolver):
                 matrix[row][el] = maxi - matrix[row][el]
         return matrix
 
-    def _solve(self, matrix):
+    def _solve(self, matrix, **kwargs):
         matrix = self.revert(matrix)
         matrix_max = np.array([])
         for row in range(len(matrix)):

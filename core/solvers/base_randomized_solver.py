@@ -7,12 +7,12 @@ class BaseRandomizedSolver(BaseSolver, ABC):
     def __init__(self, accuracy):
         self.accuracy = accuracy
 
-    def _solve(self, matrix):
-        if matrix.ndim != 2 or matrix.shape[1] != 2:
+    def _solve(self, matrix, **kwargs):
+        if matrix.shape[1] != 2:
             raise Exception('Matrix is not valid!')
 
-        return self._solve_randomized(matrix)
+        return self._solve_randomized(matrix, **kwargs)
 
     @abstractmethod
-    def _solve_randomized(self, matrix):
+    def _solve_randomized(self, matrix, **kwargs):
         pass

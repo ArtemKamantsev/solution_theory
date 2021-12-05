@@ -52,7 +52,7 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
 
         return intersection_indexes, intersection_k, intersection_loss
 
-    def _solve_randomized(self, matrix):
+    def _solve_randomized(self, matrix, **kwargs):
         convex_hull_indexes = jarvis(matrix)
         convex_hull_points = matrix[convex_hull_indexes]
 

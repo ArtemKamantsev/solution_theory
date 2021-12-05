@@ -1,15 +1,11 @@
 import numpy as np
-from abc import ABC
 from solvers.base_solver import BaseSolver
 
 
-class NeymanPirsSolver(ABC):
+class NeymanPirsSolver(BaseSolver):
     def check(self, matrix):
         num_rows, num_column = matrix.shape
         if num_column != 2:
-            raise Exception('Matrix is not valid!')
-
-        if matrix is None or type(matrix) is not np.ndarray:
             raise Exception('Matrix is not valid!')
 
 
@@ -21,7 +17,8 @@ class NeymanPirsSolver(ABC):
                 matrix[row][el] = maxi - matrix[row][el]
         return matrix
 
-    def solve(self, matrix, value):
+    def _solve(self, matrix, **kwargs):
+        value = kwargs['value']
         self.check(matrix)
 
         matrix = self.revert(matrix)
@@ -42,4 +39,4 @@ class NeymanPirsSolver(ABC):
         print(res, index)
 
 mewCl = NeymanPirsSolver()
-mewCl.solve(np.array([[3, 5], [4, 6], [2, 3], [7, 1]]), 4)
+mewCl.solve(np.array([[3, 5], [4, 6], [2, 3], [7, 1]]), value=4)
