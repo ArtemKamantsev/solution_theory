@@ -64,7 +64,7 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
             if len(intersection_top_indexes) > 0:
                 intersection_convex_hull_indexes = convex_hull_top_points_indexes[intersection_top_indexes]
                 top_matrix_indexes = convex_hull_indexes[intersection_convex_hull_indexes]
-                top_loss = round(matrix[top_matrix_indexes[0]][1], self.accuracy)
+                top_loss = round(matrix[top_matrix_indexes[0]][1], self._accuracy)
 
         convex_hull_bottom_points_indexes = np.flatnonzero(convex_hull_points[:, 0] > convex_hull_points[:, 1])
         bottom_matrix_indexes, bottom_loss = None, None
@@ -75,15 +75,15 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
             if len(intersection_bottom_indexes) > 0:
                 intersection_convex_hull_indexes = convex_hull_bottom_points_indexes[intersection_bottom_indexes]
                 bottom_matrix_indexes = convex_hull_indexes[intersection_convex_hull_indexes]
-                bottom_loss = round(matrix[bottom_matrix_indexes[0]][0], self.accuracy)
+                bottom_loss = round(matrix[bottom_matrix_indexes[0]][0], self._accuracy)
 
         mean_line_intersection_indexes, mean_line_k, mean_line_loss = self.__get_mean_line_intersection(
             convex_hull_points
         )
         if mean_line_loss is not None:
-            mean_line_loss = round(mean_line_loss, self.accuracy)
+            mean_line_loss = round(mean_line_loss, self._accuracy)
         if mean_line_k is not None:
-            mean_line_k = round(mean_line_k, self.accuracy)
+            mean_line_k = round(mean_line_k, self._accuracy)
         mean_line_matrix_indexes = None
         if len(mean_line_intersection_indexes) > 0:
             mean_line_matrix_indexes = convex_hull_indexes[mean_line_intersection_indexes]
@@ -132,6 +132,7 @@ if __name__ == '__main__':
     combined4 = np.array([[3, 1], [3, 2], [3, 4]])
 
     solver = MinMaxRandomizedSolver()
+    solver.use_win_matrix_ = False
     print(solver.solve(top_single_point) == ([0], 2, None, []))
     print(solver.solve(top_multiple) == ([0, 1], 3, None, []))
     print(solver.solve(bottom_single_point) == ([0], 2, None, []))

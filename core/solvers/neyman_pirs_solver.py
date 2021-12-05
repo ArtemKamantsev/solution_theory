@@ -1,4 +1,5 @@
 import numpy as np
+
 from solvers.base_solver import BaseSolver
 
 
@@ -8,20 +9,9 @@ class NeymanPirsSolver(BaseSolver):
         if num_column != 2:
             raise Exception('Matrix is not valid!')
 
-
-    def revert(self, matrix):
-        maxi = np.amax(matrix)
-
-        for row in range(len(matrix)):
-            for el in range(len(matrix[row])):
-                matrix[row][el] = maxi - matrix[row][el]
-        return matrix
-
     def _solve(self, matrix, **kwargs):
         value = kwargs['value']
         self.check(matrix)
-
-        matrix = self.revert(matrix)
 
         deleted_rows = []
 
@@ -37,6 +27,7 @@ class NeymanPirsSolver(BaseSolver):
                 index = i
 
         print(res, index)
+
 
 mewCl = NeymanPirsSolver()
 mewCl.solve(np.array([[3, 5], [4, 6], [2, 3], [7, 1]]), value=4)
