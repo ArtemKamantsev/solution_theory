@@ -5,7 +5,7 @@ import numpy as np
 
 class BaseSolver(ABC):
     def __init__(self):
-        self.use_win_matrix_ = True
+        self.take_input_win_matrix_ = True
 
     def __revert(self, matrix):
         maxi = np.amax(matrix)
@@ -19,7 +19,7 @@ class BaseSolver(ABC):
         if matrix is None or type(matrix) is not np.ndarray or matrix.ndim != 2:
             raise Exception('Matrix is not valid!')
 
-        if self.use_win_matrix_:
+        if self.take_input_win_matrix_:
             matrix = self.__revert(matrix)
 
         return self._solve(matrix, **kwargs)

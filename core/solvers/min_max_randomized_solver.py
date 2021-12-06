@@ -131,7 +131,7 @@ if __name__ == '__main__':
     combined4 = np.array([[3, 1], [3, 2], [3, 4]])
 
     solver = MinMaxRandomizedSolver()
-    solver.use_win_matrix_ = False
+    solver.take_input_win_matrix_ = False
     print(solver.solve(top_single_point) == ([0], 2, None, []))
     print(solver.solve(top_multiple) == ([0, 1], 3, None, []))
     print(solver.solve(bottom_single_point) == ([0], 2, None, []))
