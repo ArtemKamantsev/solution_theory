@@ -98,7 +98,7 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
 
         if bottom_loss is not None and (result_loss is not None and abs(result_loss - bottom_loss) < eps):
             result_indexes.extend(bottom_matrix_indexes)
-        if bottom_loss is not None and (result_loss is None or result_loss - bottom_loss > eps):
+        elif bottom_loss is not None and (result_loss is None or result_loss - bottom_loss > eps):
             result_indexes = list(bottom_matrix_indexes)
             result_loss = bottom_loss
 
