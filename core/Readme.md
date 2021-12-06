@@ -5,9 +5,9 @@ To be able to run any script from 'core' module you should perform following ste
 ```cd ./core```
 3. Create virtual environment
 ```python -m venv venv```
-5. Activate environment (Windows)
+4. Activate environment (Windows)
 ```.\venv\Scripts\activate```
-6. Install dependencies
+5. Install dependencies
 ```pip install -r requirements.txt ```
 
 # Run api.py
