@@ -14,14 +14,13 @@ class NeymanPirsSolver(BaseSolver):
         self.check(matrix)
 
         deleted_rows = []
-
-        for i in range(len(matrix[0])):
+        for i in range(len(matrix)):
             if matrix[i][0] > value:
                 deleted_rows.append(i)
 
         res = 100000
         index = -1
-        for i in range(len(matrix[1])):
+        for i in range(len(matrix)):
             if matrix[i][1] < res and i not in deleted_rows:
                 res = matrix[i][1]
                 index = i
