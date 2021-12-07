@@ -16,7 +16,7 @@ class BaseSolver(ABC):
         return matrix
 
     def solve(self, matrix, **kwargs):
-        if matrix is None or type(matrix) is not np.ndarray or matrix.ndim != 2:
+        if matrix is None or type(matrix) is not np.ndarray or matrix.ndim != 2 or len(matrix) == 0:
             raise Exception('Matrix is not valid!')
 
         if self.take_input_win_matrix_:
