@@ -13,6 +13,11 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         self.uncontrolled_state_idx = 1
 
     def __get_best_loss_point_idx(self, convex_hull_points_allowed):
+        """
+        Finds non randomized solution with minimal loss among convex hull valid points
+        :param convex_hull_points_allowed: list<int>
+        :return: list<int>
+        """
         if len(convex_hull_points_allowed) == 0:
             return []
 
@@ -23,6 +28,12 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         return indexes
 
     def __get_intersection_points_indexes(self, convex_hull_points, value):
+        """
+        Finds all pairs of indexes of convex hull points which lies by different sides of critical `value`
+        :param convex_hull_points: list<int>
+        :param value: float - critical value
+        :return: <list<list<int>[2]>
+        """
         if len(convex_hull_points) < 2:
             return []
         result = []
@@ -36,6 +47,18 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         return result
 
     def __get_best_intersection_loss(self, convex_hull_points, value):
+        """
+        Finds the best loss from points of intersection of convex hull with critical value line
+        :param convex_hull_points: list<int>
+        :param value: float
+        :return: tuple(
+            p1_idx: int - index of first point
+            p2_idx: int - index of second point
+            best_k: float - you can get point corresponding to best loss as follow:
+                            (best_k*p1.x + (1-best_k)*p2.x, best_k*p1.y + (1-best_k)*p2.y)
+                            where p1 and p2 are convex hull points with p1_idx and p2_idx indexes
+            best_loss: float - best loss which is possible to get from intersection point
+        """
         intersection_point_indexes = self.__get_intersection_points_indexes(convex_hull_points, value)
         p1_idx, p2_idx, best_k, best_loss = None, None, None, None
         for idx1, idx2 in intersection_point_indexes:
@@ -55,6 +78,24 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         return p1_idx, p2_idx, best_k, best_loss
 
     def _solve_randomized(self, matrix, convex_hull_indexes, **kwargs):
+        """
+        Returns randomzied solution found by Neyman-Pirson's criteria
+        :param matrix: loss matrix
+        :param convex_hull_indexes: matrix rows indices that form convex hull (from base class)
+        :param value: float - critical value of controlled state
+        :param kwargs:
+        :return: tuple(
+            result_indexes: list<int> - indices of matrix's points which are valid and corresponds to minimum possible loss
+            result_loss: float -  minimal possible loss
+            result_k: None or float - if optimal point lying between not randomized solution,
+                        you can calculate it as follow:
+                        (x * p1.x + (1 - x) * p2.x, x * p1.y + (1 - x) * p2.y)
+                        where p1 and p2 are first and second points from result_intersection_indexes
+            result_intersection_indexes: list<int> - contains indexes of points between which the optimal point lies.
+                                                    Contains 2 elements if there is such point (in this case k is not None)
+                                                    or no elements at all is there is no such point.
+        )
+        """
         convex_hull_points = matrix[convex_hull_indexes]
         value = kwargs['value']
 

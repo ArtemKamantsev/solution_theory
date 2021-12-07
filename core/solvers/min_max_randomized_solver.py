@@ -8,14 +8,28 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
     def __init__(self, accuracy=2):
         super().__init__(accuracy)
 
-    def __get_wedge_intersection_indexes(self, convex_hull_points, point_dimension):
+    @staticmethod
+    def __get_wedge_intersection_indexes(convex_hull_points, point_dimension):
+        """
+        Finds indexes of convex hull points with minimal value by point_dimension axis
+        :param convex_hull_points: list<int>
+        :param point_dimension: int
+        :return: list<int>
+        """
         convex_hull_axis_values = convex_hull_points[:, point_dimension]
         min_value = convex_hull_axis_values.min()
         indexes = np.flatnonzero(convex_hull_axis_values == min_value)
 
         return indexes
 
-    def __get_mean_line_intersection(self, convex_hull_points):
+    @staticmethod
+    def __get_mean_line_intersection(convex_hull_points):
+        """
+        Finds pair of indexes of convex hull points who's section intersect first quarter bisector and this intersection
+        has minimal loss.
+        :param convex_hull_points: list<int>
+        :return: list<int>
+        """
         if len(convex_hull_points) == 0:
             return [], None, None
 
@@ -53,6 +67,23 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
         return intersection_indexes, intersection_k, intersection_loss
 
     def _solve_randomized(self, matrix, convex_hull_indexes, **kwargs):
+        """
+        Returns randomzied solution found by min-max criteria
+        :param matrix: loss matrix
+        :param convex_hull_indexes: matrix rows indices that form convex hull (from base class)
+        :param kwargs:
+        :return: tuple(
+            result_indexes: list<int> - indices of points lying on the optimal wedge if any, empty array otherwise
+            result_loss: float -  minimal possible loss
+            result_k: None or float - if optimal point lying between not randomized solution,
+                        you can calculate it as follow:
+                        (x * p1.x + (1 - x) * p2.x, x * p1.y + (1 - x) * p2.y)
+                        where p1 and p2 are first and second points from result_intersection_indexes
+            result_intersection_indexes: list<int> - contains indexes of points between which the optimal point lies.
+                                                    Contains 2 elements if there is such point (in this case k is not None)
+                                                    or no elements at all is there is no such point.
+        )
+        """
         convex_hull_points = matrix[convex_hull_indexes]
 
         convex_hull_top_points_indexes = np.flatnonzero(convex_hull_points[:, 0] <= convex_hull_points[:, 1])
