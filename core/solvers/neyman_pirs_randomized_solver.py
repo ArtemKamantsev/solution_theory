@@ -61,39 +61,39 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         convex_hull_indexes_allowed = np.flatnonzero(convex_hull_points[:, self.controlled_state_idx] <= value)
         convex_hull_points_allowed = convex_hull_points[convex_hull_indexes_allowed]
 
-        def get_empty_x():
-            return np.zeros((len(matrix),), dtype=np.float32)
-
-        x_star = get_empty_x()
-        loss_star = None
+        result_indexes = []
+        result_loss = None
+        result_k = None
+        result_intersection_indexes = []
         if len(convex_hull_points_allowed) > 0:
-            best_loss_point_idx = self.__get_best_loss_point_idx(convex_hull_points_allowed)
-            if len(best_loss_point_idx) <= 1:
-                if len(best_loss_point_idx) == 1:
-                    convex_hull_allowed_best_loss_point_idx = best_loss_point_idx[0]
-                    convex_hull_best_loss_point_idx = convex_hull_indexes_allowed[
-                        convex_hull_allowed_best_loss_point_idx]
-                    matrix_best_loss_point_idx = convex_hull_indexes[convex_hull_best_loss_point_idx]
-                    x_star[matrix_best_loss_point_idx] = 1
-                    loss_star = matrix[matrix_best_loss_point_idx][self.uncontrolled_state_idx]
-                    loss_star = round(loss_star, self._accuracy)
+            convex_hull_allowed_best_loss_point_indexes = self.__get_best_loss_point_idx(convex_hull_points_allowed)
+            if len(convex_hull_allowed_best_loss_point_indexes) > 0:
+                convex_hull_best_loss_point_indexes = convex_hull_indexes_allowed[
+                    convex_hull_allowed_best_loss_point_indexes]
+                matrix_best_loss_point_indexes = convex_hull_indexes[convex_hull_best_loss_point_indexes]
+                result_indexes.extend(matrix_best_loss_point_indexes)
+                result_loss = matrix[matrix_best_loss_point_indexes[0]][self.uncontrolled_state_idx]
 
-                p1_convex_hull_idx, p2_convex_hull_idx, k, loss = self.__get_best_intersection_loss(convex_hull_points,
-                                                                                                    value)
-                if loss is not None and loss_star is not None and abs(loss_star - loss) <= eps:
-                    x_star = get_empty_x()
-                    loss_star = None
-                elif loss is not None and (loss_star is None or loss_star - loss > eps):
-                    p1_matrix_idx = convex_hull_indexes[p1_convex_hull_idx]
-                    p2_matrix_idx = convex_hull_indexes[p2_convex_hull_idx]
-                    x_star = get_empty_x()
-                    k = round(k, self._accuracy)
-                    x_star[p1_matrix_idx] = k
-                    x_star[p2_matrix_idx] = 1 - k
-                    loss = round(loss, self._accuracy)
-                    loss_star = loss
+            p1_convex_hull_idx, p2_convex_hull_idx, intersection_k, intersection_loss = self.__get_best_intersection_loss(
+                convex_hull_points,
+                value
+            )
+            if intersection_loss is not None:
+                p1_matrix_idx = convex_hull_indexes[p1_convex_hull_idx]
+                p2_matrix_idx = convex_hull_indexes[p2_convex_hull_idx]
+                intersection_loss = round(intersection_loss, self._accuracy)
+                intersection_k = round(intersection_k, self._accuracy)
+                if result_loss is None or result_loss + eps > intersection_loss:
+                    # intersection loss less or equal
+                    result_intersection_indexes.append(p1_matrix_idx)
+                    result_intersection_indexes.append(p2_matrix_idx)
+                    result_k = intersection_k
+                    if result_loss is None or result_loss - eps > intersection_loss:
+                        # intersection loss is less (strict)
+                        result_indexes = []
+                        result_loss = intersection_loss
 
-        return list(x_star), loss_star, value
+        return result_indexes, result_loss, result_k, result_intersection_indexes, value
 
 
 if __name__ == '__main__':
@@ -103,12 +103,12 @@ if __name__ == '__main__':
     solver = NeymanPirsRandomizedSolver()
     solver.take_input_win_matrix_ = False
 
-    print(solver.solve(triangle_down, value=4) == ([0, 0, 1], 1, 4))
-    print(solver.solve(triangle_down, value=0) == ([0, 0, 0], None, 0))
-    print(solver.solve(triangle_down, value=1) == ([1, 0, 0], 2, 1))
-    print(solver.solve(triangle_down, value=2) == ([0, 0, 1], 1, 2))
-    print(solver.solve(triangle_down, value=1.5) == ([0.5, 0, 0.5], 1.5, 1.5))
-    print(solver.solve(triangle_down, value=2.5) == ([0, 0, 1], 1, 2.5))
+    print(solver.solve(triangle_down, value=4) == ([2], 1, None, [], 4))
+    print(solver.solve(triangle_down, value=0) == ([], None, None, [], 0))
+    print(solver.solve(triangle_down, value=1) == ([0], 2, None, [], 1))
+    print(solver.solve(triangle_down, value=2) == ([2], 1, None, [], 2))
+    print(solver.solve(triangle_down, value=1.5) == ([], 1.5, 0.5, [0, 2], 1.5))
+    print(solver.solve(triangle_down, value=2.5) == ([2], 1, None, [], 2.5))
 
-    print(solver.solve(triangle_up, value=4) == ([0, 0, 0], None, 4))
-    print(solver.solve(triangle_up, value=2) == ([0, 0, 0], None, 2))
+    print(solver.solve(triangle_up, value=4) == ([0, 1], 1, None, [], 4))
+    print(solver.solve(triangle_up, value=2) == ([0], 1, 0.5, [0, 1], 2))

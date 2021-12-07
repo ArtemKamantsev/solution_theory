@@ -110,12 +110,6 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
             result_k = mean_line_k
             result_loss = mean_line_loss
 
-        x_star = np.zeros((len(matrix,)))
-        x_star[result_indexes] = 1
-        if len(result_intersection_indexes) == 2:
-            x_star[result_intersection_indexes[0]] = result_k
-            x_star[result_intersection_indexes[1]] = 1 - result_k
-
         return result_indexes, result_loss, result_k, result_intersection_indexes
 
 
