@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from Jarvis import jarvis
+from utils import jarvis
 from solvers.base_solver import BaseSolver
 
 
