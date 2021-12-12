@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1470, 799);
+            this.webBrowser1.Size = new System.Drawing.Size(1436, 799);
             this.webBrowser1.TabIndex = 0;
             // 
             // EduMForm
@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1470, 799);
+            this.ClientSize = new System.Drawing.Size(1436, 799);
             this.Controls.Add(this.webBrowser1);
             this.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
             this.Name = "EduMForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EduMForm_FormClosed);
             this.Shown += new System.EventHandler(this.EduMForm_Shown);
             this.ResumeLayout(false);
