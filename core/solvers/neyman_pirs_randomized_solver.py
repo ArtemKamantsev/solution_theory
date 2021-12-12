@@ -1,6 +1,6 @@
 import numpy as np
 
-from Jarvis import eps
+from utils import eps
 from solvers.base_randomized_solver import BaseRandomizedSolver
 
 
