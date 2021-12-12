@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             string curDir = Directory.GetCurrentDirectory();
             DirectoryInfo directoryInfo = Directory.GetParent(curDir);
             DirectoryInfo directoryInfo2 = Directory.GetParent(directoryInfo.FullName);
-            string path = directoryInfo2.FullName + @"\data\11.htm";
+            string path = directoryInfo2.FullName + @"\data\ТПР_теория.htm";
             webBrowser1.Url = new Uri(String.Format("file:///{0}", path));
         }
 
