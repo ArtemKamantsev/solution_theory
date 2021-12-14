@@ -26,5 +26,12 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmMenu frmMenu = new FrmMenu();
+            frmMenu.Show();
+           //this.Hide();
+        }
     }
 }
