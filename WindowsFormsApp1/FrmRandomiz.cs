@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         }
 
         int n;
-        int m;
+        int m = 2;
         List<List<int>> listMaxMin;
         List<List<int>> listNeimPirs;
         int controlStan;
@@ -34,42 +34,19 @@ namespace WindowsFormsApp1
         {
             dtGridMinMax.AllowUserToAddRows = false;
             dtGridMinMax.Rows.Clear();
-            dtGridMinMax.Columns.Clear();
-            n = (int)numRow.Value;
-            m = (int)numColumn.Value;
+            n = (int)numGameCount.Value;
 
-            for (int i = 0; i < m; i++)
-            {
-                dtGridMinMax.Columns.Add("B"+(i+1), "b" + (i + 1));
-            }
+            dtGridMinMax.Columns.Add("B1", "b1");
+            dtGridMinMax.Columns.Add("B2", "b2");
             dtGridMinMax.Rows.Add(n);
             listMaxMin.Clear();
         }
 
-        private void numRow_ValueChanged(object sender, EventArgs e)
+        private void numGameCount_ValueChanged_1(object sender, EventArgs e)
         {
             dtGridMinMax.Rows.Clear();
-            dtGridMinMax.Columns.Clear();
-            n = (int)numRow.Value;
+            n = (int)numGameCount.Value;
 
-            for (int i = 0; i < m; i++)
-            {
-                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
-            }
-            dtGridMinMax.RowCount = n;
-            listMaxMin.Clear();
-        }
-
-        private void numColumn_ValueChanged(object sender, EventArgs e)
-        {
-            dtGridMinMax.Rows.Clear();
-            dtGridMinMax.Columns.Clear();
-            m = (int)numColumn.Value;
-
-            for (int i = 0; i < m; i++)
-            {
-                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
-            }
             dtGridMinMax.RowCount = n;
             listMaxMin.Clear();
         }
@@ -115,7 +92,6 @@ namespace WindowsFormsApp1
         }
         private void btnNextNP_Click(object sender, EventArgs e)
         {
-            controlStan = (int)numContrlSt.Value;
             porogZnach = (int)numPorogZn.Value;
             for (int i = 0; i < n; i++)
             {

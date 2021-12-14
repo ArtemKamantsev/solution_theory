@@ -35,20 +35,46 @@ namespace WindowsFormsApp1
             dtGridMinMax.AllowUserToAddRows = false;
             dtGridMinMax.Rows.Clear();
             dtGridMinMax.Columns.Clear();
-            n = (int)numGameCount.Value;
+            n = (int)numRow.Value;
+            m = (int)numColumn.Value;
 
-            dtGridMinMax.Columns.Add("B1", "b1");
-            dtGridMinMax.Columns.Add("B2", "b2");
+            
+            for (int i = 0; i < m; i++)
+            {
+                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
             dtGridMinMax.RowCount = n;
 
             listMaxMin.Clear();
         }
 
-        private void numGameCount_ValueChanged(object sender, EventArgs e)
+        private void numRow_ValueChanged(object sender, EventArgs e)
         {
+            dtGridMinMax.Columns.Clear();
             dtGridMinMax.Rows.Clear();
-            n = (int)numGameCount.Value;
+            n = (int)numRow.Value;
+            m = (int)numColumn.Value;
 
+            for (int i = 0; i < m; i++)
+            {
+                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
+            dtGridMinMax.RowCount = n;
+
+            listMaxMin.Clear();
+        }
+
+        private void numColumn_ValueChanged(object sender, EventArgs e)
+        {
+            dtGridMinMax.Columns.Clear();
+            dtGridMinMax.Rows.Clear();
+            n = (int)numRow.Value;
+            m = (int)numColumn.Value;
+
+            for (int i = 0; i < m; i++)
+            {
+                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
             dtGridMinMax.RowCount = n;
 
             listMaxMin.Clear();
@@ -77,6 +103,7 @@ namespace WindowsFormsApp1
             dtNeimanPirs.Rows.Clear();
             dtNeimanPirs.Columns.Clear();
             n = (int)numGameCountNP.Value;
+            m = 2;
 
             dtNeimanPirs.Columns.Add("B1", "b1");
             dtNeimanPirs.Columns.Add("B2", "b2");
@@ -96,7 +123,6 @@ namespace WindowsFormsApp1
         
         private void btnNextNP_Click(object sender, EventArgs e)
         {
-            controlStan = (int)numContrlSt.Value;
             porogZnach = (int)numPorogZn.Value;
             for (int i = 0; i < n; i++)
             {
@@ -140,6 +166,5 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-        
     }
 }

@@ -34,9 +34,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numGameCount = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -44,24 +41,27 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numPorogZn = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numContrlSt = new System.Windows.Forms.NumericUpDown();
             this.dtNeimanPirs = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.numGameCountNP = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numColumn = new System.Windows.Forms.NumericUpDown();
+            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numRow = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numContrlSt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numColumn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRow)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -112,7 +112,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(485, 110);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(482, 496);
+            this.groupBox2.Size = new System.Drawing.Size(482, 513);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Вихідні дані";
@@ -129,55 +129,18 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dtGridMinMax);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.numGameCount);
+            this.groupBox1.Controls.Add(this.numColumn);
+            this.groupBox1.Controls.Add(this.numRow);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(9, 110);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(456, 496);
+            this.groupBox1.Size = new System.Drawing.Size(456, 513);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вхідні дані";
-            // 
-            // dtGridMinMax
-            // 
-            this.dtGridMinMax.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGridMinMax.Location = new System.Drawing.Point(38, 93);
-            this.dtGridMinMax.Name = "dtGridMinMax";
-            this.dtGridMinMax.RowHeadersWidth = 51;
-            this.dtGridMinMax.RowTemplate.Height = 24;
-            this.dtGridMinMax.Size = new System.Drawing.Size(375, 368);
-            this.dtGridMinMax.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(51, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(204, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Введіть кількість ігор: ";
-            // 
-            // numGameCount
-            // 
-            this.numGameCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numGameCount.Location = new System.Drawing.Point(268, 38);
-            this.numGameCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.Name = "numGameCount";
-            this.numGameCount.Size = new System.Drawing.Size(120, 27);
-            this.numGameCount.TabIndex = 2;
-            this.numGameCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.ValueChanged += new System.EventHandler(this.numGameCount_ValueChanged);
             // 
             // tabPage2
             // 
@@ -235,8 +198,6 @@
             // 
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.numPorogZn);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.numContrlSt);
             this.groupBox4.Controls.Add(this.dtNeimanPirs);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.numGameCountNP);
@@ -252,7 +213,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(50, 100);
+            this.label4.Location = new System.Drawing.Point(50, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(184, 20);
             this.label4.TabIndex = 6;
@@ -261,7 +222,7 @@
             // numPorogZn
             // 
             this.numPorogZn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numPorogZn.Location = new System.Drawing.Point(267, 98);
+            this.numPorogZn.Location = new System.Drawing.Point(283, 80);
             this.numPorogZn.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -281,43 +242,10 @@
             0,
             0});
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(50, 64);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(204, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Контрольванний стан: ";
-            // 
-            // numContrlSt
-            // 
-            this.numContrlSt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numContrlSt.Location = new System.Drawing.Point(267, 62);
-            this.numContrlSt.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numContrlSt.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numContrlSt.Name = "numContrlSt";
-            this.numContrlSt.Size = new System.Drawing.Size(120, 27);
-            this.numContrlSt.TabIndex = 5;
-            this.numContrlSt.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // dtNeimanPirs
             // 
             this.dtNeimanPirs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtNeimanPirs.Location = new System.Drawing.Point(33, 133);
+            this.dtNeimanPirs.Location = new System.Drawing.Point(36, 134);
             this.dtNeimanPirs.Name = "dtNeimanPirs";
             this.dtNeimanPirs.RowHeadersWidth = 51;
             this.dtNeimanPirs.RowTemplate.Height = 24;
@@ -330,14 +258,14 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(50, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 20);
+            this.label1.Size = new System.Drawing.Size(227, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Введіть кількість ігор: ";
+            this.label1.Text = "Введіть кількість рядків: ";
             // 
             // numGameCountNP
             // 
             this.numGameCountNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numGameCountNP.Location = new System.Drawing.Point(267, 26);
+            this.numGameCountNP.Location = new System.Drawing.Point(283, 26);
             this.numGameCountNP.Minimum = new decimal(new int[] {
             1,
             0,
@@ -352,6 +280,71 @@
             0,
             0});
             this.numGameCountNP.ValueChanged += new System.EventHandler(this.numGameCountNP_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 76);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(245, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Введіть кількість стовпців: ";
+            // 
+            // numColumn
+            // 
+            this.numColumn.Location = new System.Drawing.Point(288, 75);
+            this.numColumn.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numColumn.Name = "numColumn";
+            this.numColumn.Size = new System.Drawing.Size(120, 27);
+            this.numColumn.TabIndex = 10;
+            this.numColumn.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numColumn.ValueChanged += new System.EventHandler(this.numColumn_ValueChanged);
+            // 
+            // dtGridMinMax
+            // 
+            this.dtGridMinMax.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dtGridMinMax.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGridMinMax.Location = new System.Drawing.Point(41, 122);
+            this.dtGridMinMax.Name = "dtGridMinMax";
+            this.dtGridMinMax.RowHeadersWidth = 51;
+            this.dtGridMinMax.RowTemplate.Height = 24;
+            this.dtGridMinMax.Size = new System.Drawing.Size(367, 368);
+            this.dtGridMinMax.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(227, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Введіть кількість рядків: ";
+            // 
+            // numRow
+            // 
+            this.numRow.Location = new System.Drawing.Point(288, 28);
+            this.numRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numRow.Name = "numRow";
+            this.numRow.Size = new System.Drawing.Size(120, 27);
+            this.numRow.TabIndex = 7;
+            this.numRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numRow.ValueChanged += new System.EventHandler(this.numRow_ValueChanged);
             // 
             // FrmNerandomiz
             // 
@@ -368,17 +361,17 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numContrlSt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numColumn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -388,9 +381,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.DataGridView dtGridMinMax;
-        private System.Windows.Forms.NumericUpDown numGameCount;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
@@ -401,10 +391,13 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numPorogZn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numContrlSt;
         private System.Windows.Forms.DataGridView dtNeimanPirs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numGameCountNP;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numColumn;
+        private System.Windows.Forms.DataGridView dtGridMinMax;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numRow;
     }
 }
