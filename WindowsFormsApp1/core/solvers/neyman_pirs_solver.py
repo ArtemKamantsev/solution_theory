@@ -19,14 +19,16 @@ class NeymanPirsSolver(BaseSolver):
                 deleted_rows.append(i)
 
         res = 100000
-        index = -1
         for i in range(len(matrix)):
             if matrix[i][1] < res and i not in deleted_rows:
                 res = matrix[i][1]
-                index = i
 
-        print(res, index)
+        indexes = np.flatnonzero(matrix[:, 1] == res)
+        result = {'indexes_optimal:': indexes, 'loss:': res, 'indexes_excluded': deleted_rows}
+
+        return result
 
 
 mewCl = NeymanPirsSolver()
-mewCl.solve(np.array([[3, 5], [4, 6], [2, 3], [7, 1]]), value=4)
+mewCl.take_input_win_matrix_ = False
+print(mewCl.solve(np.array([[3, 5], [4, 6], [2, 3], [1, 3], [7, 1]]), value=4))

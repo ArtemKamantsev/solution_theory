@@ -10,9 +10,12 @@ class MinMaxSolver(BaseSolver):
             matrix_max = np.append(matrix_max, max(matrix[row]))
 
         res = min(matrix_max)
-        index = np.argmin(matrix_max)
-        print(res, index)
+        indexes = np.flatnonzero(matrix_max == res)
+        result = {'indexes_optimal:': indexes, 'loss:': res}
+
+        return result
 
 
 mewCl = MinMaxSolver()
-mewCl.solve(np.array([[1, 2], [5, 6]]))
+mewCl.take_input_win_matrix_ = False
+print(mewCl.solve(np.array([[1, 2], [2, 2], [5, 6]])))
