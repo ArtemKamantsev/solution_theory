@@ -1,7 +1,7 @@
 import numpy as np
 
-from utils import eps
 from solvers.base_randomized_solver import BaseRandomizedSolver
+from utils import eps
 
 
 class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
@@ -82,7 +82,7 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
         Returns randomzied solution found by Neyman-Pirson's criteria
         :param matrix: loss matrix
         :param convex_hull_indexes: matrix rows indices that form convex hull (from base class)
-        :param value: float - critical value of controlled state
+        :param critical_value: float - critical value of controlled state
         :param kwargs:
         :return: tuple(
             result_indexes: list<int> - indices of matrix's points which are valid and corresponds to minimum possible loss
@@ -96,15 +96,18 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                                                     or no elements at all is there is no such point.
         )
         """
-        convex_hull_points = matrix[convex_hull_indexes]
-        value = kwargs['value']
+        if 'critical_value' not in kwargs:
+            raise Exception('critical_value must be provided for Neyman-Pirson method')
 
-        convex_hull_indexes_allowed = np.flatnonzero(convex_hull_points[:, self.controlled_state_idx] <= value)
+        critical_value = kwargs['critical_value']
+        convex_hull_points = matrix[convex_hull_indexes]
+
+        convex_hull_indexes_allowed = np.flatnonzero(convex_hull_points[:, self.controlled_state_idx] <= critical_value)
         convex_hull_points_allowed = convex_hull_points[convex_hull_indexes_allowed]
 
         result_indexes = []
         result_loss = None
-        result_k = None
+        intersection_ratio = None
         result_intersection_indexes = []
         if len(convex_hull_points_allowed) > 0:
             convex_hull_allowed_best_loss_point_indexes = self.__get_best_loss_point_idx(convex_hull_points_allowed)
@@ -112,12 +115,12 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                 convex_hull_best_loss_point_indexes = convex_hull_indexes_allowed[
                     convex_hull_allowed_best_loss_point_indexes]
                 matrix_best_loss_point_indexes = convex_hull_indexes[convex_hull_best_loss_point_indexes]
-                result_indexes.extend(matrix_best_loss_point_indexes)
+                result_indexes.extend(matrix_best_loss_point_indexes.tolist())
                 result_loss = matrix[matrix_best_loss_point_indexes[0]][self.uncontrolled_state_idx]
 
             p1_convex_hull_idx, p2_convex_hull_idx, intersection_k, intersection_loss = self.__get_best_intersection_loss(
                 convex_hull_points,
-                value
+                critical_value
             )
             if intersection_loss is not None:
                 p1_matrix_idx = convex_hull_indexes[p1_convex_hull_idx]
@@ -128,13 +131,19 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                     # intersection loss less or equal
                     result_intersection_indexes.append(p1_matrix_idx)
                     result_intersection_indexes.append(p2_matrix_idx)
-                    result_k = intersection_k
+                    intersection_ratio = intersection_k
                     if result_loss is None or result_loss - eps > intersection_loss:
                         # intersection loss is less (strict)
                         result_indexes = []
                         result_loss = intersection_loss
 
-        return result_indexes, result_loss, result_k, result_intersection_indexes, value
+        return {
+            'loss': float(result_loss),
+            'indexes_optimal': result_indexes,
+            'indexes_intersection': result_intersection_indexes,
+            'intersection_ratio': intersection_ratio,
+            'critical_value': float(critical_value)
+        }
 
 
 if __name__ == '__main__':
@@ -144,12 +153,17 @@ if __name__ == '__main__':
     solver = NeymanPirsRandomizedSolver()
     solver.take_input_win_matrix_ = False
 
-    print(solver.solve(triangle_down, value=4) == ([2], 1, None, [], 4))
-    print(solver.solve(triangle_down, value=0) == ([], None, None, [], 0))
-    print(solver.solve(triangle_down, value=1) == ([0], 2, None, [], 1))
-    print(solver.solve(triangle_down, value=2) == ([2], 1, None, [], 2))
-    print(solver.solve(triangle_down, value=1.5) == ([], 1.5, 0.5, [0, 2], 1.5))
-    print(solver.solve(triangle_down, value=2.5) == ([2], 1, None, [], 2.5))
-
-    print(solver.solve(triangle_up, value=4) == ([0, 1], 1, None, [], 4))
-    print(solver.solve(triangle_up, value=2) == ([0], 1, 0.5, [0, 1], 2))
+    print(solver.solve(triangle_down, critical_value=4))
+    print(solver.solve(triangle_down, critical_value=1.5))
+    print(solver.solve(triangle_up, critical_value=0))
+    print(solver.solve(triangle_up, critical_value=2))
+    # todo refactor for new output format
+    # print(solver.solve(triangle_down, value=4) == ([2], 1, None, [], 4))
+    # print(solver.solve(triangle_down, value=0) == ([], None, None, [], 0))
+    # print(solver.solve(triangle_down, value=1) == ([0], 2, None, [], 1))
+    # print(solver.solve(triangle_down, value=2) == ([2], 1, None, [], 2))
+    # print(solver.solve(triangle_down, value=1.5) == ([], 1.5, 0.5, [0, 2], 1.5))
+    # print(solver.solve(triangle_down, value=2.5) == ([2], 1, None, [], 2.5))
+    #
+    # print(solver.solve(triangle_up, value=4) == ([0, 1], 1, None, [], 4))
+    # print(solver.solve(triangle_up, value=2) == ([0], 1, 0.5, [0, 1], 2))

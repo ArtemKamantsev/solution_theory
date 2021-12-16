@@ -22,7 +22,12 @@ class BaseSolver(ABC):
         if self.take_input_win_matrix_:
             matrix = self.__revert(matrix)
 
-        return self._solve(matrix, **kwargs)
+        result_child = self._solve(matrix, **kwargs)
+
+        return {
+            'matrix_loss': matrix.tolist(),
+            **result_child,
+        }
 
     @abstractmethod
     def _solve(self, matrix, **kwargs):

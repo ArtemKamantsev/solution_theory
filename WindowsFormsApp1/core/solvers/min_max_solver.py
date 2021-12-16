@@ -11,11 +11,15 @@ class MinMaxSolver(BaseSolver):
 
         res = min(matrix_max)
         indexes = np.flatnonzero(matrix_max == res)
-        result = {'indexes_optimal:': indexes, 'loss:': res}
+        result = {
+            'indexes_optimal': indexes.tolist(),
+            'loss': float(res)
+        }
 
         return result
 
 
-mewCl = MinMaxSolver()
-mewCl.take_input_win_matrix_ = False
-print(mewCl.solve(np.array([[1, 2], [2, 2], [5, 6]])))
+if __name__ == '__main__':
+    mewCl = MinMaxSolver()
+    mewCl.take_input_win_matrix_ = False
+    print(mewCl.solve(np.array([[1, 2], [2, 2], [5, 6]])))
