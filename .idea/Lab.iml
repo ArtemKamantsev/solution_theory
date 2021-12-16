@@ -3,6 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WindowsFormsApp1/core" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/WindowsFormsApp1/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/WindowsFormsApp1/core/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/WindowsFormsApp1/obj" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (Lab)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
