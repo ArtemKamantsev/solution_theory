@@ -108,7 +108,7 @@ namespace WindowsFormsApp1
         }
         #endregion
 
-        private void ReadPyhonFile()
+        private string ReadPyhonFile(string methodName, string inputRow)
         {
             ProcessStartInfo start = new ProcessStartInfo();
 
@@ -118,15 +118,20 @@ namespace WindowsFormsApp1
             start.FileName = directoryInfo2.FullName + @"\core\venv\Scripts\python.exe";
             string path = directoryInfo2.FullName + @"\core\api.py";
 
-            start.Arguments = string.Format("{0} -c {1}", path, "worst app!");
+            start.Arguments = string.Format(path);
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
+            start.RedirectStandardInput = true;
             using (Process process = Process.Start(start))
             {
+                StreamWriter writer = process.StandardInput;
+                writer.WriteLine(methodName);
+                writer.WriteLine(inputRow);
+
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    MessageBox.Show(result);
+                    return result;
                 }
             }
         }
