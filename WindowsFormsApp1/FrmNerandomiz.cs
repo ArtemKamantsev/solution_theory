@@ -104,7 +104,7 @@ namespace WindowsFormsApp1
                 GetResultFromPythonMM();
             }
         }
-        public void GetResultFromPythonMM()
+        private void GetResultFromPythonMM()
         {
             var json = JsonConvert.SerializeObject(listMaxMin);
             dataJson.Clear();
@@ -405,7 +405,7 @@ namespace WindowsFormsApp1
         private void txtResExcluded_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsDigit(ch) && ch != 32)
+            if (!Char.IsDigit(ch) && ch != 32 && ch != 8)
             {
                 e.Handled = true;
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,16 +19,27 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            listMaxMin = new List<List<int>>();
-            listNeimPirs = new List<List<int>>();   
+            listMaxMin = new List<List<double>>();
+            listNeimPirs = new List<List<double>>();
+            dataJson = new StringBuilder();
+            result = new StringBuilder();
         }
 
         int n;
-        int m = 2;
-        List<List<int>> listMaxMin;
-        List<List<int>> listNeimPirs;
-        int controlStan;
+        readonly int m = 2;
+        List<List<double>> listMaxMin;
+        List<List<double>> listNeimPirs;
+        bool isNull = true;
         int porogZnach;
+        StringBuilder dataJson;
+        StringBuilder result;
+        double resFirstElem;
+        double resLastElem;
+        List<double> indexesOptimal;
+        List<string> resIndexes;
+        double rightLoss;
+        double loss;
+        List<double> indexesExcluded;
 
         #region Критерий МиниМакс
         private void tabPage1_Enter(object sender, EventArgs e)
@@ -51,19 +63,65 @@ namespace WindowsFormsApp1
             listMaxMin.Clear();
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void btnNext_Click_1(object sender, EventArgs e)
         {
-            for (int i = 0; i < n; i++)
-            {
-                listMaxMin.Add(new List<int>());
-            }
-
+            isNull = false;
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                    listMaxMin[i].Add(Convert.ToInt32(dtGridMinMax.Rows[i].Cells[j].Value));
+                    if (dtGridMinMax.Rows[i].Cells[j].Value == null)
+                    {
+                        isNull = true;
+                        MessageBox.Show("Заповніть матрицю!", "Warning!");
+                        break;
+                    }
                 }
+            }
+
+            if (!isNull)
+            {
+                groupPerevirMM.Visible = true;
+                groupEnterMM.Enabled = false;
+
+                for (int i = 0; i < n; i++)
+                {
+                    listMaxMin.Add(new List<double>());
+                }
+
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        listMaxMin[i].Add(Convert.ToDouble(dtGridMinMax.Rows[i].Cells[j].Value));
+                    }
+                }
+
+                GetResultFromPythonMM();
+            }
+        }
+        private void GetResultFromPythonMM()
+        {
+            var json = JsonConvert.SerializeObject(listMaxMin);
+            dataJson.Clear();
+            result.Clear();
+            dataJson.Append("{\"matrix\": " + json + "}");
+            result.Append(ReadPyhonFile("min-max-randomized", dataJson));
+
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            if (stuff.data == null)
+                MessageBox.Show(stuff.error.ToString(), "Error:");
+            else
+            {
+                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+                listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
+                for (int i = 0; i < indexesOptimal.Count; i++)
+                {
+                    indexesOptimal[i] += 1;
+                }
+                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
             }
         }
         #endregion
@@ -95,7 +153,7 @@ namespace WindowsFormsApp1
             porogZnach = (int)numPorogZn.Value;
             for (int i = 0; i < n; i++)
             {
-                listNeimPirs.Add(new List<int>());
+                listNeimPirs.Add(new List<double>());
             }
 
             for (int i = 0; i < n; i++)
@@ -108,7 +166,7 @@ namespace WindowsFormsApp1
         }
         #endregion
 
-        private string ReadPyhonFile(string methodName, string inputRow)
+        private string ReadPyhonFile(string methodName, StringBuilder data)
         {
             ProcessStartInfo start = new ProcessStartInfo();
 
@@ -118,21 +176,80 @@ namespace WindowsFormsApp1
             start.FileName = directoryInfo2.FullName + @"\core\venv\Scripts\python.exe";
             string path = directoryInfo2.FullName + @"\core\api.py";
 
-            start.Arguments = string.Format(path);
+            start.Arguments = string.Format("{0}", path);
             start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
             start.RedirectStandardInput = true;
+            start.RedirectStandardOutput = true;
             using (Process process = Process.Start(start))
             {
                 StreamWriter writer = process.StandardInput;
                 writer.WriteLine(methodName);
-                writer.WriteLine(inputRow);
-
+                writer.WriteLine(data);
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
+                    //MessageBox.Show(result);
                     return result;
                 }
+            }
+        }
+        private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
+        {
+            DataGridView dataGridView = sender as DataGridView;
+            for (int i = 0; i < m; i++)
+            {
+                dataGridView.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
+            dataGridView.RowCount = n;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Value = list[i][j];
+                }
+            }
+        }
+        private bool EqualDoubleForResult(object sender, double res, double matr)
+        {
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            if (res != matr)
+            {
+                numericUpDown.BackColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                numericUpDown.BackColor = Color.Green;
+                return true;
+            }
+        }
+        private void EqualListIndexes(object sender, List<double> listFromServ)
+        {
+            TextBox textBox = sender as TextBox;
+            bool isEqualList = false;
+            resIndexes = textBox.Text.Trim().Split().ToList();
+            if (listFromServ.Count == resIndexes.Count)
+            {
+                for (int i = 0; i < resIndexes.Count; i++)
+                {
+                    if (listFromServ[i] != Convert.ToDouble(resIndexes[i]))
+                    {
+                        isEqualList = false;
+                    }
+                    else
+                    {
+                        isEqualList = true;
+                    }
+                }
+            }
+            if (!isEqualList)
+            {
+                textBox.BackColor = Color.Red;
+            }
+            else
+            {
+                textBox.BackColor = Color.Green;
             }
         }
 
@@ -142,6 +259,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-        
+       
     }
 }
