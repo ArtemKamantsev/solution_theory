@@ -68,25 +68,19 @@ namespace WindowsFormsApp1
             }
 
             List<List<double>> data = new List<List<double>>();
-            List<double> list = new List<double>();
-            list.Add(0);
-            list.Add(1);
-            data.Add(list);
 
-            List<double> list1 = new List<double>();
-            list1.Add(3);
-            list1.Add(5);
-            data.Add(list1);
+            for (int i = 0; i < n; i++)
+            {
+                data.Add(new List<double>());
+            }
 
-            List<double> list2 = new List<double>();
-            list2.Add(2);
-            list2.Add(7);
-            data.Add(list2);
-
-            List<double> list3 = new List<double>();
-            list3.Add(-1);
-            list3.Add(3);
-            data.Add(list3);
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    data[i].Add(Convert.ToDouble(dtGridMinMax.Rows[i].Cells[j].Value));
+                }
+            }
 
             DrawPlot(data);
         }
