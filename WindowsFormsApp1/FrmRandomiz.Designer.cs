@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,6 +41,9 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnNext = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numGameCount = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -52,14 +55,13 @@
             this.dtNeimanPirs = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.numGameCountNP = new System.Windows.Forms.NumericUpDown();
-            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numGameCount = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
@@ -67,8 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -127,20 +127,21 @@
             // 
             // chart1
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(16, 34);
             this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(498, 353);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // btnNext
             // 
@@ -163,6 +164,45 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вхідні дані";
+            // 
+            // dtGridMinMax
+            // 
+            this.dtGridMinMax.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGridMinMax.Location = new System.Drawing.Point(29, 108);
+            this.dtGridMinMax.Name = "dtGridMinMax";
+            this.dtGridMinMax.RowHeadersWidth = 51;
+            this.dtGridMinMax.RowTemplate.Height = 24;
+            this.dtGridMinMax.Size = new System.Drawing.Size(375, 368);
+            this.dtGridMinMax.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(41, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(204, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Введіть кількість ігор: ";
+            // 
+            // numGameCount
+            // 
+            this.numGameCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numGameCount.Location = new System.Drawing.Point(258, 37);
+            this.numGameCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numGameCount.Name = "numGameCount";
+            this.numGameCount.Size = new System.Drawing.Size(120, 27);
+            this.numGameCount.TabIndex = 5;
+            this.numGameCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numGameCount.ValueChanged += new System.EventHandler(this.numGameCount_ValueChanged_1);
             // 
             // tabPage2
             // 
@@ -209,17 +249,17 @@
             // 
             // chart2
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart2.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(18, 28);
             this.chart2.Name = "chart2";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart2.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(498, 353);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
@@ -321,45 +361,6 @@
             0});
             this.numGameCountNP.ValueChanged += new System.EventHandler(this.numGameCountNP_ValueChanged);
             // 
-            // dtGridMinMax
-            // 
-            this.dtGridMinMax.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGridMinMax.Location = new System.Drawing.Point(29, 108);
-            this.dtGridMinMax.Name = "dtGridMinMax";
-            this.dtGridMinMax.RowHeadersWidth = 51;
-            this.dtGridMinMax.RowTemplate.Height = 24;
-            this.dtGridMinMax.Size = new System.Drawing.Size(375, 368);
-            this.dtGridMinMax.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(41, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(204, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Введіть кількість ігор: ";
-            // 
-            // numGameCount
-            // 
-            this.numGameCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numGameCount.Location = new System.Drawing.Point(258, 37);
-            this.numGameCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.Name = "numGameCount";
-            this.numGameCount.Size = new System.Drawing.Size(120, 27);
-            this.numGameCount.TabIndex = 5;
-            this.numGameCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.ValueChanged += new System.EventHandler(this.numGameCount_ValueChanged_1);
-            // 
             // FrmRandomiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -376,6 +377,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -385,8 +388,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
             this.ResumeLayout(false);
 
         }

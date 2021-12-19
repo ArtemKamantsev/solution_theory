@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WindowsFormsApp1
 {
@@ -65,6 +66,60 @@ namespace WindowsFormsApp1
                     listMaxMin[i].Add(Convert.ToInt32(dtGridMinMax.Rows[i].Cells[j].Value));
                 }
             }
+
+            List<List<double>> data = new List<List<double>>();
+            List<double> list = new List<double>();
+            list.Add(0);
+            list.Add(1);
+            data.Add(list);
+
+            List<double> list1 = new List<double>();
+            list1.Add(3);
+            list1.Add(5);
+            data.Add(list1);
+
+            List<double> list2 = new List<double>();
+            list2.Add(2);
+            list2.Add(7);
+            data.Add(list2);
+
+            List<double> list3 = new List<double>();
+            list3.Add(-1);
+            list3.Add(3);
+            data.Add(list3);
+
+            DrawPlot(data);
+        }
+
+        private void DrawPlot(List<List<double>> chartData)
+        {
+            double max = -9999;
+
+            chart1.Series[0].Points.Clear();
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            for (int i=0; i < chartData.Count; i++)
+            {
+                if (chartData[i][0] > max)
+                {
+                    max = chartData[i][0];
+                }
+
+                if (chartData[i][1] > max)
+                {
+                    max = chartData[i][1];
+                }
+
+                chart1.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
+            }
+
+            chart1.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
+
+            chart1.Series.Add("Series2");
+            chart1.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            chart1.Series[1].Points.AddXY(0, 0);
+            chart1.Series[1].Points.AddXY(max, max);
         }
         #endregion
 
@@ -142,6 +197,9 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-        
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
