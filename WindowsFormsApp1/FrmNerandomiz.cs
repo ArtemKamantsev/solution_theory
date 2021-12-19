@@ -119,6 +119,10 @@ namespace WindowsFormsApp1
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
                 indexesOptimal = JsonConvert.DeserializeObject<List<string>>(stuff.indexes_optimal.ToString());
+                for (int i = 0; i < indexesOptimal.Count; i++)
+                {
+                    indexesOptimal[i] = (Convert.ToDouble(indexesOptimal[i]) + 1).ToString();
+                }
                 rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
             }
         }
@@ -137,7 +141,7 @@ namespace WindowsFormsApp1
                 {
                     isClicked = true;
                     btnNext.Text = "Далі";
-                    MakeMatrixAnswerMM();
+                    MakeMatrixAnswer(dtAnswerMM, n, m, listMaxMin);
                 }
             }
             else
@@ -197,22 +201,7 @@ namespace WindowsFormsApp1
         {
             ClearAllObjectsMM();
         }
-        private void MakeMatrixAnswerMM()
-        {
-            for (int i = 0; i < m; i++)
-            {
-                dtAnswerMM.Columns.Add("B" + (i + 1), "b" + (i + 1));
-            }
-            dtAnswerMM.RowCount = n;
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    dtAnswerMM.Rows[i].Cells[j].Value = listMaxMin[i][j];
-                }
-            }
-        }
+       
         private void ClearObjectsMM()
         {
             dtGridMinMax.Rows.Clear();
@@ -306,53 +295,105 @@ namespace WindowsFormsApp1
                         listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
                     }
                 }
+                GetResultFromPythonNP();
             }
         }
-        bool isInfCheck = false;
-        bool isNoAnswCheck = false;
-        private void checkInfNP_CheckedChanged(object sender, EventArgs e)
+       
+        public void GetResultFromPythonNP()
         {
-            if (checkInfNP.Checked == true)
-            {
-                txtXNP.Enabled = false;
-                isInfCheck = true;
-                isNoAnswCheck = false;
-                if (checkNoAnsNP.Checked)
-                    checkNoAnsNP.Checked = false;
-            }
-            else
-            {
-                isInfCheck = false;
-                if (!isNoAnswCheck && !isInfCheck)
-                {
-                    txtXNP.Enabled = true;
-                }
-            }
-        }
-        private void checkNoAnsNP_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkNoAnsNP.Checked == true)
-            {
-                txtXNP.Enabled = false;
-                isNoAnswCheck = true;
-                isInfCheck = false;
-                if (checkInfNP.Checked)
-                    checkInfNP.Checked = false;
-            }
-            else
-            {
-                isNoAnswCheck = false;
-                if (!isInfCheck && !isNoAnswCheck)
-                {
-                    txtXNP.Enabled = true;
-                }
-            }
+            var json = JsonConvert.SerializeObject(listNeimPirs);
+            dataJson.Clear();
+            result.Clear();
+            dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach +"}");
+            result.Append(ReadPyhonFile("neyman-pirson", dataJson));
 
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            if (stuff.data == null)
+                MessageBox.Show(stuff.exeption.ToString(), "Error:");
+            else
+            {
+                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+                listNeimPirs = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<string>>(stuff.indexes_optimal.ToString());
+                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+            }
+        }
+        //bool isInfCheck = false;
+        //bool isNoAnswCheck = false;
+        //private void checkInfNP_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (checkInfNP.Checked == true)
+        //    {
+        //        txtXNP.Enabled = false;
+        //        isInfCheck = true;
+        //        isNoAnswCheck = false;
+        //        if (checkNoAnsNP.Checked)
+        //            checkNoAnsNP.Checked = false;
+        //    }
+        //    else
+        //    {
+        //        isInfCheck = false;
+        //        if (!isNoAnswCheck && !isInfCheck)
+        //        {
+        //            txtXNP.Enabled = true;
+        //        }
+        //    }
+        //}
+        //private void checkNoAnsNP_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (checkNoAnsNP.Checked == true)
+        //    {
+        //        txtXNP.Enabled = false;
+        //        isNoAnswCheck = true;
+        //        isInfCheck = false;
+        //        if (checkInfNP.Checked)
+        //            checkInfNP.Checked = false;
+        //    }
+        //    else
+        //    {
+        //        isNoAnswCheck = false;
+        //        if (!isInfCheck && !isNoAnswCheck)
+        //        {
+        //            txtXNP.Enabled = true;
+        //        }
+        //    }
+
+        //}
+        private void numFirstElemNP_ValueChanged(object sender, EventArgs e)
+        {
+            numFirstElemNP.BackColor = Color.White;
+        }
+        private void numLastElemNP_ValueChanged(object sender, EventArgs e)
+        {
+            numLastElemNP.BackColor = Color.White;
         }
         private void btnNextNP_Click(object sender, EventArgs e)
         {
-            groupExitNP.Visible = true;
-            groupPerevirNP.Visible = false;
+            isClicked = false;
+            bool isRigth1, isRigth2;
+            resFirstElem = (double)numFirstElemNP.Value;
+            resLastElem = (double)numLastElemNP.Value;
+            if (!isClicked)
+            {
+                isRigth1 = EqualDoubleForResult(numFirstElemNP, resFirstElem, listNeimPirs[0][0]);
+                isRigth2 = EqualDoubleForResult(numLastElemNP, resLastElem, listNeimPirs[n - 1][m - 1]);
+                if (isRigth1 && isRigth2)
+                {
+                    isClicked = true;
+                    btnNextNP.Text = "Далі";
+                    MakeMatrixAnswer(dtAnswerNP, n, m, listNeimPirs);
+                }
+            }
+            else
+            {
+                isClicked = false;
+                btnNextNP.Text = "Перевірити";
+                numFirstElemNP.BackColor = Color.White;
+                numLastElemNP.BackColor = Color.White;
+                groupExitNP.Visible = true;
+                groupPerevirNP.Visible = false;
+            }
         }
         private void btnCheckNP_Click(object sender, EventArgs e)
         {
@@ -424,7 +465,23 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
+        {
+            DataGridView dataGridView = sender as DataGridView;
+            for (int i = 0; i < m; i++)
+            {
+                dataGridView.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
+            dataGridView.RowCount = n;
 
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Value = list[i][j];
+                }
+            }
+        }
         private bool EqualDoubleForResult(object sender, double res, double matr)
         {
             NumericUpDown numericUpDown = sender as NumericUpDown;
@@ -446,6 +503,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-
+       
     }
 }

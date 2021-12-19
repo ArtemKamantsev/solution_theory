@@ -65,8 +65,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupExitNP = new System.Windows.Forms.GroupBox();
-            this.checkNoAnsNP = new System.Windows.Forms.CheckBox();
-            this.checkInfNP = new System.Windows.Forms.CheckBox();
             this.numVNP = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -472,7 +470,7 @@
             this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
             this.groupPerevirNP.Controls.Add(this.label10);
             this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupPerevirNP.Location = new System.Drawing.Point(483, 107);
+            this.groupPerevirNP.Location = new System.Drawing.Point(477, 107);
             this.groupPerevirNP.Name = "groupPerevirNP";
             this.groupPerevirNP.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirNP.TabIndex = 11;
@@ -518,6 +516,7 @@
             this.numLastElemNP.Name = "numLastElemNP";
             this.numLastElemNP.Size = new System.Drawing.Size(120, 27);
             this.numLastElemNP.TabIndex = 9;
+            this.numLastElemNP.ValueChanged += new System.EventHandler(this.numLastElemNP_ValueChanged);
             // 
             // label9
             // 
@@ -545,6 +544,7 @@
             this.numFirstElemNP.Name = "numFirstElemNP";
             this.numFirstElemNP.Size = new System.Drawing.Size(120, 27);
             this.numFirstElemNP.TabIndex = 7;
+            this.numFirstElemNP.ValueChanged += new System.EventHandler(this.numFirstElemNP_ValueChanged);
             // 
             // label10
             // 
@@ -572,8 +572,6 @@
             // 
             // groupExitNP
             // 
-            this.groupExitNP.Controls.Add(this.checkNoAnsNP);
-            this.groupExitNP.Controls.Add(this.checkInfNP);
             this.groupExitNP.Controls.Add(this.numVNP);
             this.groupExitNP.Controls.Add(this.label11);
             this.groupExitNP.Controls.Add(this.textBox5);
@@ -591,32 +589,10 @@
             this.groupExitNP.Text = "Вихідні дані";
             this.groupExitNP.Visible = false;
             // 
-            // checkNoAnsNP
-            // 
-            this.checkNoAnsNP.AutoSize = true;
-            this.checkNoAnsNP.Location = new System.Drawing.Point(203, 156);
-            this.checkNoAnsNP.Name = "checkNoAnsNP";
-            this.checkNoAnsNP.Size = new System.Drawing.Size(145, 24);
-            this.checkNoAnsNP.TabIndex = 29;
-            this.checkNoAnsNP.Text = "немає рішень";
-            this.checkNoAnsNP.UseVisualStyleBackColor = true;
-            this.checkNoAnsNP.CheckedChanged += new System.EventHandler(this.checkNoAnsNP_CheckedChanged);
-            // 
-            // checkInfNP
-            // 
-            this.checkInfNP.AutoSize = true;
-            this.checkInfNP.Location = new System.Drawing.Point(12, 156);
-            this.checkInfNP.Name = "checkInfNP";
-            this.checkInfNP.Size = new System.Drawing.Size(147, 24);
-            this.checkInfNP.TabIndex = 28;
-            this.checkInfNP.Text = "безліч рішень";
-            this.checkInfNP.UseVisualStyleBackColor = true;
-            this.checkInfNP.CheckedChanged += new System.EventHandler(this.checkInfNP_CheckedChanged);
-            // 
             // numVNP
             // 
             this.numVNP.DecimalPlaces = 2;
-            this.numVNP.Location = new System.Drawing.Point(50, 259);
+            this.numVNP.Location = new System.Drawing.Point(50, 229);
             this.numVNP.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -634,7 +610,7 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(8, 259);
+            this.label11.Location = new System.Drawing.Point(8, 229);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 27);
             this.label11.TabIndex = 26;
@@ -646,7 +622,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox5.ForeColor = System.Drawing.Color.Black;
-            this.textBox5.Location = new System.Drawing.Point(12, 202);
+            this.textBox5.Location = new System.Drawing.Point(12, 166);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -658,11 +634,11 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(6, 103);
+            this.label12.Location = new System.Drawing.Point(6, 109);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 27);
+            this.label12.Size = new System.Drawing.Size(56, 27);
             this.label12.TabIndex = 19;
-            this.label12.Text = "х =";
+            this.label12.Text = "alfa =";
             // 
             // textBox6
             // 
@@ -682,9 +658,9 @@
             // 
             // txtXNP
             // 
-            this.txtXNP.Location = new System.Drawing.Point(50, 103);
+            this.txtXNP.Location = new System.Drawing.Point(68, 109);
             this.txtXNP.Name = "txtXNP";
-            this.txtXNP.Size = new System.Drawing.Size(426, 27);
+            this.txtXNP.Size = new System.Drawing.Size(408, 27);
             this.txtXNP.TabIndex = 23;
             // 
             // btnClearNP
@@ -902,7 +878,5 @@
         private System.Windows.Forms.Button btnCheckNP;
         private System.Windows.Forms.Button btnToCalcMM;
         private System.Windows.Forms.Button btnToCalcNP;
-        private System.Windows.Forms.CheckBox checkNoAnsNP;
-        private System.Windows.Forms.CheckBox checkInfNP;
     }
 }
