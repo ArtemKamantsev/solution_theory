@@ -95,8 +95,11 @@ namespace WindowsFormsApp1
         {
             double max = -9999;
 
-            chart1.Series[0].Points.Clear();
+            chart1.Series.Clear();
+            chart1.Series.Add("Series1");
+
             chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series[0].BorderWidth = 5;
 
             for (int i=0; i < chartData.Count; i++)
             {
@@ -117,6 +120,7 @@ namespace WindowsFormsApp1
 
             chart1.Series.Add("Series2");
             chart1.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series[1].BorderWidth = 5;
 
             chart1.Series[1].Points.AddXY(0, 0);
             chart1.Series[1].Points.AddXY(max, max);
