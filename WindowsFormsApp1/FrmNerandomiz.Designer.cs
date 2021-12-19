@@ -65,6 +65,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupExitNP = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtResExcluded = new System.Windows.Forms.TextBox();
             this.numVNP = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -140,7 +143,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label2);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(480, 110);
+            this.groupPerevirMM.Location = new System.Drawing.Point(485, 109);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirMM.TabIndex = 8;
@@ -325,7 +328,7 @@
             this.textBox4.Size = new System.Drawing.Size(470, 67);
             this.textBox4.TabIndex = 8;
             this.textBox4.Text = "Введіть оптимальні індекси матриці програшу(компоненти вводити з двома знаками пі" +
-    "сля крапки та через пробіл)";
+    "сля коми та через пробіл)";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBXMM
@@ -334,6 +337,7 @@
             this.txtBXMM.Name = "txtBXMM";
             this.txtBXMM.Size = new System.Drawing.Size(402, 27);
             this.txtBXMM.TabIndex = 14;
+            this.txtBXMM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBXMM_KeyPress);
             // 
             // btnClearMM
             // 
@@ -470,7 +474,7 @@
             this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
             this.groupPerevirNP.Controls.Add(this.label10);
             this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupPerevirNP.Location = new System.Drawing.Point(477, 107);
+            this.groupPerevirNP.Location = new System.Drawing.Point(480, 107);
             this.groupPerevirNP.Name = "groupPerevirNP";
             this.groupPerevirNP.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirNP.TabIndex = 11;
@@ -484,7 +488,7 @@
             this.btnNextNP.Name = "btnNextNP";
             this.btnNextNP.Size = new System.Drawing.Size(139, 49);
             this.btnNextNP.TabIndex = 4;
-            this.btnNextNP.Text = "Далі";
+            this.btnNextNP.Text = "Перевірити";
             this.btnNextNP.UseVisualStyleBackColor = true;
             this.btnNextNP.Click += new System.EventHandler(this.btnNextNP_Click);
             // 
@@ -572,6 +576,9 @@
             // 
             // groupExitNP
             // 
+            this.groupExitNP.Controls.Add(this.label13);
+            this.groupExitNP.Controls.Add(this.textBox7);
+            this.groupExitNP.Controls.Add(this.txtResExcluded);
             this.groupExitNP.Controls.Add(this.numVNP);
             this.groupExitNP.Controls.Add(this.label11);
             this.groupExitNP.Controls.Add(this.textBox5);
@@ -589,10 +596,43 @@
             this.groupExitNP.Text = "Вихідні дані";
             this.groupExitNP.Visible = false;
             // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(5, 243);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 27);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "номера:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.Color.White;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox7.ForeColor = System.Drawing.Color.Black;
+            this.textBox7.Location = new System.Drawing.Point(5, 154);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(470, 65);
+            this.textBox7.TabIndex = 29;
+            this.textBox7.Text = "Введіть номера виключених рядків матриці програшу(компоненти вводити з двома знак" +
+    "ами після крапки та через пробіл)";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtResExcluded
+            // 
+            this.txtResExcluded.Location = new System.Drawing.Point(88, 243);
+            this.txtResExcluded.Name = "txtResExcluded";
+            this.txtResExcluded.Size = new System.Drawing.Size(387, 27);
+            this.txtResExcluded.TabIndex = 30;
+            this.txtResExcluded.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtResExcluded_KeyPress);
+            // 
             // numVNP
             // 
             this.numVNP.DecimalPlaces = 2;
-            this.numVNP.Location = new System.Drawing.Point(50, 229);
+            this.numVNP.Location = new System.Drawing.Point(50, 351);
             this.numVNP.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -610,7 +650,7 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(8, 229);
+            this.label11.Location = new System.Drawing.Point(6, 351);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 27);
             this.label11.TabIndex = 26;
@@ -622,7 +662,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox5.ForeColor = System.Drawing.Color.Black;
-            this.textBox5.Location = new System.Drawing.Point(12, 166);
+            this.textBox5.Location = new System.Drawing.Point(12, 294);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -633,8 +673,8 @@
             // 
             // label12
             // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(6, 109);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(6, 103);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 27);
             this.label12.TabIndex = 19;
@@ -652,16 +692,17 @@
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(470, 51);
             this.textBox6.TabIndex = 20;
-            this.textBox6.Text = "Введіть оптимальний вектор х(компоненти вводити з двома знаками після крапки та ч" +
+            this.textBox6.Text = "Введіть оптимальні розв`язки(компоненти вводити з двома знаками після крапки та ч" +
     "ерез пробіл)";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtXNP
             // 
-            this.txtXNP.Location = new System.Drawing.Point(68, 109);
+            this.txtXNP.Location = new System.Drawing.Point(68, 103);
             this.txtXNP.Name = "txtXNP";
             this.txtXNP.Size = new System.Drawing.Size(408, 27);
             this.txtXNP.TabIndex = 23;
+            this.txtXNP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtXNP_KeyPress);
             // 
             // btnClearNP
             // 
@@ -878,5 +919,8 @@
         private System.Windows.Forms.Button btnCheckNP;
         private System.Windows.Forms.Button btnToCalcMM;
         private System.Windows.Forms.Button btnToCalcNP;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtResExcluded;
     }
 }

@@ -21,8 +21,9 @@ namespace WindowsFormsApp1
             listNeimPirs = new List<List<double>>();
             dataJson = new StringBuilder();
             result = new StringBuilder();
-            indexesOptimal = new List<string>();
+            indexesOptimal = new List<double>();
             resIndexes = new List<string>();
+            indexesExcluded = new List<double>();
         }
 
         int n;
@@ -35,10 +36,11 @@ namespace WindowsFormsApp1
         StringBuilder result;
         double resFirstElem;
         double resLastElem;
-        List<string> indexesOptimal;
+        List<double> indexesOptimal;
         List<string> resIndexes;
         double rightLoss;
         double loss;
+        List<double> indexesExcluded;
 
         #region Критерий МиниМакс
         private void tabPage1_Enter(object sender, EventArgs e)
@@ -118,10 +120,10 @@ namespace WindowsFormsApp1
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesOptimal = JsonConvert.DeserializeObject<List<string>>(stuff.indexes_optimal.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
                 for (int i = 0; i < indexesOptimal.Count; i++)
                 {
-                    indexesOptimal[i] = (Convert.ToDouble(indexesOptimal[i]) + 1).ToString();
+                    indexesOptimal[i] += 1;
                 }
                 rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
             }
@@ -164,34 +166,19 @@ namespace WindowsFormsApp1
         }
         private void btnCheckMM_Click(object sender, EventArgs e)
         {
-            bool isEqualList = false;
-            resIndexes = txtBXMM.Text.Split().ToList();
-            if (indexesOptimal.Count == resIndexes.Count)
-            {
-                for (int i = 0; i < resIndexes.Count; i++)
-                {
-                    if (indexesOptimal[i] != resIndexes[i])
-                    {
-                        isEqualList = false;
-                    }
-                    else
-                    {
-                        isEqualList = true;
-                    }
-                }
-            }
-            if (!isEqualList)
-            {
-                txtBXMM.BackColor = Color.Red;
-            }
-            else
-            {
-                txtBXMM.BackColor = Color.Green;
-            }
+            EqualListIndexes(txtBXMM, indexesOptimal);
 
             loss = Convert.ToDouble(numVMM.Value);
             _ = EqualDoubleForResult(numVMM, loss, rightLoss);
 
+        }
+        private void txtBXMM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && ch != 8 && ch != 44 && ch != 32)
+            {
+                e.Handled = true;
+            }
         }
         private void numVMM_ValueChanged(object sender, EventArgs e)
         {
@@ -315,8 +302,17 @@ namespace WindowsFormsApp1
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listNeimPirs = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesOptimal = JsonConvert.DeserializeObject<List<string>>(stuff.indexes_optimal.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
+                for (int i = 0; i < indexesOptimal.Count; i++)
+                {
+                    indexesOptimal[i] += 1;
+                }
                 rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+                indexesExcluded = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_excluded.ToString());
+                for (int i = 0; i < indexesExcluded.Count; i++)
+                {
+                    indexesExcluded[i] += 1;
+                }
             }
         }
         //bool isInfCheck = false;
@@ -370,7 +366,6 @@ namespace WindowsFormsApp1
         }
         private void btnNextNP_Click(object sender, EventArgs e)
         {
-            isClicked = false;
             bool isRigth1, isRigth2;
             resFirstElem = (double)numFirstElemNP.Value;
             resLastElem = (double)numLastElemNP.Value;
@@ -397,7 +392,23 @@ namespace WindowsFormsApp1
         }
         private void btnCheckNP_Click(object sender, EventArgs e)
         {
+            EqualListIndexes(txtXNP,indexesOptimal);
+            EqualListIndexes(txtResExcluded, indexesExcluded);
 
+            loss = Convert.ToDouble(numVNP.Value);
+            _ = EqualDoubleForResult(numVNP, loss, rightLoss);
+        }
+        private void txtXNP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtBXMM_KeyPress(sender, e);
+        }
+        private void txtResExcluded_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 32)
+            {
+                e.Handled = true;
+            }
         }
         private void btnClearNP_Click(object sender, EventArgs e)
         {
@@ -424,12 +435,21 @@ namespace WindowsFormsApp1
             numFirstElemNP.Value = 0;
             numLastElemNP.Value = 0;
             txtXNP.Text = "";
+            txtResExcluded.Text = "";
             numVNP.Value = 0;
 
             txtXNP.Enabled = true;
 
+            numFirstElemNP.BackColor = Color.White;
+            numLastElemNP.BackColor = Color.White;
+            txtXNP.BackColor = Color.White;
+            numVNP.BackColor = Color.White;
+            txtResExcluded.BackColor = Color.White;
+
             dtNeimanPirs.Rows.Clear();
             dtNeimanPirs.Columns.Clear();
+            dtAnswerNP.Rows.Clear();
+            dtAnswerNP.Columns.Clear();
 
             dtNeimanPirs.Columns.Add("B1", "b1");
             dtNeimanPirs.Columns.Add("B2", "b2");
@@ -460,7 +480,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    MessageBox.Show(result);
+                    //MessageBox.Show(result);
                     return result;
                 }
             }
@@ -493,8 +513,35 @@ namespace WindowsFormsApp1
             else
             {
                 numericUpDown.BackColor = Color.Green;
-                //numericUpDown.Enabled = false;
                 return true;
+            }
+        }
+        private void EqualListIndexes(object sender, List<double> listFromServ)
+        {
+            TextBox textBox = sender as TextBox;
+            bool isEqualList = false;
+            resIndexes = textBox.Text.Trim().Split().ToList();
+            if (listFromServ.Count == resIndexes.Count)
+            {
+                for (int i = 0; i < resIndexes.Count; i++)
+                {
+                    if (listFromServ[i] != Convert.ToDouble(resIndexes[i]))
+                    {
+                        isEqualList = false;
+                    }
+                    else
+                    {
+                        isEqualList = true;
+                    }
+                }
+            }
+            if (!isEqualList)
+            {
+                textBox.BackColor = Color.Red;
+            }
+            else
+            {
+                textBox.BackColor = Color.Green;
             }
         }
         private void FrmNerandomiz_FormClosing(object sender, FormClosingEventArgs e)
