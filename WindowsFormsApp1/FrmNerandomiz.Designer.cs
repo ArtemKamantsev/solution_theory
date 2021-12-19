@@ -43,7 +43,6 @@
             this.numVMM = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.checkInfMM = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtBXMM = new System.Windows.Forms.TextBox();
@@ -143,7 +142,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label2);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(485, 110);
+            this.groupPerevirMM.Location = new System.Drawing.Point(480, 110);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirMM.TabIndex = 8;
@@ -179,6 +178,7 @@
             this.numLastElemMM.Name = "numLastElemMM";
             this.numLastElemMM.Size = new System.Drawing.Size(120, 27);
             this.numLastElemMM.TabIndex = 9;
+            this.numLastElemMM.ValueChanged += new System.EventHandler(this.numLastElemMM_ValueChanged);
             // 
             // label3
             // 
@@ -206,6 +206,7 @@
             this.numFirstElemMM.Name = "numFirstElemMM";
             this.numFirstElemMM.Size = new System.Drawing.Size(120, 27);
             this.numFirstElemMM.TabIndex = 7;
+            this.numFirstElemMM.ValueChanged += new System.EventHandler(this.numFirstElemMM_ValueChanged);
             // 
             // label2
             // 
@@ -239,8 +240,7 @@
             this.textBox1.Size = new System.Drawing.Size(958, 89);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "Для запуску калькулятору введіть кількість ігор(рядків матриці виграшу). Після ві" +
-    "дображення таблиці внесіть в неї відповідні дані для подальших розрахунків та на" +
-    "жміть Enter після її заповнення. ";
+    "дображення таблиці внесіть в неї відповідні дані для подальших розрахунків.";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupExitMM
@@ -248,7 +248,6 @@
             this.groupExitMM.Controls.Add(this.numVMM);
             this.groupExitMM.Controls.Add(this.label8);
             this.groupExitMM.Controls.Add(this.textBox3);
-            this.groupExitMM.Controls.Add(this.checkInfMM);
             this.groupExitMM.Controls.Add(this.label7);
             this.groupExitMM.Controls.Add(this.textBox4);
             this.groupExitMM.Controls.Add(this.txtBXMM);
@@ -266,7 +265,7 @@
             // numVMM
             // 
             this.numVMM.DecimalPlaces = 2;
-            this.numVMM.Location = new System.Drawing.Point(50, 259);
+            this.numVMM.Location = new System.Drawing.Point(46, 245);
             this.numVMM.Maximum = new decimal(new int[] {
             1410065408,
             2,
@@ -280,11 +279,12 @@
             this.numVMM.Name = "numVMM";
             this.numVMM.Size = new System.Drawing.Size(120, 27);
             this.numVMM.TabIndex = 18;
+            this.numVMM.ValueChanged += new System.EventHandler(this.numVMM_ValueChanged);
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(8, 259);
+            this.label8.Location = new System.Drawing.Point(4, 245);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 27);
             this.label8.TabIndex = 17;
@@ -296,7 +296,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox3.ForeColor = System.Drawing.Color.Black;
-            this.textBox3.Location = new System.Drawing.Point(12, 202);
+            this.textBox3.Location = new System.Drawing.Point(8, 182);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -305,25 +305,14 @@
             this.textBox3.Text = "Введіть ціну гри:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // checkInfMM
-            // 
-            this.checkInfMM.AutoSize = true;
-            this.checkInfMM.Location = new System.Drawing.Point(10, 154);
-            this.checkInfMM.Name = "checkInfMM";
-            this.checkInfMM.Size = new System.Drawing.Size(176, 24);
-            this.checkInfMM.TabIndex = 15;
-            this.checkInfMM.Text = "безліч розв`язків";
-            this.checkInfMM.UseVisualStyleBackColor = true;
-            this.checkInfMM.CheckedChanged += new System.EventHandler(this.checkInfMM_CheckedChanged);
-            // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(6, 103);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(6, 125);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 27);
+            this.label7.Size = new System.Drawing.Size(62, 27);
             this.label7.TabIndex = 0;
-            this.label7.Text = "х =";
+            this.label7.Text = "alfa =";
             // 
             // textBox4
             // 
@@ -335,17 +324,17 @@
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(470, 51);
+            this.textBox4.Size = new System.Drawing.Size(470, 67);
             this.textBox4.TabIndex = 8;
-            this.textBox4.Text = "Введіть оптимальний вектор х(компоненти вводити з двома знаками після крапки та ч" +
-    "ерез пробіл)";
+            this.textBox4.Text = "Введіть оптимальні індекси матриці програшу(компоненти вводити з двома знаками пі" +
+    "сля крапки та через пробіл)";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBXMM
             // 
-            this.txtBXMM.Location = new System.Drawing.Point(50, 103);
+            this.txtBXMM.Location = new System.Drawing.Point(74, 125);
             this.txtBXMM.Name = "txtBXMM";
-            this.txtBXMM.Size = new System.Drawing.Size(426, 27);
+            this.txtBXMM.Size = new System.Drawing.Size(402, 27);
             this.txtBXMM.TabIndex = 14;
             // 
             // btnClearMM
@@ -893,7 +882,6 @@
         private System.Windows.Forms.NumericUpDown numVMM;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.CheckBox checkInfMM;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox txtBXMM;

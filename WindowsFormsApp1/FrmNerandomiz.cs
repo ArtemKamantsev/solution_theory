@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 //using System.Text.Json;
@@ -20,6 +21,8 @@ namespace WindowsFormsApp1
             listNeimPirs = new List<List<double>>();
             dataJson = new StringBuilder();
             result = new StringBuilder();
+            indexesOptimal = new List<string>();
+            resIndexes = new List<string>();
         }
 
         int n;
@@ -32,6 +35,10 @@ namespace WindowsFormsApp1
         StringBuilder result;
         double resFirstElem;
         double resLastElem;
+        List<string> indexesOptimal;
+        List<string> resIndexes;
+        double rightLoss;
+        double loss;
 
         #region Критерий МиниМакс
         private void tabPage1_Enter(object sender, EventArgs e)
@@ -111,28 +118,31 @@ namespace WindowsFormsApp1
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<string>>(stuff.indexes_optimal.ToString());
+                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
             }
         }
+
         bool isClicked = false;
-        bool isEqual = false;
         private void btnNext_Click(object sender, EventArgs e)
         {
+            bool isRigth1, isRigth2;
             resFirstElem = (double)numFirstElemMM.Value;
             resLastElem = (double)numLastElemMM.Value;
             if (!isClicked)
             {
-                EqualDoubleInMatrix(numFirstElemMM, resFirstElem, listMaxMin[0][0]);
-                EqualDoubleInMatrix(numLastElemMM, resLastElem, listMaxMin[n - 1][m - 1]);
-                if (isEqual)
+                isRigth1 = EqualDoubleForResult(numFirstElemMM, resFirstElem, listMaxMin[0][0]);
+                isRigth2 = EqualDoubleForResult(numLastElemMM, resLastElem, listMaxMin[n - 1][m - 1]);
+                if (isRigth1 && isRigth2)
                 {
-                    isClicked = !isClicked;
+                    isClicked = true;
                     btnNext.Text = "Далі";
                     MakeMatrixAnswerMM();
                 }
             }
             else
             {
-                isClicked = !isClicked;
+                isClicked = false;
                 btnNext.Text = "Перевірити";
                 numFirstElemMM.BackColor = Color.White;
                 numLastElemMM.BackColor = Color.White;
@@ -140,18 +150,52 @@ namespace WindowsFormsApp1
                 groupPerevirMM.Visible = false;
             }
         }
-
+        private void numFirstElemMM_ValueChanged(object sender, EventArgs e)
+        {
+            numFirstElemMM.BackColor= Color.White;
+        }
+        private void numLastElemMM_ValueChanged(object sender, EventArgs e)
+        {
+            numLastElemMM.BackColor = Color.White;
+        }
         private void btnCheckMM_Click(object sender, EventArgs e)
         {
+            bool isEqualList = false;
+            resIndexes = txtBXMM.Text.Split().ToList();
+            if (indexesOptimal.Count == resIndexes.Count)
+            {
+                for (int i = 0; i < resIndexes.Count; i++)
+                {
+                    if (indexesOptimal[i] != resIndexes[i])
+                    {
+                        isEqualList = false;
+                    }
+                    else
+                    {
+                        isEqualList = true;
+                    }
+                }
+            }
+            if (!isEqualList)
+            {
+                txtBXMM.BackColor = Color.Red;
+            }
+            else
+            {
+                txtBXMM.BackColor = Color.Green;
+            }
 
+            loss = Convert.ToDouble(numVMM.Value);
+            _ = EqualDoubleForResult(numVMM, loss, rightLoss);
+
+        }
+        private void numVMM_ValueChanged(object sender, EventArgs e)
+        {
+            numVMM.BackColor = Color.White;
         }
         private void btnClearMM_Click(object sender, EventArgs e)
         {
             ClearAllObjectsMM();
-        }
-        private void checkInfMM_CheckedChanged(object sender, EventArgs e)
-        {
-            txtBXMM.Enabled = !checkInfMM.Checked;
         }
         private void MakeMatrixAnswerMM()
         {
@@ -191,8 +235,12 @@ namespace WindowsFormsApp1
             txtBXMM.Text = "";
             numVMM.Value = 0;
 
-            checkInfMM.Checked = false;
             txtBXMM.Enabled = true;
+
+            numFirstElemMM.BackColor = Color.White;
+            numLastElemMM.BackColor = Color.White;
+            txtBXMM.BackColor = Color.White;
+            numVMM.BackColor = Color.White;
 
             dtGridMinMax.Rows.Clear();
             dtGridMinMax.Columns.Clear();
@@ -314,7 +362,7 @@ namespace WindowsFormsApp1
         {
             ClearAllObjectsNP();
         }
-        
+
         private void ClearObjectsNP()
         {
             dtNeimanPirs.Rows.Clear();
@@ -371,24 +419,25 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    //MessageBox.Show(result);
+                    MessageBox.Show(result);
                     return result;
                 }
             }
         }
 
-        private void EqualDoubleInMatrix(object sender, double res, double matr)
+        private bool EqualDoubleForResult(object sender, double res, double matr)
         {
             NumericUpDown numericUpDown = sender as NumericUpDown;
             if (res != matr)
             {
                 numericUpDown.BackColor = Color.Red;
-                isEqual = false;
+                return false;
             }
             else
             {
                 numericUpDown.BackColor = Color.Green;
-                isEqual = true;
+                //numericUpDown.Enabled = false;
+                return true;
             }
         }
         private void FrmNerandomiz_FormClosing(object sender, FormClosingEventArgs e)
@@ -397,6 +446,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-      
+
     }
 }
