@@ -116,7 +116,7 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                     convex_hull_allowed_best_loss_point_indexes]
                 matrix_best_loss_point_indexes = convex_hull_indexes[convex_hull_best_loss_point_indexes]
                 result_indexes.extend(matrix_best_loss_point_indexes.tolist())
-                result_loss = matrix[matrix_best_loss_point_indexes[0]][self.uncontrolled_state_idx]
+                result_loss = float(matrix[matrix_best_loss_point_indexes[0]][self.uncontrolled_state_idx])
 
             p1_convex_hull_idx, p2_convex_hull_idx, intersection_k, intersection_loss = self.__get_best_intersection_loss(
                 convex_hull_points,
@@ -135,10 +135,10 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                     if result_loss is None or result_loss - eps > intersection_loss:
                         # intersection loss is less (strict)
                         result_indexes = []
-                        result_loss = intersection_loss
+                        result_loss = float(intersection_loss)
 
         return {
-            'loss': float(result_loss),
+            'loss': result_loss,
             'indexes_optimal': result_indexes,
             'indexes_intersection': result_intersection_indexes,
             'intersection_ratio': intersection_ratio,

@@ -5,8 +5,8 @@ from solvers.base_solver import BaseSolver
 
 class NeymanPirsSolver(BaseSolver):
     def __init__(self, accuracy=2):
-            super().__init__(accuracy)
-       
+        super().__init__(accuracy)
+
     def check(self, matrix):
         num_rows, num_column = matrix.shape
         if num_column != 2:
@@ -28,10 +28,15 @@ class NeymanPirsSolver(BaseSolver):
             if matrix[i][1] < res and i not in deleted_rows:
                 res = matrix[i][1]
 
-        indexes = np.flatnonzero(matrix[:, 1] == res)
+        indexes = []
+        loss = None
+        if res < 100000:
+            indexes = np.flatnonzero(matrix[:, 1] == res).tolist()
+            loss = res
+
         result = {
-            'indexes_optimal': indexes.tolist(),
-            'loss': float(res),
+            'indexes_optimal': indexes,
+            'loss': loss,
             'indexes_excluded': deleted_rows,
             'critical_value': float(critical_value)
         }
