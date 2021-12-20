@@ -639,7 +639,12 @@ namespace WindowsFormsApp1
         private void DrawPlot(object sender, List<List<double>> chartData)
         {
             double max = getMax(chartData);
+            max += 1;
             Chart chart = sender as Chart;
+            chart.ChartAreas[0].AxisX.Minimum = 0;
+            chart.ChartAreas[0].AxisX.Maximum = max;
+            chart.ChartAreas[0].AxisY.Minimum = 0;
+            chart.ChartAreas[0].AxisY.Maximum = max;
 
             chart.Series.Clear();
             chart.Series.Add("Бісектриса");
