@@ -467,7 +467,7 @@ namespace WindowsFormsApp1
             TextBox textBox = sender as TextBox;
             bool isEqualList = false;
             resIndexes = textBox.Text.Trim().Split().ToList();
-            if (listFromServ.Count == resIndexes.Count)
+            if (listFromServ.Count == resIndexes.Count && !String.IsNullOrWhiteSpace(textBox.Text))
             {
                 for (int i = 0; i < resIndexes.Count; i++)
                 {
