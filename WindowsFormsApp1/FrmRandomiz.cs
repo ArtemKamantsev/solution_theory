@@ -41,6 +41,7 @@ namespace WindowsFormsApp1
         double resLastElem;
         List<int> indexesConvexHull;
         List<double> X;
+
         List<string> resIndexes;
         double rightLoss;
         double loss;
@@ -121,7 +122,7 @@ namespace WindowsFormsApp1
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_optimal.ToString());
+                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
                 solutionCounts.Append(stuff.solution_counts);
                 if(!String.IsNullOrEmpty(stuff.X.ToString()))
                 {
@@ -131,8 +132,46 @@ namespace WindowsFormsApp1
 
            // DrawPlot(data);
         }
+        bool isClicked = false;
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            bool isRigth1, isRigth2;
+            List<List<double>> listForChart;
+            resFirstElem = (double)numFirstElemMM.Value;
+            resLastElem = (double)numLastElemMM.Value;
+            if (!isClicked)
+            {
+                isRigth1 = EqualDoubleForResult(numFirstElemMM, resFirstElem, listMaxMin[0][0]);
+                isRigth2 = EqualDoubleForResult(numLastElemMM, resLastElem, listMaxMin[n - 1][m - 1]);
+                if (isRigth1 && isRigth2)
+                {
+                    isClicked = true;
+                    btnNext.Text = "Далі";
+                    MakeMatrixAnswer(dtAnswerMM, n, m, listMaxMin);
+                }
+            }
+            else
+            {
+                isClicked = false;
+                btnNext.Text = "Перевірити";
+                numFirstElemMM.BackColor = Color.White;
+                numLastElemMM.BackColor = Color.White;
+                groupExitMM.Visible = true;
+                groupPerevirMM.Visible = false;
 
-       
+                listForChart = MakeMatrixForChart(listMaxMin);
+                DrawPlot(listForChart);
+            }
+        }
+        private void numFirstElemMM_ValueChanged(object sender, EventArgs e)
+        {
+            numFirstElemMM.BackColor = Color.White;
+        }
+
+        private void numLastElemMM_ValueChanged(object sender, EventArgs e)
+        {
+            numLastElemMM.BackColor = Color.White;
+        }
         #endregion
 
         #region Критерий Неймана-Пирса
@@ -295,12 +334,22 @@ namespace WindowsFormsApp1
             chart1.Series[1].Points.AddXY(0, 0);
             chart1.Series[1].Points.AddXY(max, max);
         }
+
+        private List<List<double>> MakeMatrixForChart(List<List<double>> listToConvert)
+        {
+            List<List<double>> result = new List<List<double>>();
+            for (int i = 0;i < indexesConvexHull.Count; i++)
+            {
+                result.Add(listToConvert[indexesConvexHull[i]]);
+            }
+
+            return result;
+        }
         private void FrmRandomiz_FormClosing(object sender, FormClosingEventArgs e)
         {
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
         }
 
-        
     }
 }
