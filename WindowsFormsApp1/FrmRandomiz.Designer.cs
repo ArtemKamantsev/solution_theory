@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -62,22 +56,14 @@
             this.numGameCount = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnToCalcNP = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numPorogZn = new System.Windows.Forms.NumericUpDown();
             this.dtNeimanPirs = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnToCalcNP = new System.Windows.Forms.Button();
             this.numGameCountNP = new System.Windows.Forms.NumericUpDown();
-            this.groupPerevirNP = new System.Windows.Forms.GroupBox();
-            this.dtAnswerNP = new System.Windows.Forms.DataGridView();
-            this.numLastElemNP = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
-            this.numFirstElemNP = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnNextNP = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.numVNP = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -86,6 +72,14 @@
             this.txtXNP = new System.Windows.Forms.TextBox();
             this.btnClearNP = new System.Windows.Forms.Button();
             this.btnCheckNP = new System.Windows.Forms.Button();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupPerevirNP = new System.Windows.Forms.GroupBox();
+            this.btnNextNP = new System.Windows.Forms.Button();
+            this.dtAnswerNP = new System.Windows.Forms.DataGridView();
+            this.numLastElemNP = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numFirstElemNP = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
@@ -99,17 +93,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numVNP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.groupPerevirNP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerNP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemNP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemNP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numVNP)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -147,7 +141,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label1);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(446, 112);
+            this.groupPerevirMM.Location = new System.Drawing.Point(445, 112);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(567, 574);
             this.groupPerevirMM.TabIndex = 9;
@@ -375,8 +369,10 @@
             this.btnCheckMM.Click += new System.EventHandler(this.btnCheckMM_Click);
             // 
             // chart1
-
-            this.chart1.Size = new System.Drawing.Size(548, 308);
+            // 
+            this.chart1.Location = new System.Drawing.Point(11, 26);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(537, 282);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -438,8 +434,8 @@
             // 
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupPerevirNP);
+            this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -466,42 +462,6 @@
     "ідні дані для подальших розрахунків. ";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.numVNP);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.textBox5);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.txtXNP);
-            this.groupBox3.Controls.Add(this.btnClearNP);
-            this.groupBox3.Controls.Add(this.btnCheckNP);
-            this.groupBox3.Controls.Add(this.chart2);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(444, 105);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(566, 646);
-            this.groupBox3.TabIndex = 12;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Вихідні дані";
-            // 
-            // chart2
-            // 
-            this.chart2.Size = new System.Drawing.Size(498, 353);
-            this.chart2.TabIndex = 6;
-            this.chart2.Text = "chart2";
-            // 
-            // btnToCalcNP
-            // 
-            this.btnToCalcNP.Location = new System.Drawing.Point(19, 514);
-            this.btnToCalcNP.Name = "btnToCalcNP";
-            this.btnToCalcNP.Size = new System.Drawing.Size(375, 49);
-            this.btnToCalcNP.TabIndex = 4;
-            this.btnToCalcNP.Text = "Далі";
-            this.btnToCalcNP.UseVisualStyleBackColor = true;
-            this.btnToCalcNP.Click += new System.EventHandler(this.btnNextNP_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label4);
@@ -513,7 +473,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(6, 105);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(432, 646);
+            this.groupBox4.Size = new System.Drawing.Size(432, 577);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Вхідні дані";
@@ -571,6 +531,16 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Введіть кількість ігор: ";
             // 
+            // btnToCalcNP
+            // 
+            this.btnToCalcNP.Location = new System.Drawing.Point(289, 514);
+            this.btnToCalcNP.Name = "btnToCalcNP";
+            this.btnToCalcNP.Size = new System.Drawing.Size(127, 49);
+            this.btnToCalcNP.TabIndex = 4;
+            this.btnToCalcNP.Text = "Далі";
+            this.btnToCalcNP.UseVisualStyleBackColor = true;
+            this.btnToCalcNP.Click += new System.EventHandler(this.btnNextNP_Click);
+            // 
             // numGameCountNP
             // 
             this.numGameCountNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -590,97 +560,25 @@
             0});
             this.numGameCountNP.ValueChanged += new System.EventHandler(this.numGameCountNP_ValueChanged);
             // 
-            // groupPerevirNP
+            // groupBox3
             // 
-            this.groupPerevirNP.BackColor = System.Drawing.Color.White;
-            this.groupPerevirNP.Controls.Add(this.btnNextNP);
-            this.groupPerevirNP.Controls.Add(this.dtAnswerNP);
-            this.groupPerevirNP.Controls.Add(this.numLastElemNP);
-            this.groupPerevirNP.Controls.Add(this.label9);
-            this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
-            this.groupPerevirNP.Controls.Add(this.label10);
-            this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupPerevirNP.Location = new System.Drawing.Point(444, 105);
-            this.groupPerevirNP.Name = "groupPerevirNP";
-            this.groupPerevirNP.Size = new System.Drawing.Size(568, 646);
-            this.groupPerevirNP.TabIndex = 14;
-            this.groupPerevirNP.TabStop = false;
-            this.groupPerevirNP.Text = "Параметри для перевірки";
-            this.groupPerevirNP.Visible = false;
-            // 
-            // dtAnswerNP
-            // 
-            this.dtAnswerNP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dtAnswerNP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAnswerNP.Location = new System.Drawing.Point(53, 122);
-            this.dtAnswerNP.Name = "dtAnswerNP";
-            this.dtAnswerNP.RowHeadersWidth = 51;
-            this.dtAnswerNP.RowTemplate.Height = 24;
-            this.dtAnswerNP.Size = new System.Drawing.Size(367, 368);
-            this.dtAnswerNP.TabIndex = 11;
-            // 
-            // numLastElemNP
-            // 
-            this.numLastElemNP.DecimalPlaces = 2;
-            this.numLastElemNP.Location = new System.Drawing.Point(334, 80);
-            this.numLastElemNP.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numLastElemNP.Minimum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            -2147483648});
-            this.numLastElemNP.Name = "numLastElemNP";
-            this.numLastElemNP.Size = new System.Drawing.Size(120, 27);
-            this.numLastElemNP.TabIndex = 9;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 82);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(294, 20);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Введіть перший елемент матриці";
-            // 
-            // numFirstElemNP
-            // 
-            this.numFirstElemNP.DecimalPlaces = 2;
-            this.numFirstElemNP.Location = new System.Drawing.Point(334, 35);
-            this.numFirstElemNP.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.numFirstElemNP.Minimum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            -2147483648});
-            this.numFirstElemNP.Name = "numFirstElemNP";
-            this.numFirstElemNP.Size = new System.Drawing.Size(120, 27);
-            this.numFirstElemNP.TabIndex = 7;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 37);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(294, 20);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Введіть перший елемент матриці";
-            // 
-            // btnNextNP
-            // 
-            this.btnNextNP.Location = new System.Drawing.Point(315, 496);
-            this.btnNextNP.Name = "btnNextNP";
-            this.btnNextNP.Size = new System.Drawing.Size(139, 49);
-            this.btnNextNP.TabIndex = 12;
-            this.btnNextNP.Text = "Перевірити";
-            this.btnNextNP.UseVisualStyleBackColor = true;
+            this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.numVNP);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.txtXNP);
+            this.groupBox3.Controls.Add(this.btnClearNP);
+            this.groupBox3.Controls.Add(this.btnCheckNP);
+            this.groupBox3.Controls.Add(this.chart2);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox3.Location = new System.Drawing.Point(444, 105);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(566, 646);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Вихідні дані";
             // 
             // numVNP
             // 
@@ -758,7 +656,7 @@
             // 
             // btnClearNP
             // 
-            this.btnClearNP.Location = new System.Drawing.Point(289, 578);
+            this.btnClearNP.Location = new System.Drawing.Point(345, 583);
             this.btnClearNP.Name = "btnClearNP";
             this.btnClearNP.Size = new System.Drawing.Size(215, 48);
             this.btnClearNP.TabIndex = 34;
@@ -767,12 +665,112 @@
             // 
             // btnCheckNP
             // 
-            this.btnCheckNP.Location = new System.Drawing.Point(34, 578);
+            this.btnCheckNP.Location = new System.Drawing.Point(19, 583);
             this.btnCheckNP.Name = "btnCheckNP";
             this.btnCheckNP.Size = new System.Drawing.Size(215, 48);
             this.btnCheckNP.TabIndex = 33;
             this.btnCheckNP.Text = "Перевірити себе";
             this.btnCheckNP.UseVisualStyleBackColor = true;
+            // 
+            // chart2
+            // 
+            this.chart2.Location = new System.Drawing.Point(19, 37);
+            this.chart2.Name = "chart2";
+            this.chart2.Size = new System.Drawing.Size(510, 316);
+            this.chart2.TabIndex = 6;
+            this.chart2.Text = "chart2";
+            // 
+            // groupPerevirNP
+            // 
+            this.groupPerevirNP.BackColor = System.Drawing.Color.White;
+            this.groupPerevirNP.Controls.Add(this.btnNextNP);
+            this.groupPerevirNP.Controls.Add(this.dtAnswerNP);
+            this.groupPerevirNP.Controls.Add(this.numLastElemNP);
+            this.groupPerevirNP.Controls.Add(this.label9);
+            this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
+            this.groupPerevirNP.Controls.Add(this.label10);
+            this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupPerevirNP.Location = new System.Drawing.Point(444, 105);
+            this.groupPerevirNP.Name = "groupPerevirNP";
+            this.groupPerevirNP.Size = new System.Drawing.Size(566, 577);
+            this.groupPerevirNP.TabIndex = 14;
+            this.groupPerevirNP.TabStop = false;
+            this.groupPerevirNP.Text = "Параметри для перевірки";
+            this.groupPerevirNP.Visible = false;
+            // 
+            // btnNextNP
+            // 
+            this.btnNextNP.Location = new System.Drawing.Point(397, 514);
+            this.btnNextNP.Name = "btnNextNP";
+            this.btnNextNP.Size = new System.Drawing.Size(147, 49);
+            this.btnNextNP.TabIndex = 12;
+            this.btnNextNP.Text = "Перевірити";
+            this.btnNextNP.UseVisualStyleBackColor = true;
+            // 
+            // dtAnswerNP
+            // 
+            this.dtAnswerNP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dtAnswerNP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtAnswerNP.Location = new System.Drawing.Point(94, 122);
+            this.dtAnswerNP.Name = "dtAnswerNP";
+            this.dtAnswerNP.RowHeadersWidth = 51;
+            this.dtAnswerNP.RowTemplate.Height = 24;
+            this.dtAnswerNP.Size = new System.Drawing.Size(367, 368);
+            this.dtAnswerNP.TabIndex = 11;
+            // 
+            // numLastElemNP
+            // 
+            this.numLastElemNP.DecimalPlaces = 2;
+            this.numLastElemNP.Location = new System.Drawing.Point(375, 80);
+            this.numLastElemNP.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numLastElemNP.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numLastElemNP.Name = "numLastElemNP";
+            this.numLastElemNP.Size = new System.Drawing.Size(120, 27);
+            this.numLastElemNP.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(66, 82);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(294, 20);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Введіть перший елемент матриці";
+            // 
+            // numFirstElemNP
+            // 
+            this.numFirstElemNP.DecimalPlaces = 2;
+            this.numFirstElemNP.Location = new System.Drawing.Point(375, 35);
+            this.numFirstElemNP.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numFirstElemNP.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.numFirstElemNP.Name = "numFirstElemNP";
+            this.numFirstElemNP.Size = new System.Drawing.Size(120, 27);
+            this.numFirstElemNP.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(66, 37);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(294, 20);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Введіть перший елемент матриці";
             // 
             // FrmRandomiz
             // 
@@ -801,20 +799,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numVNP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.groupPerevirNP.ResumeLayout(false);
             this.groupPerevirNP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerNP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemNP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemNP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numVNP)).EndInit();
             this.ResumeLayout(false);
 
         }
