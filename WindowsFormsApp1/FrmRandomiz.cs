@@ -44,6 +44,7 @@ namespace WindowsFormsApp1
 
         List<string> resIndexes;
         double rightLoss;
+        string isRightLossNull;
         double loss;
         List<double> indexesExcluded;
 
@@ -338,7 +339,15 @@ namespace WindowsFormsApp1
                 {
                     X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
                 }
-                rightLoss = Convert.ToDouble(stuff.loss.ToString());
+                if (!String.IsNullOrEmpty(stuff.loss.ToString()))
+                {
+                    isRightLossNull = "no";
+                    rightLoss = Convert.ToDouble(stuff.loss.ToString());
+                }
+                else
+                {
+                    isRightLossNull = null;
+                }
             }
         }
         private void btnNextNP_Click(object sender, EventArgs e)
@@ -397,6 +406,7 @@ namespace WindowsFormsApp1
                 if (checkInfNP.Checked)
                 {
                     checkInfNP.BackColor = Color.Red;
+                    numVNP.BackColor = Color.Red;
                 }
                 else if (checkNoAnswersNP.Checked)
                 {
@@ -407,6 +417,7 @@ namespace WindowsFormsApp1
                     checkInfNP.BackColor = Color.Red;
                     checkNoAnswersNP.BackColor = Color.Red;
                     txtXNP.BackColor = Color.Red;
+                    numVNP.BackColor = Color.Red;
                 }
             }
             else
@@ -427,11 +438,12 @@ namespace WindowsFormsApp1
                 }
             }
 
-            if (numVNP.Enabled)
+            if (numVNP.Enabled && !String.IsNullOrEmpty(isRightLossNull))
             {
                 loss = Convert.ToDouble(numVNP.Value);
                 _ = EqualDoubleForResult(numVNP, loss, rightLoss);
             }
+           
         }
 
         private void btnClearNP_Click(object sender, EventArgs e)
@@ -444,6 +456,9 @@ namespace WindowsFormsApp1
         private void checkInfNP_CheckedChanged(object sender, EventArgs e)
         {
             checkInfNP.BackColor = Color.White;
+            txtXNP.BackColor = Color.White;
+            numVNP.BackColor = Color.White;
+            checkNoAnswersNP.BackColor = Color.White;
             if (checkInfNP.Checked == true)
             {
                 txtXNP.Enabled = false;
@@ -464,6 +479,8 @@ namespace WindowsFormsApp1
 
         private void checkNoAnswersNP_CheckedChanged(object sender, EventArgs e)
         {
+            checkInfNP.BackColor = Color.White;
+            txtXNP.BackColor = Color.White;
             checkNoAnswersNP.BackColor = Color.White;
             numVNP.BackColor = Color.White;
             if (checkNoAnswersNP.Checked == true)
