@@ -75,7 +75,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenu_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
