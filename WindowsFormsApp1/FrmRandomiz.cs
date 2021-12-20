@@ -649,7 +649,7 @@ namespace WindowsFormsApp1
             Chart chart = sender as Chart;
 
             chart.Series.Clear();
-            chart.Series.Add("Series1");
+            chart.Series.Add("Опукла множина");
 
             chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart.Series[0].BorderWidth = 5;
@@ -671,7 +671,7 @@ namespace WindowsFormsApp1
 
             chart.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
 
-            chart.Series.Add("Series2");
+            chart.Series.Add("Бісектриса");
             chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart.Series[1].BorderWidth = 5;
 
