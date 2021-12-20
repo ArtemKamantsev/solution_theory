@@ -825,7 +825,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 707);
             this.Controls.Add(this.tabControl1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmNerandomiz";
+            this.ShowIcon = false;
             this.Text = "Калькулятор нерандомізованних прикладів";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNerandomiz_FormClosing);
             this.tabControl1.ResumeLayout(false);

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -77,6 +77,8 @@
             this.numFirstElemNP = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.groupExitNP = new System.Windows.Forms.GroupBox();
+            this.checkNoAnswersNP = new System.Windows.Forms.CheckBox();
+            this.checkInfNP = new System.Windows.Forms.CheckBox();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.numVNP = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -86,8 +88,6 @@
             this.txtXNP = new System.Windows.Forms.TextBox();
             this.btnClearNP = new System.Windows.Forms.Button();
             this.btnCheckNP = new System.Windows.Forms.Button();
-            this.checkInfNP = new System.Windows.Forms.CheckBox();
-            this.checkNoAnswersNP = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
@@ -273,16 +273,16 @@
             // 
             // chart1
             // 
-            chartArea13.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea13);
-            legend13.Name = "Legend1";
-            this.chart1.Legends.Add(legend13);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(22, 26);
             this.chart1.Name = "chart1";
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "Series1";
-            this.chart1.Series.Add(series13);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(532, 305);
             this.chart1.TabIndex = 28;
             this.chart1.Text = "chart1";
@@ -694,18 +694,40 @@
             this.groupExitNP.Text = "Вихідні дані";
             this.groupExitNP.Visible = false;
             // 
+            // checkNoAnswersNP
+            // 
+            this.checkNoAnswersNP.AutoSize = true;
+            this.checkNoAnswersNP.Location = new System.Drawing.Point(270, 472);
+            this.checkNoAnswersNP.Name = "checkNoAnswersNP";
+            this.checkNoAnswersNP.Size = new System.Drawing.Size(174, 24);
+            this.checkNoAnswersNP.TabIndex = 40;
+            this.checkNoAnswersNP.Text = "немає розв`язків";
+            this.checkNoAnswersNP.UseVisualStyleBackColor = true;
+            this.checkNoAnswersNP.CheckedChanged += new System.EventHandler(this.checkNoAnswersNP_CheckedChanged);
+            // 
+            // checkInfNP
+            // 
+            this.checkInfNP.AutoSize = true;
+            this.checkInfNP.Location = new System.Drawing.Point(31, 472);
+            this.checkInfNP.Name = "checkInfNP";
+            this.checkInfNP.Size = new System.Drawing.Size(176, 24);
+            this.checkInfNP.TabIndex = 40;
+            this.checkInfNP.Text = "безліч розв`язків";
+            this.checkInfNP.UseVisualStyleBackColor = true;
+            this.checkInfNP.CheckedChanged += new System.EventHandler(this.checkInfNP_CheckedChanged);
+            // 
             // chart2
             // 
-            chartArea14.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.chart2.Legends.Add(legend14);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(19, 26);
             this.chart2.Name = "chart2";
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.chart2.Series.Add(series14);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(541, 308);
             this.chart2.TabIndex = 39;
             this.chart2.Text = "chart3";
@@ -805,35 +827,16 @@
             this.btnCheckNP.UseVisualStyleBackColor = true;
             this.btnCheckNP.Click += new System.EventHandler(this.btnCheckNP_Click);
             // 
-            // checkInfNP
-            // 
-            this.checkInfNP.AutoSize = true;
-            this.checkInfNP.Location = new System.Drawing.Point(31, 472);
-            this.checkInfNP.Name = "checkInfNP";
-            this.checkInfNP.Size = new System.Drawing.Size(176, 24);
-            this.checkInfNP.TabIndex = 40;
-            this.checkInfNP.Text = "безліч розв`язків";
-            this.checkInfNP.UseVisualStyleBackColor = true;
-            this.checkInfNP.CheckedChanged += new System.EventHandler(this.checkInfNP_CheckedChanged);
-            // 
-            // checkNoAnswersNP
-            // 
-            this.checkNoAnswersNP.AutoSize = true;
-            this.checkNoAnswersNP.Location = new System.Drawing.Point(270, 472);
-            this.checkNoAnswersNP.Name = "checkNoAnswersNP";
-            this.checkNoAnswersNP.Size = new System.Drawing.Size(174, 24);
-            this.checkNoAnswersNP.TabIndex = 40;
-            this.checkNoAnswersNP.Text = "немає розв`язків";
-            this.checkNoAnswersNP.UseVisualStyleBackColor = true;
-            this.checkNoAnswersNP.CheckedChanged += new System.EventHandler(this.checkNoAnswersNP_CheckedChanged);
-            // 
             // FrmRandomiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 794);
             this.Controls.Add(this.tabControl1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmRandomiz";
+            this.ShowIcon = false;
             this.Text = "Калькулятор рандомізованних прикладів";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRandomiz_FormClosing);
             this.tabControl1.ResumeLayout(false);
