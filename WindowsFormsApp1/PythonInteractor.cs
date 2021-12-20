@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
             start.RedirectStandardInput = true;
             start.RedirectStandardOutput = true;
             start.CreateNoWindow = true;
+            start.WindowStyle = ProcessWindowStyle.Hidden;
             using (Process process = Process.Start(start))
             {
                 StreamWriter writer = process.StandardInput;
