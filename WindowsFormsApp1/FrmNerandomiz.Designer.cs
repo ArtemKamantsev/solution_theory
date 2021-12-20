@@ -474,7 +474,7 @@
             this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
             this.groupPerevirNP.Controls.Add(this.label10);
             this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupPerevirNP.Location = new System.Drawing.Point(480, 107);
+            this.groupPerevirNP.Location = new System.Drawing.Point(13, 42);
             this.groupPerevirNP.Name = "groupPerevirNP";
             this.groupPerevirNP.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirNP.TabIndex = 11;
