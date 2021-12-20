@@ -613,7 +613,7 @@ namespace WindowsFormsApp1
         private bool EqualDoubleForResult(object sender, double res, double matr)
         {
             NumericUpDown numericUpDown = sender as NumericUpDown;
-            if (res != matr)
+            if (Math.Abs(res - matr) > 0.00000001)
             {
                 numericUpDown.BackColor = Color.Red;
                 return false;
@@ -633,7 +633,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < resIndexes.Count; i++)
                 {
-                    if (listFromServ[i] != Convert.ToDouble(resIndexes[i]))
+                    if (Math.Abs(listFromServ[i] - Convert.ToDouble(resIndexes[i])) > 0.00000001)
                     {
                         isEqualList = false;
                     }
