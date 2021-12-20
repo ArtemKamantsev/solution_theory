@@ -51,16 +51,12 @@ namespace WindowsFormsApp1
         private void tabPage1_Enter(object sender, EventArgs e)
         {
             dtGridMinMax.AllowUserToAddRows = false;
-            dtGridMinMax.Rows.Clear();
             n = (int)numGameCount.Value;
 
-            dtGridMinMax.Columns.Add("B1", "b1");
-            dtGridMinMax.Columns.Add("B2", "b2");
-            dtGridMinMax.Rows.Add(n);
-            listMaxMin.Clear();
+           ClearObjectsMM();
         }
 
-        private void numGameCount_ValueChanged_1(object sender, EventArgs e)
+        private void numGameCount_ValueChanged(object sender, EventArgs e)
         {
             n = (int)numGameCount.Value;
 
@@ -703,6 +699,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-     
+      
     }
 }
