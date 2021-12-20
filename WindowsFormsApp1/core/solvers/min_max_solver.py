@@ -4,6 +4,9 @@ from solvers.base_solver import BaseSolver
 
 
 class MinMaxSolver(BaseSolver):
+    def __init__(self, accuracy=2):
+            super().__init__(accuracy)
+            
     def _solve(self, matrix, **kwargs):
         matrix_max = np.array([])
         for row in range(len(matrix)):

@@ -12,8 +12,7 @@ class SolutionCounts:
 
 class BaseRandomizedSolver(BaseSolver, ABC):
     def __init__(self, accuracy):
-        super().__init__()
-        self._accuracy = accuracy
+        super().__init__(accuracy)
 
     def _solve(self, matrix, **kwargs):
         if matrix.shape[1] != 2:
