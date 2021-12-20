@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+
 //using System.Text.Json;
 
 namespace WindowsFormsApp1
@@ -67,6 +66,7 @@ namespace WindowsFormsApp1
 
             ClearObjectsMM();
         }
+        
         private void btnToCalcMM_Click(object sender, EventArgs e)
         {
             isNull = false;
@@ -86,9 +86,6 @@ namespace WindowsFormsApp1
 
             if (!isNull)
             {
-                groupPerevirMM.Visible = true;
-                groupEnterMM.Enabled = false;
-
                 for (int i = 0; i < n; i++)
                 {
                     listMaxMin.Add(new List<double>());
@@ -98,10 +95,22 @@ namespace WindowsFormsApp1
                 {
                     for (int j = 0; j < m; j++)
                     {
-                        listMaxMin[i].Add(Convert.ToDouble(dtGridMinMax.Rows[i].Cells[j].Value));
+                        double value = 0;
+                        if (Double.TryParse(dtGridMinMax.Rows[i].Cells[j].Value.ToString(), out value))
+                        {
+                            listMaxMin[i].Add(value);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Матриця містить некоректний формат числа у комірці ("+ (i + 1) + "," + (j + 1) + ")", "Warning!");
+                            listMaxMin.Clear();
+                            return;
+                        }
                     }
                 }
-
+                groupPerevirMM.Visible = true;
+                groupEnterMM.Enabled = false;
+                
                 GetResultFromPython("min-max", ref listMaxMin);
             }
         }
@@ -246,9 +255,6 @@ namespace WindowsFormsApp1
 
             if (!isNull)
             {
-                groupPerevirNP.Visible = true;
-                groupEnterNP.Enabled = false;
-
                 porogZnach = (int)numPorogZn.Value;
                 for (int i = 0; i < n; i++)
                 {
@@ -259,9 +265,22 @@ namespace WindowsFormsApp1
                 {
                     for (int j = 0; j < m; j++)
                     {
-                        listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
+                        double value = 0;
+                        if (Double.TryParse(dtNeimanPirs.Rows[i].Cells[j].Value.ToString(), out value))
+                        {
+                            listNeimPirs[i].Add(value);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Матриця містить некоректний формат числа у комірці ("+ (i + 1) + "," + (j + 1) + ")", "Warning!");
+                            listNeimPirs.Clear();
+                            return;
+                        }
                     }
                 }
+                groupPerevirNP.Visible = true;
+                groupEnterNP.Enabled = false;
+
                 GetResultFromPython("neyman-pirson", ref listNeimPirs);
             }
         }
