@@ -488,17 +488,6 @@
             // 
             // chart2
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart2.Legends.Add(legend8);
-            this.chart2.Location = new System.Drawing.Point(18, 28);
-            this.chart2.Name = "chart2";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart2.Series.Add(series8);
             this.chart2.Size = new System.Drawing.Size(498, 353);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
