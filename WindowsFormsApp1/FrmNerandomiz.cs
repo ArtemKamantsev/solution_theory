@@ -230,7 +230,7 @@ namespace WindowsFormsApp1
         private void btnToCalcNP_Click(object sender, EventArgs e)
         {
             isNull = false;
-            foreach (DataGridViewRow row in dtGridMinMax.Rows)
+            foreach (DataGridViewRow row in dtNeimanPirs.Rows)
             {
                 IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
                                                                      where string.IsNullOrEmpty((string)cell.Value)
