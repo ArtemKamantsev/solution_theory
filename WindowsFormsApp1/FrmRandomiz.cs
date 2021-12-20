@@ -351,5 +351,14 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
+        private void numLastElemNP_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numFirstElemNP_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
