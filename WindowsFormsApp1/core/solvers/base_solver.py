@@ -4,7 +4,8 @@ import numpy as np
 
 
 class BaseSolver(ABC):
-    def __init__(self):
+    def __init__(self, accuracy=2):
+        self._accuracy = accuracy
         self.take_input_win_matrix_ = True
 
     def __revert(self, matrix):
@@ -12,7 +13,7 @@ class BaseSolver(ABC):
 
         for row in range(len(matrix)):
             for el in range(len(matrix[row])):
-                matrix[row][el] = maxi - matrix[row][el]
+                matrix[row][el] = round(maxi - matrix[row][el], self._accuracy)
         return matrix
 
     def solve(self, matrix, **kwargs):

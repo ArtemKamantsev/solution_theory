@@ -4,6 +4,9 @@ from solvers.base_solver import BaseSolver
 
 
 class NeymanPirsSolver(BaseSolver):
+    def __init__(self, accuracy=2):
+            super().__init__(accuracy)
+       
     def check(self, matrix):
         num_rows, num_column = matrix.shape
         if num_column != 2:

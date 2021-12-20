@@ -49,6 +49,7 @@
             this.btn = new System.Windows.Forms.Button();
             this.groupEnterMM = new System.Windows.Forms.GroupBox();
             this.btnNext = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtGridMinMax = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.numGameCount = new System.Windows.Forms.NumericUpDown();
@@ -71,9 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemMM)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.groupEnterMM.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
@@ -236,14 +235,15 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(16, 34);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(498, 353);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // btn
             // 
@@ -286,35 +286,6 @@
             this.dtGridMinMax.RowTemplate.Height = 24;
             this.dtGridMinMax.Size = new System.Drawing.Size(375, 368);
             this.dtGridMinMax.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(41, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(204, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Введіть кількість ігор: ";
-            // 
-            // numGameCount
-            // 
-            this.numGameCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numGameCount.Location = new System.Drawing.Point(258, 37);
-            this.numGameCount.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.Name = "numGameCount";
-            this.numGameCount.Size = new System.Drawing.Size(120, 27);
-            this.numGameCount.TabIndex = 5;
-            this.numGameCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numGameCount.ValueChanged += new System.EventHandler(this.numGameCount_ValueChanged_1);
             // 
             // tabPage2
             // 
@@ -492,10 +463,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemMM)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.groupEnterMM.ResumeLayout(false);
-            this.groupEnterMM.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
