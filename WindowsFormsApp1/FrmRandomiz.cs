@@ -280,21 +280,102 @@ namespace WindowsFormsApp1
             dtNeimanPirs.RowCount = n;
             listNeimPirs.Clear();
         }
-        private void btnNextNP_Click(object sender, EventArgs e)
+        private void btnToCalcNP_Click(object sender, EventArgs e)
         {
-            porogZnach = (int)numPorogZn.Value;
-            for (int i = 0; i < n; i++)
-            {
-                listNeimPirs.Add(new List<double>());
-            }
-
+            isNull = false;
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                    listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
+                    if (dtNeimanPirs.Rows[i].Cells[j].Value == null)
+                    {
+                        isNull = true;
+                        MessageBox.Show("Заповніть матрицю!", "Warning!");
+                        break;
+                    }
                 }
             }
+
+            if (!isNull)
+            {
+                groupPerevirNP.Visible = true;
+                groupEnterNP.Enabled = false;
+
+                porogZnach = (int)numPorogZn.Value;
+                for (int i = 0; i < n; i++)
+                {
+                    listNeimPirs.Add(new List<double>());
+                }
+
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
+                    }
+                }
+                GetResultFromPythonNP();
+            }
+        }
+       
+        public void GetResultFromPythonNP()
+        {
+            var json = JsonConvert.SerializeObject(listNeimPirs);
+            dataJson.Clear();
+            result.Clear();
+            dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach + "}");
+            result.Append(ReadPyhonFile("neyman-pirson-randomized", dataJson));
+
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            if (stuff.data == null)
+                MessageBox.Show(stuff.exeption.ToString(), "Error:");
+            else
+            {
+                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+                listNeimPirs = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
+                solutionCounts.Append(stuff.solution_counts);
+                if (!String.IsNullOrEmpty(stuff.X.ToString()))
+                {
+                    X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
+                }
+                rightLoss = Convert.ToDouble(stuff.loss.ToString());
+            }
+        }
+        private void btnNextNP_Click(object sender, EventArgs e)
+        {
+            bool isRigth1, isRigth2;
+            List<List<double>> listForChart;
+            resFirstElem = (double)numFirstElemNP.Value;
+            resLastElem = (double)numLastElemNP.Value;
+            if (!isClicked)
+            {
+                isRigth1 = EqualDoubleForResult(numFirstElemNP, resFirstElem, listNeimPirs[0][0]);
+                isRigth2 = EqualDoubleForResult(numLastElemNP, resLastElem, listNeimPirs[n - 1][m - 1]);
+                if (isRigth1 && isRigth2)
+                {
+                    isClicked = true;
+                    btnNextNP.Text = "Далі";
+                    MakeMatrixAnswer(dtAnswerNP, n, m, listNeimPirs);
+                }
+            }
+            else
+            {
+                isClicked = false;
+                btnNextNP.Text = "Перевірити";
+                numFirstElemNP.BackColor = Color.White;
+                numLastElemNP.BackColor = Color.White;
+                groupExitNP.Visible = true;
+                groupPerevirNP.Visible = false;
+
+                listForChart = MakeMatrixForChart(listMaxMin);
+                DrawPlot(listForChart);
+            }
+        }
+        private void btnCheckNP_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -320,7 +401,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    //MessageBox.Show(result);
+                    MessageBox.Show(result);
                     return result;
                 }
             }
