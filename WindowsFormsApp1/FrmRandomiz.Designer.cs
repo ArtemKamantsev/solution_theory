@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -48,7 +54,6 @@
             this.txtBXMM = new System.Windows.Forms.TextBox();
             this.btnClearMM = new System.Windows.Forms.Button();
             this.btnCheckMM = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupEnterMM = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnToCalcMM = new System.Windows.Forms.Button();
@@ -72,7 +77,6 @@
             this.txtXNP = new System.Windows.Forms.TextBox();
             this.btnClearNP = new System.Windows.Forms.Button();
             this.btnCheckNP = new System.Windows.Forms.Button();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupPerevirNP = new System.Windows.Forms.GroupBox();
             this.btnNextNP = new System.Windows.Forms.Button();
             this.dtAnswerNP = new System.Windows.Forms.DataGridView();
@@ -80,6 +84,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numFirstElemNP = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
@@ -88,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemMM)).BeginInit();
             this.groupExitMM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVMM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupEnterMM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
@@ -99,11 +104,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVNP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.groupPerevirNP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerNP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemNP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemNP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -141,7 +147,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label1);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(445, 112);
+            this.groupPerevirMM.Location = new System.Drawing.Point(446, 112);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(567, 574);
             this.groupPerevirMM.TabIndex = 9;
@@ -245,6 +251,7 @@
             // 
             // groupExitMM
             // 
+            this.groupExitMM.Controls.Add(this.chart1);
             this.groupExitMM.Controls.Add(this.checkInfMM);
             this.groupExitMM.Controls.Add(this.numVMM);
             this.groupExitMM.Controls.Add(this.label8);
@@ -254,7 +261,6 @@
             this.groupExitMM.Controls.Add(this.txtBXMM);
             this.groupExitMM.Controls.Add(this.btnClearMM);
             this.groupExitMM.Controls.Add(this.btnCheckMM);
-            this.groupExitMM.Controls.Add(this.chart1);
             this.groupExitMM.Location = new System.Drawing.Point(445, 112);
             this.groupExitMM.Name = "groupExitMM";
             this.groupExitMM.Size = new System.Drawing.Size(565, 642);
@@ -367,14 +373,6 @@
             this.btnCheckMM.Text = "Перевірити себе";
             this.btnCheckMM.UseVisualStyleBackColor = true;
             this.btnCheckMM.Click += new System.EventHandler(this.btnCheckMM_Click);
-            // 
-            // chart1
-            // 
-            this.chart1.Location = new System.Drawing.Point(11, 26);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(537, 282);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
             // 
             // groupEnterMM
             // 
@@ -563,6 +561,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.chart2);
             this.groupBox3.Controls.Add(this.numVNP);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.textBox5);
@@ -571,7 +570,6 @@
             this.groupBox3.Controls.Add(this.txtXNP);
             this.groupBox3.Controls.Add(this.btnClearNP);
             this.groupBox3.Controls.Add(this.btnCheckNP);
-            this.groupBox3.Controls.Add(this.chart2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(444, 105);
             this.groupBox3.Name = "groupBox3";
@@ -672,14 +670,6 @@
             this.btnCheckNP.Text = "Перевірити себе";
             this.btnCheckNP.UseVisualStyleBackColor = true;
             // 
-            // chart2
-            // 
-            this.chart2.Location = new System.Drawing.Point(19, 37);
-            this.chart2.Name = "chart2";
-            this.chart2.Size = new System.Drawing.Size(510, 316);
-            this.chart2.TabIndex = 6;
-            this.chart2.Text = "chart2";
-            // 
             // groupPerevirNP
             // 
             this.groupPerevirNP.BackColor = System.Drawing.Color.White;
@@ -772,6 +762,38 @@
             this.label10.TabIndex = 6;
             this.label10.Text = "Введіть перший елемент матриці";
             // 
+            // chart2
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
+            this.chart2.Location = new System.Drawing.Point(19, 26);
+            this.chart2.Name = "chart2";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
+            this.chart2.Size = new System.Drawing.Size(541, 308);
+            this.chart2.TabIndex = 39;
+            this.chart2.Text = "chart3";
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(22, 26);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(532, 305);
+            this.chart1.TabIndex = 28;
+            this.chart1.Text = "chart1";
+            // 
             // FrmRandomiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -792,7 +814,6 @@
             this.groupExitMM.ResumeLayout(false);
             this.groupExitMM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVMM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupEnterMM.ResumeLayout(false);
             this.groupEnterMM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
@@ -807,12 +828,13 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVNP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.groupPerevirNP.ResumeLayout(false);
             this.groupPerevirNP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerNP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemNP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemNP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -834,7 +856,6 @@
         private System.Windows.Forms.DataGridView dtNeimanPirs;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numGameCountNP;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.DataGridView dtGridMinMax;
         private System.Windows.Forms.NumericUpDown numGameCount;
         private System.Windows.Forms.GroupBox groupPerevirMM;
@@ -846,7 +867,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnToCalcMM;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.CheckBox checkInfMM;
         private System.Windows.Forms.NumericUpDown numVMM;
         private System.Windows.Forms.Label label8;
@@ -871,5 +891,7 @@
         private System.Windows.Forms.TextBox txtXNP;
         private System.Windows.Forms.Button btnClearNP;
         private System.Windows.Forms.Button btnCheckNP;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }
