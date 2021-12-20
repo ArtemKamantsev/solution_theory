@@ -14,9 +14,7 @@ namespace WindowsFormsApp1
         private void EduMForm_Shown(object sender, EventArgs e)
         {
             string curDir = Directory.GetCurrentDirectory();
-            DirectoryInfo directoryInfo = Directory.GetParent(curDir);
-            DirectoryInfo directoryInfo2 = Directory.GetParent(directoryInfo.FullName);
-            string path = directoryInfo2.FullName + @"\data\ТПР_теория.htm";
+            string path = curDir + @"\data\ТПР_теория.htm";
             webBrowser1.Url = new Uri(String.Format("file:///{0}", path));
         }
 
