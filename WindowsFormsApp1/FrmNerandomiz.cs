@@ -154,6 +154,8 @@ namespace WindowsFormsApp1
                 numLastElemMM.BackColor = Color.White;
                 groupExitMM.Visible = true;
                 groupPerevirMM.Visible = false;
+
+                MakeMatrixAnswer(dtGridMinMax, n, m, listMaxMin);
             }
         }
         private void numFirstElemMM_ValueChanged(object sender, EventArgs e)
@@ -388,6 +390,8 @@ namespace WindowsFormsApp1
                 numLastElemNP.BackColor = Color.White;
                 groupExitNP.Visible = true;
                 groupPerevirNP.Visible = false;
+
+                MakeMatrixAnswer(dtNeimanPirs, n, m, listNeimPirs);
             }
         }
         private void btnCheckNP_Click(object sender, EventArgs e)
@@ -488,6 +492,8 @@ namespace WindowsFormsApp1
         private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
         {
             DataGridView dataGridView = sender as DataGridView;
+            dataGridView.Columns.Clear();
+            dataGridView.Rows.Clear();
             for (int i = 0; i < m; i++)
             {
                 dataGridView.Columns.Add("B" + (i + 1), "b" + (i + 1));

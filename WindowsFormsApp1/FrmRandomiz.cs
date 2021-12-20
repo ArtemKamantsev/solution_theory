@@ -154,6 +154,7 @@ namespace WindowsFormsApp1
                 groupExitMM.Visible = true;
                 groupPerevirMM.Visible = false;
 
+                MakeMatrixAnswer(dtGridMinMax, n, m, listMaxMin);
                 listForChart = MakeMatrixForChart(listMaxMin);
                 DrawPlot(chart1, listForChart);
             }
@@ -376,6 +377,7 @@ namespace WindowsFormsApp1
                 groupExitNP.Visible = true;
                 groupPerevirNP.Visible = false;
 
+                MakeMatrixAnswer(dtNeimanPirs, n, m, listNeimPirs);
                 listForChart = MakeMatrixForChart(listNeimPirs);
                 DrawPlot(chart2, listForChart);
             }
@@ -573,7 +575,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    MessageBox.Show(result);
+                    //MessageBox.Show(result);
                     return result;
                 }
             }
@@ -581,6 +583,8 @@ namespace WindowsFormsApp1
         private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
         {
             DataGridView dataGridView = sender as DataGridView;
+            dataGridView.Columns.Clear();
+            dataGridView.Rows.Clear();
             for (int i = 0; i < m; i++)
             {
                 dataGridView.Columns.Add("B" + (i + 1), "b" + (i + 1));
