@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         {
             EduMForm form = new EduMForm();
             form.Show();
-            this.Hide();
+            Hide();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
         {
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
-           //this.Hide();
+            Hide();
         }
     }
 }

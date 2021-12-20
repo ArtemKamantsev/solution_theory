@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -21,14 +14,21 @@ namespace WindowsFormsApp1
         {
             FrmRandomiz frmRandomiz = new FrmRandomiz(); 
             frmRandomiz.Show();
-            this.Hide();
+            Hide();
         }
 
         private void btnNerand_Click(object sender, EventArgs e)
         {
             FrmNerandomiz frmNerandomiz = new FrmNerandomiz();
             frmNerandomiz.Show();
-            this.Hide();
+            Hide();
+        }
+
+        private void FrmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            Hide();
         }
     }
 }
