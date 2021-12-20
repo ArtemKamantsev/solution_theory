@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
             dtGridMinMax.AllowUserToAddRows = false;
             n = (int)numGameCount.Value;
 
-           ClearObjectsMM();
+           ClearAllObjectsMM();
         }
 
         private void numGameCount_ValueChanged(object sender, EventArgs e)
@@ -265,14 +265,9 @@ namespace WindowsFormsApp1
         private void tabPage2_Enter(object sender, EventArgs e)
         {
             dtNeimanPirs.AllowUserToAddRows = false;
-            dtNeimanPirs.Rows.Clear();
-            dtNeimanPirs.Columns.Clear();
             n = (int)numGameCountNP.Value;
 
-            dtNeimanPirs.Columns.Add("B1", "b1");
-            dtNeimanPirs.Columns.Add("B2", "b2");
-            dtNeimanPirs.RowCount = n;
-            listNeimPirs.Clear();
+           ClearAllObjectsNP();
         }
         private void numGameCountNP_ValueChanged(object sender, EventArgs e)
         {
@@ -329,7 +324,10 @@ namespace WindowsFormsApp1
             dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
 
             if (stuff.data == null)
+            {
+                groupPerevirNP.Visible = false;
                 MessageBox.Show(stuff.exeption.ToString(), "Error:");
+            }
             else
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
@@ -416,6 +414,7 @@ namespace WindowsFormsApp1
                 if (checkInfNP.Checked)
                 {
                     checkInfNP.BackColor = Color.Green;
+                    txtXNP.BackColor = Color.White;
                 }
                 else if(checkNoAnswersNP.Checked)
                 {
@@ -423,7 +422,8 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    checkInfNP.BackColor = Color.Red;
+                    //checkInfNP.BackColor = Color.Red;
+                    txtXNP.BackColor = Color.Red;
                 }
             }
 
@@ -556,7 +556,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    //MessageBox.Show(result);
+                    MessageBox.Show(result);
                     return result;
                 }
             }
