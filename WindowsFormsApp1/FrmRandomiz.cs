@@ -108,7 +108,7 @@ namespace WindowsFormsApp1
             solutionCounts.Clear();
             result.Clear();
             dataJson.Append("{\"matrix\": " + json + "}");
-            result.Append(ReadPyhonFile("min-max-randomized", dataJson));
+            result.Append(PythonInteractor.ReadPyhonFile("min-max-randomized", dataJson));
 
             dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
 
@@ -323,7 +323,7 @@ namespace WindowsFormsApp1
             dataJson.Clear();
             result.Clear();
             dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach + "}");
-            result.Append(ReadPyhonFile("neyman-pirson-randomized", dataJson));
+            result.Append(PythonInteractor.ReadPyhonFile("neyman-pirson-randomized", dataJson));
 
             dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
 
@@ -554,34 +554,7 @@ namespace WindowsFormsApp1
             listNeimPirs.Clear();
         }
         #endregion
-
-        private string ReadPyhonFile(string methodName, StringBuilder data)
-        {
-            ProcessStartInfo start = new ProcessStartInfo();
-
-            string curDir = Directory.GetCurrentDirectory();
-            DirectoryInfo directoryInfo = Directory.GetParent(curDir);
-            DirectoryInfo directoryInfo2 = Directory.GetParent(directoryInfo.FullName);
-            start.FileName = directoryInfo2.FullName + @"\core\venv\Scripts\python.exe";
-            string path = directoryInfo2.FullName + @"\core\api.py";
-
-            start.Arguments = string.Format("{0}", path);
-            start.UseShellExecute = false;
-            start.RedirectStandardInput = true;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
-            {
-                StreamWriter writer = process.StandardInput;
-                writer.WriteLine(methodName);
-                writer.WriteLine(data);
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd();
-                    //MessageBox.Show(result);
-                    return result;
-                }
-            }
-        }
+        
         private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
         {
             DataGridView dataGridView = sender as DataGridView;
