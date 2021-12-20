@@ -616,40 +616,50 @@ namespace WindowsFormsApp1
                 textBox.BackColor = Color.Green;
             }
         }
+
+        private double getMax(List<List<double>> data)
+        {
+            double max = Double.MinValue;
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (data[i][0] > max)
+                {
+                    max = data[i][0];
+                }
+
+                if (data[i][1] > max)
+                {
+                    max = data[i][1];
+                }
+            }
+
+            return max;
+        }
+        
         private void DrawPlot(object sender, List<List<double>> chartData)
         {
-            double max = -9999;
+            double max = getMax(chartData);
             Chart chart = sender as Chart;
 
             chart.Series.Clear();
+            chart.Series.Add("Бісектриса");
+            chart.Series[0].ChartType = SeriesChartType.Line;
+            chart.Series[0].BorderWidth = 3;
+
+            chart.Series[0].Points.AddXY(0, 0);
+            chart.Series[0].Points.AddXY(max, max);
+            
             chart.Series.Add("Опукла множина");
 
-            chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart.Series[0].BorderWidth = 5;
+            chart.Series[1].ChartType = SeriesChartType.Line;
+            chart.Series[1].BorderWidth = 3;
 
             for (int i = 0; i < chartData.Count; i++)
             {
-                if (chartData[i][0] > max)
-                {
-                    max = chartData[i][0];
-                }
-
-                if (chartData[i][1] > max)
-                {
-                    max = chartData[i][1];
-                }
-
-                chart.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
+                chart.Series[1].Points.AddXY(chartData[i][0], chartData[i][1]);
             }
 
-            chart.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
-
-            chart.Series.Add("Бісектриса");
-            chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart.Series[1].BorderWidth = 5;
-
-            chart.Series[1].Points.AddXY(0, 0);
-            chart.Series[1].Points.AddXY(max, max);
+            chart.Series[1].Points.AddXY(chartData[0][0], chartData[0][1]);
         }
 
         private List<List<double>> MakeMatrixForChart(List<List<double>> listToConvert)
