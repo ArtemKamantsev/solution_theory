@@ -67,8 +67,7 @@ namespace WindowsFormsApp1
             dtGridMinMax.RowCount = n;
             listMaxMin.Clear();
         }
-
-        private void btnNext_Click_1(object sender, EventArgs e)
+        private void btnToCalcMM_Click(object sender, EventArgs e)
         {
             isNull = false;
             for (int i = 0; i < n; i++)
@@ -129,7 +128,6 @@ namespace WindowsFormsApp1
                     X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
                 }
             }
-
 
            // DrawPlot(data);
         }
@@ -303,5 +301,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
+        
     }
 }
