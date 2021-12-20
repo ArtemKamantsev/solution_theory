@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -86,6 +86,8 @@
             this.txtXNP = new System.Windows.Forms.TextBox();
             this.btnClearNP = new System.Windows.Forms.Button();
             this.btnCheckNP = new System.Windows.Forms.Button();
+            this.checkInfNP = new System.Windows.Forms.CheckBox();
+            this.checkNoAnswersNP = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
@@ -271,16 +273,16 @@
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
+            chartArea10.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart1.Legends.Add(legend10);
             this.chart1.Location = new System.Drawing.Point(22, 26);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chart1.Series.Add(series10);
             this.chart1.Size = new System.Drawing.Size(532, 305);
             this.chart1.TabIndex = 28;
             this.chart1.Text = "chart1";
@@ -369,6 +371,7 @@
             this.txtBXMM.Name = "txtBXMM";
             this.txtBXMM.Size = new System.Drawing.Size(492, 27);
             this.txtBXMM.TabIndex = 23;
+            this.txtBXMM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBXMM_KeyPress);
             // 
             // btnClearMM
             // 
@@ -670,6 +673,8 @@
             // groupExitNP
             // 
             this.groupExitNP.BackColor = System.Drawing.Color.White;
+            this.groupExitNP.Controls.Add(this.checkNoAnswersNP);
+            this.groupExitNP.Controls.Add(this.checkInfNP);
             this.groupExitNP.Controls.Add(this.chart2);
             this.groupExitNP.Controls.Add(this.numVNP);
             this.groupExitNP.Controls.Add(this.label11);
@@ -690,16 +695,16 @@
             // 
             // chart2
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart2.Legends.Add(legend7);
+            chartArea9.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart2.Legends.Add(legend9);
             this.chart2.Location = new System.Drawing.Point(19, 26);
             this.chart2.Name = "chart2";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart2.Series.Add(series7);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart2.Series.Add(series9);
             this.chart2.Size = new System.Drawing.Size(541, 308);
             this.chart2.TabIndex = 39;
             this.chart2.Text = "chart3";
@@ -725,7 +730,7 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(34, 541);
+            this.label11.Location = new System.Drawing.Point(27, 541);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 27);
             this.label11.TabIndex = 37;
@@ -777,6 +782,7 @@
             this.txtXNP.Name = "txtXNP";
             this.txtXNP.Size = new System.Drawing.Size(429, 27);
             this.txtXNP.TabIndex = 35;
+            this.txtXNP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtXNP_KeyPress);
             // 
             // btnClearNP
             // 
@@ -786,6 +792,7 @@
             this.btnClearNP.TabIndex = 34;
             this.btnClearNP.Text = "Закінчити перевірку";
             this.btnClearNP.UseVisualStyleBackColor = true;
+            this.btnClearNP.Click += new System.EventHandler(this.btnClearNP_Click);
             // 
             // btnCheckNP
             // 
@@ -796,6 +803,28 @@
             this.btnCheckNP.Text = "Перевірити себе";
             this.btnCheckNP.UseVisualStyleBackColor = true;
             this.btnCheckNP.Click += new System.EventHandler(this.btnCheckNP_Click);
+            // 
+            // checkInfNP
+            // 
+            this.checkInfNP.AutoSize = true;
+            this.checkInfNP.Location = new System.Drawing.Point(31, 472);
+            this.checkInfNP.Name = "checkInfNP";
+            this.checkInfNP.Size = new System.Drawing.Size(176, 24);
+            this.checkInfNP.TabIndex = 40;
+            this.checkInfNP.Text = "безліч розв`язків";
+            this.checkInfNP.UseVisualStyleBackColor = true;
+            this.checkInfNP.CheckedChanged += new System.EventHandler(this.checkInfNP_CheckedChanged);
+            // 
+            // checkNoAnswersNP
+            // 
+            this.checkNoAnswersNP.AutoSize = true;
+            this.checkNoAnswersNP.Location = new System.Drawing.Point(270, 472);
+            this.checkNoAnswersNP.Name = "checkNoAnswersNP";
+            this.checkNoAnswersNP.Size = new System.Drawing.Size(174, 24);
+            this.checkNoAnswersNP.TabIndex = 40;
+            this.checkNoAnswersNP.Text = "немає розв`язків";
+            this.checkNoAnswersNP.UseVisualStyleBackColor = true;
+            this.checkNoAnswersNP.CheckedChanged += new System.EventHandler(this.checkNoAnswersNP_CheckedChanged);
             // 
             // FrmRandomiz
             // 
@@ -896,5 +925,7 @@
         private System.Windows.Forms.Button btnCheckNP;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.CheckBox checkNoAnswersNP;
+        private System.Windows.Forms.CheckBox checkInfNP;
     }
 }

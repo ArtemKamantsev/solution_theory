@@ -62,11 +62,9 @@ namespace WindowsFormsApp1
 
         private void numGameCount_ValueChanged_1(object sender, EventArgs e)
         {
-            dtGridMinMax.Rows.Clear();
             n = (int)numGameCount.Value;
 
-            dtGridMinMax.RowCount = n;
-            listMaxMin.Clear();
+            ClearObjectsMM();
         }
         private void btnToCalcMM_Click(object sender, EventArgs e)
         {
@@ -160,7 +158,7 @@ namespace WindowsFormsApp1
                 groupPerevirMM.Visible = false;
 
                 listForChart = MakeMatrixForChart(listMaxMin);
-                DrawPlot(listForChart);
+                DrawPlot(chart1, listForChart);
             }
         }
         private void numFirstElemMM_ValueChanged(object sender, EventArgs e)
@@ -182,7 +180,6 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    checkInfMM.BackColor = Color.Green;
                     EqualListIndexes(txtBXMM, X);
                 }
             }
@@ -207,6 +204,15 @@ namespace WindowsFormsApp1
             txtBXMM.Enabled = !checkInfMM.Checked;   
             txtBXMM.BackColor = Color.White;
             checkInfMM.BackColor = Color.White;
+        }
+        private void txtBXMM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && ch != 8 && ch != 44 && ch != 32)
+            {
+                e.Handled = true;
+            }
+
         }
         private void btnClearMM_Click(object sender, EventArgs e)
         {
@@ -274,11 +280,9 @@ namespace WindowsFormsApp1
         }
         private void numGameCountNP_ValueChanged(object sender, EventArgs e)
         {
-            dtNeimanPirs.Rows.Clear();
             n = (int)numGameCountNP.Value;
 
-            dtNeimanPirs.RowCount = n;
-            listNeimPirs.Clear();
+            ClearObjectsNP();
         }
         private void btnToCalcNP_Click(object sender, EventArgs e)
         {
@@ -369,13 +373,168 @@ namespace WindowsFormsApp1
                 groupExitNP.Visible = true;
                 groupPerevirNP.Visible = false;
 
-                listForChart = MakeMatrixForChart(listMaxMin);
-                DrawPlot(listForChart);
+                listForChart = MakeMatrixForChart(listNeimPirs);
+                DrawPlot(chart2, listForChart);
             }
+        }
+        private void txtXNP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtBXMM_KeyPress(sender, e);
         }
         private void btnCheckNP_Click(object sender, EventArgs e)
         {
+            if (solutionCounts.ToString() == "SINGLE")
+            {
+                if (checkInfNP.Checked)
+                {
+                    checkInfNP.BackColor = Color.Red;
+                }
+                else if(checkNoAnswersNP.Checked)
+                {
+                    checkNoAnswersNP.BackColor = Color.Red;
+                }
+                else
+                {
+                    EqualListIndexes(txtXNP, X);
+                }
+            }
+            else if (solutionCounts.ToString() == "NONE")
+            {
+                if (checkInfNP.Checked)
+                {
+                    checkInfNP.BackColor = Color.Red;
+                }
+                else if (checkNoAnswersNP.Checked)
+                {
+                    checkNoAnswersNP.BackColor = Color.Green;
+                }
+                else
+                {
+                    checkInfNP.BackColor = Color.Red;
+                    checkNoAnswersNP.BackColor = Color.Red;
+                    txtXNP.BackColor = Color.Red;
+                }
+            }
+            else
+            {
+                if (checkInfNP.Checked)
+                {
+                    checkInfNP.BackColor = Color.Green;
+                }
+                else if(checkNoAnswersNP.Checked)
+                {
+                    checkNoAnswersNP.BackColor = Color.Red;
+                }
+                else
+                {
+                    checkInfNP.BackColor = Color.Red;
+                }
+            }
 
+            if (numVNP.Enabled)
+            {
+                loss = Convert.ToDouble(numVNP.Value);
+                _ = EqualDoubleForResult(numVNP, loss, rightLoss);
+            }
+        }
+
+        private void btnClearNP_Click(object sender, EventArgs e)
+        {
+            ClearAllObjectsNP();
+        }
+
+        bool isInfCheck = false;
+        bool isNoAnswCheck = false;
+        private void checkInfNP_CheckedChanged(object sender, EventArgs e)
+        {
+            checkInfNP.BackColor = Color.White;
+            if (checkInfNP.Checked == true)
+            {
+                txtXNP.Enabled = false;
+                isInfCheck = true;
+                isNoAnswCheck = false;
+                if (checkNoAnswersNP.Checked)
+                    checkNoAnswersNP.Checked = false;
+            }
+            else
+            {
+                isInfCheck = false;
+                if (!isNoAnswCheck && !isInfCheck)
+                {
+                    txtXNP.Enabled = true;
+                }
+            }
+        }
+
+        private void checkNoAnswersNP_CheckedChanged(object sender, EventArgs e)
+        {
+            checkNoAnswersNP.BackColor = Color.White;
+            numVNP.BackColor = Color.White;
+            if (checkNoAnswersNP.Checked == true)
+            {
+                txtXNP.Enabled = false;
+                numVNP.Enabled = false;
+                isNoAnswCheck = true;
+                isInfCheck = false;
+                if (checkInfNP.Checked)
+                    checkInfNP.Checked = false;
+            }
+            else
+            {
+                numVNP.Enabled = true;
+                isNoAnswCheck = false;
+                if (!isInfCheck && !isNoAnswCheck)
+                {
+                    txtXNP.Enabled = true;
+                }
+            }
+        }
+
+
+        private void ClearObjectsNP()
+        {
+            dtNeimanPirs.Rows.Clear();
+            dtNeimanPirs.Columns.Clear();
+
+            dtNeimanPirs.Columns.Add("B1", "b1");
+            dtNeimanPirs.Columns.Add("B2", "b2");
+            dtNeimanPirs.RowCount = n;
+
+            listNeimPirs.Clear();
+        }
+        private void ClearAllObjectsNP()
+        {
+            groupPerevirNP.Visible = false;
+            groupExitNP.Visible = false;
+            groupEnterNP.Enabled = true;
+
+            numFirstElemNP.Value = 0;
+            numLastElemNP.Value = 0;
+            txtXNP.Text = "";
+            numVNP.Value = 0;
+            checkNoAnswersNP.Checked = false;
+            checkInfNP.Checked = false;
+
+            txtXNP.Enabled = true;
+
+            numFirstElemNP.BackColor = Color.White;
+            numLastElemNP.BackColor = Color.White;
+            txtXNP.BackColor = Color.White;
+            numVNP.BackColor = Color.White;
+            checkNoAnswersNP.BackColor = Color.White;
+            checkInfNP.BackColor = Color.White;
+
+
+            dtNeimanPirs.Rows.Clear();
+            dtNeimanPirs.Columns.Clear();
+            dtAnswerNP.Rows.Clear();
+            dtAnswerNP.Columns.Clear();
+
+            dtNeimanPirs.Columns.Add("B1", "b1");
+            dtNeimanPirs.Columns.Add("B2", "b2");
+            dtNeimanPirs.RowCount = n;
+
+            listNeimPirs.Clear();
         }
         #endregion
 
@@ -401,7 +560,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    MessageBox.Show(result);
+                    //MessageBox.Show(result);
                     return result;
                 }
             }
@@ -465,15 +624,16 @@ namespace WindowsFormsApp1
                 textBox.BackColor = Color.Green;
             }
         }
-        private void DrawPlot(List<List<double>> chartData)
+        private void DrawPlot(object sender, List<List<double>> chartData)
         {
             double max = -9999;
+            Chart chart = sender as Chart;
 
-            chart1.Series.Clear();
-            chart1.Series.Add("Series1");
+            chart.Series.Clear();
+            chart.Series.Add("Series1");
 
-            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series[0].BorderWidth = 5;
+            chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart.Series[0].BorderWidth = 5;
 
             for (int i = 0; i < chartData.Count; i++)
             {
@@ -487,17 +647,17 @@ namespace WindowsFormsApp1
                     max = chartData[i][1];
                 }
 
-                chart1.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
+                chart.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
             }
 
-            chart1.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
+            chart.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
 
-            chart1.Series.Add("Series2");
-            chart1.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series[1].BorderWidth = 5;
+            chart.Series.Add("Series2");
+            chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart.Series[1].BorderWidth = 5;
 
-            chart1.Series[1].Points.AddXY(0, 0);
-            chart1.Series[1].Points.AddXY(max, max);
+            chart.Series[1].Points.AddXY(0, 0);
+            chart.Series[1].Points.AddXY(max, max);
         }
 
         private List<List<double>> MakeMatrixForChart(List<List<double>> listToConvert)
@@ -510,12 +670,39 @@ namespace WindowsFormsApp1
 
             return result;
         }
+
+        private void CheckCheckbox(object sender)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (solutionCounts.ToString() == "SINGLE")
+            {
+                if (checkBox.Checked)
+                {
+                    checkInfMM.BackColor = Color.Red;
+                }
+                else
+                {
+                    checkBox.BackColor = Color.Green;
+                }
+            }
+            else
+            {
+                if (checkBox.Checked)
+                {
+                    checkBox.BackColor = Color.Green;
+                }
+                else
+                {
+                    checkBox.BackColor = Color.Red;
+                }
+            }
+        }
         private void FrmRandomiz_FormClosing(object sender, FormClosingEventArgs e)
         {
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
         }
 
-       
+     
     }
 }
