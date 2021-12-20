@@ -129,8 +129,8 @@ class NeymanPirsRandomizedSolver(BaseRandomizedSolver):
                 intersection_k = round(intersection_k, self._accuracy)
                 if result_loss is None or result_loss + eps > intersection_loss:
                     # intersection loss less or equal
-                    result_intersection_indexes.append(p1_matrix_idx)
-                    result_intersection_indexes.append(p2_matrix_idx)
+                    result_intersection_indexes.append(int(p1_matrix_idx))
+                    result_intersection_indexes.append(int(p2_matrix_idx))
                     intersection_ratio = intersection_k
                     if result_loss is None or result_loss - eps > intersection_loss:
                         # intersection loss is less (strict)

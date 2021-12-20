@@ -129,15 +129,15 @@ class MinMaxRandomizedSolver(BaseRandomizedSolver):
         if bottom_loss is not None and (result_loss is not None and abs(result_loss - bottom_loss) < eps):
             result_indexes.extend(bottom_matrix_indexes.tolist())
         elif bottom_loss is not None and (result_loss is None or result_loss - bottom_loss > eps):
-            result_indexes = list(bottom_matrix_indexes.tolist())
+            result_indexes = bottom_matrix_indexes.tolist()
             result_loss = bottom_loss
 
         if mean_line_loss is not None and result_loss is not None and abs(mean_line_loss - result_loss) < eps:
-            result_intersection_indexes = list(mean_line_matrix_indexes)
+            result_intersection_indexes = mean_line_matrix_indexes.tolist()
             intersection_ratio = mean_line_k
         elif mean_line_loss is not None and (result_loss is None or result_loss - mean_line_loss > eps):
             result_indexes = []
-            result_intersection_indexes = list(mean_line_matrix_indexes)
+            result_intersection_indexes = mean_line_matrix_indexes.tolist()
             intersection_ratio = mean_line_k
             result_loss = mean_line_loss
 
