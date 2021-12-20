@@ -101,31 +101,7 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                GetResultFromPythonMM();
-            }
-        }
-        private void GetResultFromPythonMM()
-        {
-            var json = JsonConvert.SerializeObject(listMaxMin);
-            dataJson.Clear();
-            result.Clear();
-            dataJson.Append("{\"matrix\": " + json + "}");
-            result.Append(ReadPyhonFile("min-max", dataJson));
-
-            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
-
-            if (stuff.data == null)
-                MessageBox.Show(stuff.error.ToString(), "Error:");
-            else
-            {
-                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
-                listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
-                for (int i = 0; i < indexesOptimal.Count; i++)
-                {
-                    indexesOptimal[i] += 1;
-                }
-                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+                GetResultFromPython("min-max", ref listMaxMin);
             }
         }
 
@@ -284,80 +260,9 @@ namespace WindowsFormsApp1
                         listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
                     }
                 }
-                GetResultFromPythonNP();
+                GetResultFromPython("neyman-pirson", ref listNeimPirs);
             }
         }
-       
-        public void GetResultFromPythonNP()
-        {
-            var json = JsonConvert.SerializeObject(listNeimPirs);
-            dataJson.Clear();
-            result.Clear();
-            dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach +"}");
-            result.Append(ReadPyhonFile("neyman-pirson", dataJson));
-
-            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
-
-            if (stuff.data == null)
-                MessageBox.Show(stuff.exeption.ToString(), "Error:");
-            else
-            {
-                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
-                listNeimPirs = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
-                for (int i = 0; i < indexesOptimal.Count; i++)
-                {
-                    indexesOptimal[i] += 1;
-                }
-                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
-                indexesExcluded = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_excluded.ToString());
-                for (int i = 0; i < indexesExcluded.Count; i++)
-                {
-                    indexesExcluded[i] += 1;
-                }
-            }
-        }
-        //bool isInfCheck = false;
-        //bool isNoAnswCheck = false;
-        //private void checkInfNP_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (checkInfNP.Checked == true)
-        //    {
-        //        txtXNP.Enabled = false;
-        //        isInfCheck = true;
-        //        isNoAnswCheck = false;
-        //        if (checkNoAnsNP.Checked)
-        //            checkNoAnsNP.Checked = false;
-        //    }
-        //    else
-        //    {
-        //        isInfCheck = false;
-        //        if (!isNoAnswCheck && !isInfCheck)
-        //        {
-        //            txtXNP.Enabled = true;
-        //        }
-        //    }
-        //}
-        //private void checkNoAnsNP_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (checkNoAnsNP.Checked == true)
-        //    {
-        //        txtXNP.Enabled = false;
-        //        isNoAnswCheck = true;
-        //        isInfCheck = false;
-        //        if (checkInfNP.Checked)
-        //            checkInfNP.Checked = false;
-        //    }
-        //    else
-        //    {
-        //        isNoAnswCheck = false;
-        //        if (!isInfCheck && !isNoAnswCheck)
-        //        {
-        //            txtXNP.Enabled = true;
-        //        }
-        //    }
-
-        //}
         private void numFirstElemNP_ValueChanged(object sender, EventArgs e)
         {
             numFirstElemNP.BackColor = Color.White;
@@ -418,7 +323,6 @@ namespace WindowsFormsApp1
         {
             ClearAllObjectsNP();
         }
-
         private void ClearObjectsNP()
         {
             dtNeimanPirs.Rows.Clear();
@@ -462,6 +366,48 @@ namespace WindowsFormsApp1
             listNeimPirs.Clear();
         }
         #endregion
+        public void GetResultFromPython(string method, ref List<List<double>> listToJson)
+        {
+            var json = JsonConvert.SerializeObject(listToJson);
+            dataJson.Clear();
+            result.Clear();
+            if (method == "min-max")
+            {
+                dataJson.Append("{\"matrix\": " + json + "}");
+            }
+            else
+            {
+                dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach + "}");
+            }
+
+            result.Append(ReadPyhonFile(method, dataJson));
+
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            if (stuff.data == null)
+                MessageBox.Show(stuff.exeption.ToString(), "Error:");
+            else
+            {
+                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+                listToJson = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
+                for (int i = 0; i < indexesOptimal.Count; i++)
+                {
+                    indexesOptimal[i] += 1;
+                }
+                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+
+                if (method == "neyman-pirson")
+                {
+                    indexesExcluded = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_excluded.ToString());
+                    for (int i = 0; i < indexesExcluded.Count; i++)
+                    {
+                        indexesExcluded[i] += 1;
+                    }
+                }
+            }
+        }
+
         private string ReadPyhonFile(string methodName, StringBuilder data)
         {
             ProcessStartInfo start = new ProcessStartInfo();

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNerandomiz));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -570,7 +569,9 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(952, 89);
             this.textBox2.TabIndex = 10;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
+            this.textBox2.Text = "Для запуску калькулятору введіть кількість ігор(рядків матриці виграшу), контроль" +
+    "ований стан і порогове значення. Після відображення таблиці внесіть в неї відпов" +
+    "ідні дані для подальших розрахунків.";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupExitNP
