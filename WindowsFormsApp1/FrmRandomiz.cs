@@ -98,35 +98,35 @@ namespace WindowsFormsApp1
                     }
                 }
 
-                GetResultFromPythonMM();
+                GetResultFromPython("min-max-randomized", ref listMaxMin);
             }
         }
-        private void GetResultFromPythonMM()
-        {
-            var json = JsonConvert.SerializeObject(listMaxMin);
-            dataJson.Clear();
-            solutionCounts.Clear();
-            result.Clear();
-            dataJson.Append("{\"matrix\": " + json + "}");
-            result.Append(PythonInteractor.ReadPyhonFile("min-max-randomized", dataJson));
+        //private void GetResultFromPythonMM()
+        //{
+        //    var json = JsonConvert.SerializeObject(listMaxMin);
+        //    dataJson.Clear();
+        //    solutionCounts.Clear();
+        //    result.Clear();
+        //    dataJson.Append("{\"matrix\": " + json + "}");
+        //    result.Append(ReadPyhonFile("min-max-randomized", dataJson));
 
-            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+        //    dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
 
-            if (stuff.data == null)
-                MessageBox.Show(stuff.error.ToString(), "Error:");
-            else
-            {
-                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
-                listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
-                solutionCounts.Append(stuff.solution_counts);
-                if(!String.IsNullOrEmpty(stuff.X.ToString()))
-                {
-                    X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
-                }
-                rightLoss = Convert.ToDouble(stuff.loss.ToString());
-            }
-        }
+        //    if (stuff.data == null)
+        //        MessageBox.Show(stuff.error.ToString(), "Error:");
+        //    else
+        //    {
+        //        stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+        //        listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+        //        indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
+        //        solutionCounts.Append(stuff.solution_counts);
+        //        if(!String.IsNullOrEmpty(stuff.X.ToString()))
+        //        {
+        //            X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
+        //        }
+        //        rightLoss = Convert.ToDouble(stuff.loss.ToString());
+        //    }
+        //}
 
         bool isClicked = false;
         private void btnNext_Click(object sender, EventArgs e)
@@ -313,46 +313,11 @@ namespace WindowsFormsApp1
                         listNeimPirs[i].Add(Convert.ToInt32(dtNeimanPirs.Rows[i].Cells[j].Value));
                     }
                 }
-                GetResultFromPythonNP();
+                GetResultFromPython("neyman-pirson-randomized", ref listNeimPirs);
             }
         }
        
-        public void GetResultFromPythonNP()
-        {
-            var json = JsonConvert.SerializeObject(listNeimPirs);
-            dataJson.Clear();
-            result.Clear();
-            dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach + "}");
-            result.Append(PythonInteractor.ReadPyhonFile("neyman-pirson-randomized", dataJson));
-
-            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
-
-            if (stuff.data == null)
-            {
-                groupPerevirNP.Visible = false;
-                MessageBox.Show(stuff.exeption.ToString(), "Error:");
-            }
-            else
-            {
-                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
-                listNeimPirs = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
-                solutionCounts.Append(stuff.solution_counts);
-                if (!String.IsNullOrEmpty(stuff.X.ToString()))
-                {
-                    X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
-                }
-                if (!String.IsNullOrEmpty(stuff.loss.ToString()))
-                {
-                    isRightLossNull = "no";
-                    rightLoss = Convert.ToDouble(stuff.loss.ToString());
-                }
-                else
-                {
-                    isRightLossNull = null;
-                }
-            }
-        }
+        
         private void btnNextNP_Click(object sender, EventArgs e)
         {
             bool isRigth1, isRigth2;
@@ -554,7 +519,78 @@ namespace WindowsFormsApp1
             listNeimPirs.Clear();
         }
         #endregion
-        
+
+        public void GetResultFromPython(string method, ref List<List<double>> listToJson)
+        {
+            var json = JsonConvert.SerializeObject(listToJson);
+            dataJson.Clear();
+            result.Clear();
+            if (method == "min-max-randomized")
+            {
+                dataJson.Append("{\"matrix\": " + json + "}");
+            }
+            else
+            {
+                dataJson.Append("{\"matrix\": " + json + ", \"critical_value\": " + porogZnach + "}");
+            }
+
+            result.Append(PythonInteractor.ReadPyhonFile(method, dataJson));
+
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            if (stuff.data == null)
+            {
+                groupPerevirNP.Visible = false;
+                MessageBox.Show(stuff.exeption.ToString(), "Error:");
+            }
+            else
+            {
+                stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
+                listToJson = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
+                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_convex_hull.ToString());
+                solutionCounts.Append(stuff.solution_counts);
+                if (!String.IsNullOrEmpty(stuff.X.ToString()))
+                {
+                    X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
+                }
+                if (!String.IsNullOrEmpty(stuff.loss.ToString()))
+                {
+                    isRightLossNull = "no";
+                    rightLoss = Convert.ToDouble(stuff.loss.ToString());
+                }
+                else
+                {
+                    isRightLossNull = null;
+                }
+            }
+        }
+        private string ReadPyhonFile(string methodName, StringBuilder data)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+
+            string curDir = Directory.GetCurrentDirectory();
+            DirectoryInfo directoryInfo = Directory.GetParent(curDir);
+            DirectoryInfo directoryInfo2 = Directory.GetParent(directoryInfo.FullName);
+            start.FileName = directoryInfo2.FullName + @"\core\venv\Scripts\python.exe";
+            string path = directoryInfo2.FullName + @"\core\api.py";
+
+            start.Arguments = string.Format("{0}", path);
+            start.UseShellExecute = false;
+            start.RedirectStandardInput = true;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                StreamWriter writer = process.StandardInput;
+                writer.WriteLine(methodName);
+                writer.WriteLine(data);
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    //MessageBox.Show(result);
+                    return result;
+                }
+            }
+        }
         private void MakeMatrixAnswer(object sender, int n, int m, List<List<double>> list)
         {
             DataGridView dataGridView = sender as DataGridView;

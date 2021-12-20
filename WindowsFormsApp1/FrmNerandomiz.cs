@@ -70,18 +70,6 @@ namespace WindowsFormsApp1
         private void btnToCalcMM_Click(object sender, EventArgs e)
         {
             isNull = false;
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        if (dtGridMinMax.Rows[i].Cells[j].Value == null)
-            //        {
-            //            isNull = true;
-            //            MessageBox.Show("Заповніть матрицю!", "Warning!");
-            //            break;
-            //        }
-            //    }
-            //}
             foreach (DataGridViewRow row in dtGridMinMax.Rows)
             {
                 IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
@@ -242,7 +230,7 @@ namespace WindowsFormsApp1
         private void btnToCalcNP_Click(object sender, EventArgs e)
         {
             isNull = false;
-            foreach (DataGridViewRow row in dtGridMinMax.Rows)
+            foreach (DataGridViewRow row in dtNeimanPirs.Rows)
             {
                 IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
                                                                      where string.IsNullOrEmpty((string)cell.Value)
@@ -409,7 +397,7 @@ namespace WindowsFormsApp1
                 {
                     indexesOptimal[i] += 1;
                 }
-                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+                rightLoss = Convert.ToDouble(stuff.loss.ToString());
 
                 if (method == "neyman-pirson")
                 {
@@ -444,7 +432,7 @@ namespace WindowsFormsApp1
         private bool EqualDoubleForResult(object sender, double res, double matr)
         {
             NumericUpDown numericUpDown = sender as NumericUpDown;
-            if (res != matr)
+            if (Math.Abs(res-matr)>0.00000001)
             {
                 numericUpDown.BackColor = Color.Red;
                 return false;
@@ -464,7 +452,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < resIndexes.Count; i++)
                 {
-                    if (listFromServ[i] != Convert.ToDouble(resIndexes[i]))
+                    if (Math.Abs(listFromServ[i]- Convert.ToDouble(resIndexes[i]))> 0.00000001)
                     {
                         isEqualList = false;
                     }
