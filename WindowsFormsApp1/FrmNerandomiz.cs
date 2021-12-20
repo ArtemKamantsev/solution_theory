@@ -397,7 +397,7 @@ namespace WindowsFormsApp1
                 {
                     indexesOptimal[i] += 1;
                 }
-                rightLoss = Convert.ToDouble(JsonConvert.DeserializeObject(stuff.loss.ToString()));
+                rightLoss = Convert.ToDouble(stuff.loss.ToString());
 
                 if (method == "neyman-pirson")
                 {
