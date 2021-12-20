@@ -39,14 +39,14 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(389, 32);
+            this.label1.Size = new System.Drawing.Size(388, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Оберіть варіанти прикладів:";
             // 
             // btnRand
             // 
             this.btnRand.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnRand.Location = new System.Drawing.Point(38, 117);
+            this.btnRand.Location = new System.Drawing.Point(38, 237);
             this.btnRand.Name = "btnRand";
             this.btnRand.Size = new System.Drawing.Size(331, 72);
             this.btnRand.TabIndex = 1;
@@ -57,7 +57,7 @@
             // btnNerand
             // 
             this.btnNerand.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNerand.Location = new System.Drawing.Point(38, 231);
+            this.btnNerand.Location = new System.Drawing.Point(38, 123);
             this.btnNerand.Name = "btnNerand";
             this.btnNerand.Size = new System.Drawing.Size(331, 72);
             this.btnNerand.TabIndex = 2;
