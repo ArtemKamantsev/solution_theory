@@ -375,18 +375,7 @@
             this.btnCheckMM.Click += new System.EventHandler(this.btnCheckMM_Click);
             // 
             // chart1
-            // 
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
-            this.chart1.Location = new System.Drawing.Point(11, 26);
-            this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
+
             this.chart1.Size = new System.Drawing.Size(548, 308);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
