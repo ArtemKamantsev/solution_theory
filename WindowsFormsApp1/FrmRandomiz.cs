@@ -128,10 +128,10 @@ namespace WindowsFormsApp1
                 {
                     X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
                 }
+                rightLoss = Convert.ToDouble(stuff.loss.ToString());
             }
-
-           // DrawPlot(data);
         }
+
         bool isClicked = false;
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -167,10 +167,94 @@ namespace WindowsFormsApp1
         {
             numFirstElemMM.BackColor = Color.White;
         }
-
         private void numLastElemMM_ValueChanged(object sender, EventArgs e)
         {
             numLastElemMM.BackColor = Color.White;
+        }
+
+        private void btnCheckMM_Click(object sender, EventArgs e)
+        {
+            if (solutionCounts.ToString() == "SINGLE")
+            {
+                if(checkInfMM.Checked)
+                {
+                    checkInfMM.BackColor = Color.Red;
+                }
+                else
+                {
+                    checkInfMM.BackColor = Color.Green;
+                    EqualListIndexes(txtBXMM, X);
+                }
+            }
+            else
+            {
+                if (checkInfMM.Checked)
+                {
+                    checkInfMM.BackColor = Color.Green;
+                }
+                else
+                {
+                    checkInfMM.BackColor = Color.Red;
+                }
+            }
+
+            loss = Convert.ToDouble(numVMM.Value);
+            _ = EqualDoubleForResult(numVMM, loss, rightLoss);
+
+        }
+        private void checkInfMM_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBXMM.Enabled = !checkInfMM.Checked;   
+            txtBXMM.BackColor = Color.White;
+            checkInfMM.BackColor = Color.White;
+        }
+        private void btnClearMM_Click(object sender, EventArgs e)
+        {
+            ClearAllObjectsMM();
+        }
+        private void ClearObjectsMM()
+        {
+            dtGridMinMax.Rows.Clear();
+            dtGridMinMax.Columns.Clear();
+
+            for (int i = 0; i < m; i++)
+            {
+                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
+            dtGridMinMax.RowCount = n;
+        }
+        private void ClearAllObjectsMM()
+        {
+            groupPerevirMM.Visible = false;
+            groupExitMM.Visible = false;
+            groupEnterMM.Enabled = true;
+
+            numFirstElemMM.Value = 0;
+            numLastElemMM.Value = 0;
+            txtBXMM.Text = "";
+            numVMM.Value = 0;
+            checkInfMM.Checked = false;
+
+            txtBXMM.Enabled = true;
+
+            numFirstElemMM.BackColor = Color.White;
+            numLastElemMM.BackColor = Color.White;
+            txtBXMM.BackColor = Color.White;
+            numVMM.BackColor = Color.White;
+            checkInfMM.BackColor = Color.White;
+
+            dtGridMinMax.Rows.Clear();
+            dtGridMinMax.Columns.Clear();
+            dtAnswerMM.Rows.Clear();
+            dtAnswerMM.Columns.Clear();
+
+            for (int i = 0; i < m; i++)
+            {
+                dtGridMinMax.Columns.Add("B" + (i + 1), "b" + (i + 1));
+            }
+            dtGridMinMax.RowCount = n;
+
+            listMaxMin.Clear();
         }
         #endregion
 
@@ -236,7 +320,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    MessageBox.Show(result);
+                    //MessageBox.Show(result);
                     return result;
                 }
             }
@@ -351,5 +435,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
+       
     }
 }
