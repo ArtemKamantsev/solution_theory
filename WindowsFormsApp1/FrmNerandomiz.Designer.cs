@@ -143,7 +143,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label2);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(485, 109);
+            this.groupPerevirMM.Location = new System.Drawing.Point(15, 109);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirMM.TabIndex = 8;

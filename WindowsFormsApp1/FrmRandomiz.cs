@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
             listNeimPirs = new List<List<double>>();
             dataJson = new StringBuilder();
             result = new StringBuilder();
+            solutionCounts = new StringBuilder();
         }
 
         int n;
@@ -34,9 +35,12 @@ namespace WindowsFormsApp1
         int porogZnach;
         StringBuilder dataJson;
         StringBuilder result;
+        StringBuilder solutionCounts;
+
         double resFirstElem;
         double resLastElem;
-        List<double> indexesOptimal;
+        List<int> indexesConvexHull;
+        List<double> X;
         List<string> resIndexes;
         double rightLoss;
         double loss;
@@ -105,6 +109,7 @@ namespace WindowsFormsApp1
         {
             var json = JsonConvert.SerializeObject(listMaxMin);
             dataJson.Clear();
+            solutionCounts.Clear();
             result.Clear();
             dataJson.Append("{\"matrix\": " + json + "}");
             result.Append(ReadPyhonFile("min-max-randomized", dataJson));
@@ -117,65 +122,19 @@ namespace WindowsFormsApp1
             {
                 stuff = JsonConvert.DeserializeObject(stuff.data.ToString());
                 listMaxMin = JsonConvert.DeserializeObject<List<List<double>>>(stuff.matrix_loss.ToString());
-                indexesOptimal = JsonConvert.DeserializeObject<List<double>>(stuff.indexes_optimal.ToString());
-                for (int i = 0; i < indexesOptimal.Count; i++)
+                indexesConvexHull = JsonConvert.DeserializeObject<List<int>>(stuff.indexes_optimal.ToString());
+                solutionCounts.Append(stuff.solution_counts);
+                if(!String.IsNullOrEmpty(stuff.X.ToString()))
                 {
-                    indexesOptimal[i] += 1;
+                    X = JsonConvert.DeserializeObject<List<double>>(stuff.X.ToString());
                 }
             }
 
-            List<List<double>> data = new List<List<double>>();
 
-            for (int i = 0; i < n; i++)
-            {
-                data.Add(new List<double>());
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    data[i].Add(Convert.ToDouble(dtGridMinMax.Rows[i].Cells[j].Value));
-                }
-            }
-
-            DrawPlot(data);
+           // DrawPlot(data);
         }
 
-        private void DrawPlot(List<List<double>> chartData)
-        {
-            double max = -9999;
-
-            chart1.Series.Clear();
-            chart1.Series.Add("Series1");
-
-            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series[0].BorderWidth = 5;
-
-            for (int i=0; i < chartData.Count; i++)
-            {
-                if (chartData[i][0] > max)
-                {
-                    max = chartData[i][0];
-                }
-
-                if (chartData[i][1] > max)
-                {
-                    max = chartData[i][1];
-                }
-
-                chart1.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
-            }
-
-            chart1.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
-
-            chart1.Series.Add("Series2");
-            chart1.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series[1].BorderWidth = 5;
-
-            chart1.Series[1].Points.AddXY(0, 0);
-            chart1.Series[1].Points.AddXY(max, max);
-        }
+       
         #endregion
 
         #region Критерий Неймана-Пирса
@@ -240,7 +199,7 @@ namespace WindowsFormsApp1
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
-                    //MessageBox.Show(result);
+                    MessageBox.Show(result);
                     return result;
                 }
             }
@@ -304,13 +263,45 @@ namespace WindowsFormsApp1
                 textBox.BackColor = Color.Green;
             }
         }
+        private void DrawPlot(List<List<double>> chartData)
+        {
+            double max = -9999;
 
+            chart1.Series.Clear();
+            chart1.Series.Add("Series1");
+
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series[0].BorderWidth = 5;
+
+            for (int i = 0; i < chartData.Count; i++)
+            {
+                if (chartData[i][0] > max)
+                {
+                    max = chartData[i][0];
+                }
+
+                if (chartData[i][1] > max)
+                {
+                    max = chartData[i][1];
+                }
+
+                chart1.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
+            }
+
+            chart1.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
+
+            chart1.Series.Add("Series2");
+            chart1.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series[1].BorderWidth = 5;
+
+            chart1.Series[1].Points.AddXY(0, 0);
+            chart1.Series[1].Points.AddXY(max, max);
+        }
         private void FrmRandomiz_FormClosing(object sender, FormClosingEventArgs e)
         {
             FrmMenu frmMenu = new FrmMenu();
             frmMenu.Show();
         }
 
-        
     }
 }

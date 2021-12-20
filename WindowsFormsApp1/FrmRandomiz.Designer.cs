@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupExitMM = new System.Windows.Forms.GroupBox();
+            this.groupEnterMM = new System.Windows.Forms.GroupBox();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
             this.dtAnswerMM = new System.Windows.Forms.DataGridView();
             this.numLastElemMM = new System.Windows.Forms.NumericUpDown();
@@ -43,15 +46,9 @@
             this.numFirstElemMM = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btn = new System.Windows.Forms.Button();
-            this.groupEnterMM = new System.Windows.Forms.GroupBox();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.dtGridMinMax = new System.Windows.Forms.DataGridView();
             this.numGameCount = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -64,15 +61,26 @@
             this.dtNeimanPirs = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.numGameCountNP = new System.Windows.Forms.NumericUpDown();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.numVMM = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtBXMM = new System.Windows.Forms.TextBox();
+            this.btnClearMM = new System.Windows.Forms.Button();
+            this.btnCheckMM = new System.Windows.Forms.Button();
+            this.checkInfMM = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupExitMM.SuspendLayout();
+            this.groupEnterMM.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemMM)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
@@ -80,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVMM)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -90,24 +100,74 @@
             this.tabControl1.Location = new System.Drawing.Point(1, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1024, 724);
+            this.tabControl1.Size = new System.Drawing.Size(1024, 796);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupPerevirMM);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupExitMM);
             this.tabPage1.Controls.Add(this.groupEnterMM);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1016, 689);
+            this.tabPage1.Size = new System.Drawing.Size(1016, 761);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Мінімаксний критерій";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.ForeColor = System.Drawing.Color.Gray;
+            this.textBox1.Location = new System.Drawing.Point(7, 17);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(958, 89);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "Для запуску калькулятору введіть кількість рядків та стовпців матриці виграшу 1го" +
+    " гравця. Після відображення таблиці внесіть в неї відповідні дані для подальших " +
+    "розрахунків. ";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupExitMM
+            // 
+            this.groupExitMM.Controls.Add(this.checkInfMM);
+            this.groupExitMM.Controls.Add(this.numVMM);
+            this.groupExitMM.Controls.Add(this.label8);
+            this.groupExitMM.Controls.Add(this.textBox3);
+            this.groupExitMM.Controls.Add(this.label7);
+            this.groupExitMM.Controls.Add(this.textBox4);
+            this.groupExitMM.Controls.Add(this.txtBXMM);
+            this.groupExitMM.Controls.Add(this.btnClearMM);
+            this.groupExitMM.Controls.Add(this.btnCheckMM);
+            this.groupExitMM.Controls.Add(this.chart1);
+            this.groupExitMM.Location = new System.Drawing.Point(445, 112);
+            this.groupExitMM.Name = "groupExitMM";
+            this.groupExitMM.Size = new System.Drawing.Size(565, 642);
+            this.groupExitMM.TabIndex = 6;
+            this.groupExitMM.TabStop = false;
+            this.groupExitMM.Text = "Вихідні дані";
+            this.groupExitMM.Visible = false;
+            // 
+            // groupEnterMM
+            // 
+            this.groupEnterMM.Controls.Add(this.label2);
+            this.groupEnterMM.Controls.Add(this.btnNext);
+            this.groupEnterMM.Controls.Add(this.dtGridMinMax);
+            this.groupEnterMM.Controls.Add(this.numGameCount);
+            this.groupEnterMM.Location = new System.Drawing.Point(7, 112);
+            this.groupEnterMM.Name = "groupEnterMM";
+            this.groupEnterMM.Size = new System.Drawing.Size(432, 544);
+            this.groupEnterMM.TabIndex = 5;
+            this.groupEnterMM.TabStop = false;
+            this.groupEnterMM.Text = "Вхідні дані";
             // 
             // groupPerevirMM
             // 
@@ -117,7 +177,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label1);
             this.groupPerevirMM.Controls.Add(this.button1);
-            this.groupPerevirMM.Location = new System.Drawing.Point(445, 106);
+            this.groupPerevirMM.Location = new System.Drawing.Point(445, 112);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(567, 574);
             this.groupPerevirMM.TabIndex = 9;
@@ -199,73 +259,14 @@
             this.button1.Text = "Перевірити";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // label2
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(7, 17);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(958, 89);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "Для запуску калькулятору введіть кількість рядків та стовпців матриці виграшу 1го" +
-    " гравця. Після відображення таблиці внесіть в неї відповідні дані для подальших " +
-    "розрахунків. ";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.chart1);
-            this.groupBox2.Controls.Add(this.btn);
-            this.groupBox2.Location = new System.Drawing.Point(445, 112);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(565, 574);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Вихідні дані";
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(16, 34);
-            this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
-            this.chart1.Size = new System.Drawing.Size(498, 353);
-            this.chart1.TabIndex = 5;
-            this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
-            // 
-            // btn
-            // 
-            this.btn.Location = new System.Drawing.Point(375, 458);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(139, 48);
-            this.btn.TabIndex = 4;
-            this.btn.Text = "Далі";
-            this.btn.UseVisualStyleBackColor = true;
-            // 
-            // groupEnterMM
-            // 
-            this.groupEnterMM.Controls.Add(this.btnNext);
-            this.groupEnterMM.Controls.Add(this.dtGridMinMax);
-            this.groupEnterMM.Controls.Add(this.label2);
-            this.groupEnterMM.Controls.Add(this.numGameCount);
-            this.groupEnterMM.Location = new System.Drawing.Point(7, 112);
-            this.groupEnterMM.Name = "groupEnterMM";
-            this.groupEnterMM.Size = new System.Drawing.Size(432, 544);
-            this.groupEnterMM.TabIndex = 5;
-            this.groupEnterMM.TabStop = false;
-            this.groupEnterMM.Text = "Вхідні дані";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(222, 20);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Введіть кількість рядків:";
             // 
             // btnNext
             // 
@@ -287,6 +288,18 @@
             this.dtGridMinMax.Size = new System.Drawing.Size(375, 368);
             this.dtGridMinMax.TabIndex = 6;
             // 
+            // numGameCount
+            // 
+            this.numGameCount.Location = new System.Drawing.Point(270, 49);
+            this.numGameCount.Name = "numGameCount";
+            this.numGameCount.Size = new System.Drawing.Size(120, 27);
+            this.numGameCount.TabIndex = 14;
+            this.numGameCount.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.textBox2);
@@ -295,7 +308,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1016, 689);
+            this.tabPage2.Size = new System.Drawing.Size(1016, 761);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Критерій Неймана-Пірса";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -332,17 +345,17 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
             this.chart2.Location = new System.Drawing.Point(18, 28);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(498, 353);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
@@ -444,11 +457,130 @@
             0});
             this.numGameCountNP.ValueChanged += new System.EventHandler(this.numGameCountNP_ValueChanged);
             // 
+            // chart1
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(11, 26);
+            this.chart1.Name = "chart1";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(548, 308);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // numVMM
+            // 
+            this.numVMM.DecimalPlaces = 2;
+            this.numVMM.Location = new System.Drawing.Point(63, 539);
+            this.numVMM.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
+            this.numVMM.Minimum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            -2147483648});
+            this.numVMM.Name = "numVMM";
+            this.numVMM.Size = new System.Drawing.Size(120, 27);
+            this.numVMM.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(18, 539);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 27);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "v =";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.White;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox3.ForeColor = System.Drawing.Color.Black;
+            this.textBox3.Location = new System.Drawing.Point(11, 488);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(543, 33);
+            this.textBox3.TabIndex = 24;
+            this.textBox3.Text = "Введіть ціну гри:";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(13, 404);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 24);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "X =";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox4.ForeColor = System.Drawing.Color.Black;
+            this.textBox4.Location = new System.Drawing.Point(6, 337);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(548, 49);
+            this.textBox4.TabIndex = 20;
+            this.textBox4.Text = "Введіть оптимальний вектор Х (компоненти вводити з двома знаками після коми та че" +
+    "рез пробіл)";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtBXMM
+            // 
+            this.txtBXMM.Location = new System.Drawing.Point(62, 403);
+            this.txtBXMM.Name = "txtBXMM";
+            this.txtBXMM.Size = new System.Drawing.Size(492, 27);
+            this.txtBXMM.TabIndex = 23;
+            // 
+            // btnClearMM
+            // 
+            this.btnClearMM.Location = new System.Drawing.Point(344, 586);
+            this.btnClearMM.Name = "btnClearMM";
+            this.btnClearMM.Size = new System.Drawing.Size(215, 46);
+            this.btnClearMM.TabIndex = 22;
+            this.btnClearMM.Text = "Закінчити перевірку";
+            this.btnClearMM.UseVisualStyleBackColor = true;
+            // 
+            // btnCheckMM
+            // 
+            this.btnCheckMM.Location = new System.Drawing.Point(6, 584);
+            this.btnCheckMM.Name = "btnCheckMM";
+            this.btnCheckMM.Size = new System.Drawing.Size(215, 48);
+            this.btnCheckMM.TabIndex = 21;
+            this.btnCheckMM.Text = "Перевірити себе";
+            this.btnCheckMM.UseVisualStyleBackColor = true;
+            // 
+            // checkInfMM
+            // 
+            this.checkInfMM.AutoSize = true;
+            this.checkInfMM.Location = new System.Drawing.Point(17, 448);
+            this.checkInfMM.Name = "checkInfMM";
+            this.checkInfMM.Size = new System.Drawing.Size(166, 24);
+            this.checkInfMM.TabIndex = 27;
+            this.checkInfMM.Text = "безліч роз`язків";
+            this.checkInfMM.UseVisualStyleBackColor = true;
+            // 
             // FrmRandomiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 728);
+            this.ClientSize = new System.Drawing.Size(1029, 794);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmRandomiz";
             this.Text = "Калькулятор рандомізованних прикладів";
@@ -456,15 +588,17 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupExitMM.ResumeLayout(false);
+            this.groupExitMM.PerformLayout();
+            this.groupEnterMM.ResumeLayout(false);
+            this.groupEnterMM.PerformLayout();
             this.groupPerevirMM.ResumeLayout(false);
             this.groupPerevirMM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtAnswerMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastElemMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstElemMM)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGridMinMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGameCount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -474,6 +608,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPorogZn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNeimanPirs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGameCountNP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numVMM)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -483,11 +619,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btn;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupExitMM;
         private System.Windows.Forms.GroupBox groupEnterMM;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnNextNP;
@@ -499,7 +633,6 @@
         private System.Windows.Forms.NumericUpDown numGameCountNP;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.DataGridView dtGridMinMax;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numGameCount;
         private System.Windows.Forms.GroupBox groupPerevirMM;
         private System.Windows.Forms.DataGridView dtAnswerMM;
@@ -509,5 +642,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.CheckBox checkInfMM;
+        private System.Windows.Forms.NumericUpDown numVMM;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtBXMM;
+        private System.Windows.Forms.Button btnClearMM;
+        private System.Windows.Forms.Button btnCheckMM;
     }
 }
