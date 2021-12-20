@@ -323,7 +323,14 @@ namespace WindowsFormsApp1
         private void btnCheckNP_Click(object sender, EventArgs e)
         {
             EqualListIndexes(txtXNP,indexesOptimal);
-            EqualListIndexes(txtResExcluded, indexesExcluded);
+            if(String.IsNullOrWhiteSpace(txtResExcluded.Text) && indexesExcluded.Count == 0)
+            {
+                txtResExcluded.BackColor = Color.Green;
+            }
+            else
+            {
+                EqualListIndexes(txtResExcluded, indexesExcluded);
+            }
 
             loss = Convert.ToDouble(numVNP.Value);
             _ = EqualDoubleForResult(numVNP, loss, rightLoss);
@@ -481,6 +488,7 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+           
             if (!isEqualList)
             {
                 textBox.BackColor = Color.Red;
@@ -496,6 +504,6 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-       
+      
     }
 }
