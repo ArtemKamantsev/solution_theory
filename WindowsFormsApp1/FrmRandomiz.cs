@@ -66,16 +66,17 @@ namespace WindowsFormsApp1
         private void btnToCalcMM_Click(object sender, EventArgs e)
         {
             isNull = false;
-            for (int i = 0; i < n; i++)
+            foreach (DataGridViewRow row in dtGridMinMax.Rows)
             {
-                for (int j = 0; j < m; j++)
+                IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
+                                                                     where string.IsNullOrEmpty((string)cell.Value)
+                                                                     select cell;
+
+                if (cellsWithValusInRows != null && cellsWithValusInRows.Any())
                 {
-                    if (dtGridMinMax.Rows[i].Cells[j].Value == null)
-                    {
-                        isNull = true;
-                        MessageBox.Show("Заповніть матрицю!", "Warning!");
-                        break;
-                    }
+                    isNull = true;
+                    MessageBox.Show("Заповніть матрицю!", "Warning!");
+                    break;
                 }
             }
 
@@ -280,16 +281,17 @@ namespace WindowsFormsApp1
         private void btnToCalcNP_Click(object sender, EventArgs e)
         {
             isNull = false;
-            for (int i = 0; i < n; i++)
+            foreach (DataGridViewRow row in dtGridMinMax.Rows)
             {
-                for (int j = 0; j < m; j++)
+                IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
+                                                                     where string.IsNullOrEmpty((string)cell.Value)
+                                                                     select cell;
+
+                if (cellsWithValusInRows != null && cellsWithValusInRows.Any())
                 {
-                    if (dtNeimanPirs.Rows[i].Cells[j].Value == null)
-                    {
-                        isNull = true;
-                        MessageBox.Show("Заповніть матрицю!", "Warning!");
-                        break;
-                    }
+                    isNull = true;
+                    MessageBox.Show("Заповніть матрицю!", "Warning!");
+                    break;
                 }
             }
 
@@ -647,7 +649,7 @@ namespace WindowsFormsApp1
             Chart chart = sender as Chart;
 
             chart.Series.Clear();
-            chart.Series.Add("Series1");
+            chart.Series.Add("Опукла множина");
 
             chart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart.Series[0].BorderWidth = 5;
@@ -669,7 +671,7 @@ namespace WindowsFormsApp1
 
             chart.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
 
-            chart.Series.Add("Series2");
+            chart.Series.Add("Бісектриса");
             chart.Series[1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart.Series[1].BorderWidth = 5;
 

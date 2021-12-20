@@ -70,16 +70,29 @@ namespace WindowsFormsApp1
         private void btnToCalcMM_Click(object sender, EventArgs e)
         {
             isNull = false;
-            for (int i = 0; i < n; i++)
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        if (dtGridMinMax.Rows[i].Cells[j].Value == null)
+            //        {
+            //            isNull = true;
+            //            MessageBox.Show("Заповніть матрицю!", "Warning!");
+            //            break;
+            //        }
+            //    }
+            //}
+            foreach (DataGridViewRow row in dtGridMinMax.Rows)
             {
-                for (int j = 0; j < m; j++)
+                IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
+                                                                     where string.IsNullOrEmpty((string)cell.Value)
+                                                                     select cell;
+
+                if (cellsWithValusInRows != null && cellsWithValusInRows.Any())
                 {
-                    if (dtGridMinMax.Rows[i].Cells[j].Value == null)
-                    {
-                        isNull = true;
-                        MessageBox.Show("Заповніть матрицю!", "Warning!");
-                        break;
-                    }
+                    isNull = true;
+                    MessageBox.Show("Заповніть матрицю!", "Warning!");
+                    break;
                 }
             }
 
@@ -229,16 +242,17 @@ namespace WindowsFormsApp1
         private void btnToCalcNP_Click(object sender, EventArgs e)
         {
             isNull = false;
-            for (int i = 0; i < n; i++)
+            foreach (DataGridViewRow row in dtGridMinMax.Rows)
             {
-                for (int j = 0; j < m; j++)
+                IEnumerable<DataGridViewCell> cellsWithValusInRows = from DataGridViewCell cell in row.Cells
+                                                                     where string.IsNullOrEmpty((string)cell.Value)
+                                                                     select cell;
+
+                if (cellsWithValusInRows != null && cellsWithValusInRows.Any())
                 {
-                    if (dtNeimanPirs.Rows[i].Cells[j].Value == null)
-                    {
-                        isNull = true;
-                        MessageBox.Show("Заповніть матрицю!", "Warning!");
-                        break;
-                    }
+                    isNull = true;
+                    MessageBox.Show("Заповніть матрицю!", "Warning!");
+                    break;
                 }
             }
 
