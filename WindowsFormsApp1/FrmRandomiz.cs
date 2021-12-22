@@ -719,8 +719,8 @@ namespace WindowsFormsApp1
 
                 porogZnach = (int)numPorogZn.Value;
 
-                chart.Series[2].Points.AddXY(0, porogZnach);
-                chart.Series[2].Points.AddXY(max, porogZnach);
+                chart.Series[2].Points.AddXY(porogZnach, 0);
+                chart.Series[2].Points.AddXY(porogZnach, max);
             }
 
             chart.Series[1].ChartType = SeriesChartType.Line;
