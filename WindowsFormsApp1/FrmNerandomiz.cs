@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -504,6 +505,12 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-      
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            string curDir = Directory.GetCurrentDirectory();
+            string path = curDir + @"\data\Нерандоміз інстр.rtf";
+           
+            richTxtNerand.LoadFile(path);  
+        }
     }
 }

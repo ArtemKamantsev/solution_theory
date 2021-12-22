@@ -765,6 +765,12 @@ namespace WindowsFormsApp1
             frmMenu.Show();
         }
 
-      
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            string curDir = Directory.GetCurrentDirectory();
+            string path = curDir + @"\data\Інструкція.rtf";
+
+            richTxtBZandomiz.LoadFile(path);
+        }
     }
 }
