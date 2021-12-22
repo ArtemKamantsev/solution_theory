@@ -704,10 +704,10 @@ namespace WindowsFormsApp1
             chart.Series.Clear();
             chart.Series.Add("Бісектриса");
             chart.Series.Add("Опукла множина");
-            chart.Series.Add("Порогове значення");
 
             if (isresist)
             {
+                chart.Series.Add("Порогове значення");
                 chart.Series[2].ChartType = SeriesChartType.Line;
                 chart.Series[2].BorderWidth = 3;
 
@@ -715,14 +715,6 @@ namespace WindowsFormsApp1
 
                 chart.Series[2].Points.AddXY(porogZnach, 0);
                 chart.Series[2].Points.AddXY(porogZnach, max);
-
-                chart.Series.Add("Клін");
-                chart.Series[3].ChartType = SeriesChartType.Line;
-                chart.Series[3].BorderWidth = 3;
-
-                chart.Series[3].Points.AddXY(0, loss);
-                chart.Series[3].Points.AddXY(loss, loss);
-                chart.Series[3].Points.AddXY(loss, 0);
             } else
             {
                 chart.Series[0].ChartType = SeriesChartType.Line;
@@ -730,6 +722,15 @@ namespace WindowsFormsApp1
 
                 chart.Series[0].Points.AddXY(0, 0);
                 chart.Series[0].Points.AddXY(max, max);
+
+
+                chart.Series.Add("Клін");
+                chart.Series[2].ChartType = SeriesChartType.Line;
+                chart.Series[2].BorderWidth = 3;
+
+                chart.Series[2].Points.AddXY(0, loss);
+                chart.Series[2].Points.AddXY(loss, loss);
+                chart.Series[2].Points.AddXY(loss, 0);
             }
 
             chart.Series[1].ChartType = SeriesChartType.Line;
