@@ -166,7 +166,7 @@ namespace WindowsFormsApp1
 
                 MakeMatrixAnswer(dtGridMinMax, n, m, listMaxMin);
                 listForChart = MakeMatrixForChart(listMaxMin);
-                DrawPlot(chart1, listForChart);
+                DrawPlot(chart1, listForChart, false);
             }
         }
         private void numFirstElemMM_ValueChanged(object sender, EventArgs e)
@@ -365,7 +365,7 @@ namespace WindowsFormsApp1
 
                 MakeMatrixAnswer(dtNeimanPirs, n, m, listNeimPirs);
                 listForChart = MakeMatrixForChart(listNeimPirs);
-                DrawPlot(chart2, listForChart);
+                DrawPlot(chart2, listForChart, true);
             }
         }
         private void txtXNP_KeyPress(object sender, KeyPressEventArgs e)
@@ -691,7 +691,7 @@ namespace WindowsFormsApp1
             return max;
         }
         
-        private void DrawPlot(object sender, List<List<double>> chartData)
+        private void DrawPlot(object sender, List<List<double>> chartData, bool isresist)
         {
             double max = getMax(chartData);
             max += 1;
@@ -710,6 +710,18 @@ namespace WindowsFormsApp1
             chart.Series[0].Points.AddXY(max, max);
             
             chart.Series.Add("Опукла множина");
+            chart.Series.Add("Порогове значення");
+
+            if (isresist)
+            {
+                chart.Series[2].ChartType = SeriesChartType.Line;
+                chart.Series[2].BorderWidth = 3;
+
+                porogZnach = (int)numPorogZn.Value;
+
+                chart.Series[2].Points.AddXY(0, porogZnach);
+                chart.Series[2].Points.AddXY(max, porogZnach);
+            }
 
             chart.Series[1].ChartType = SeriesChartType.Line;
             chart.Series[1].BorderWidth = 3;
@@ -771,6 +783,11 @@ namespace WindowsFormsApp1
             string path = curDir + @"\data\Інструкція.rtf";
 
             richTxtBZandomiz.LoadFile(path);
+        }
+
+        private void numPorogZn_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
