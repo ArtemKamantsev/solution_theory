@@ -702,46 +702,47 @@ namespace WindowsFormsApp1
             chart.ChartAreas[0].AxisY.Maximum = max;
 
             chart.Series.Clear();
-            chart.Series.Add("Бісектриса");
+            
             chart.Series.Add("Опукла множина");
 
             if (isresist)
             {
                 chart.Series.Add("Порогове значення");
-                chart.Series[2].ChartType = SeriesChartType.Line;
-                chart.Series[2].BorderWidth = 3;
+                chart.Series[1].ChartType = SeriesChartType.Line;
+                chart.Series[1].BorderWidth = 3;
 
                 porogZnach = (int)numPorogZn.Value;
 
-                chart.Series[2].Points.AddXY(porogZnach, 0);
-                chart.Series[2].Points.AddXY(porogZnach, max);
+                chart.Series[1].Points.AddXY(porogZnach, 0);
+                chart.Series[1].Points.AddXY(porogZnach, max);
             } else
             {
-                chart.Series[0].ChartType = SeriesChartType.Line;
-                chart.Series[0].BorderWidth = 3;
+                chart.Series.Add("Бісектриса");
+                chart.Series[1].ChartType = SeriesChartType.Line;
+                chart.Series[1].BorderWidth = 3;
 
-                chart.Series[0].Points.AddXY(0, 0);
-                chart.Series[0].Points.AddXY(max, max);
+                chart.Series[1].Points.AddXY(0, 0);
+                chart.Series[1].Points.AddXY(max, max);
 
 
                 chart.Series.Add("Клін");
                 chart.Series[2].ChartType = SeriesChartType.Line;
                 chart.Series[2].BorderWidth = 3;
 
-                chart.Series[2].Points.AddXY(0, loss);
-                chart.Series[2].Points.AddXY(loss, loss);
-                chart.Series[2].Points.AddXY(loss, 0);
+                chart.Series[2].Points.AddXY(0, rightLoss);
+                chart.Series[2].Points.AddXY(rightLoss, rightLoss);
+                chart.Series[2].Points.AddXY(rightLoss, 0);
             }
 
-            chart.Series[1].ChartType = SeriesChartType.Line;
-            chart.Series[1].BorderWidth = 3;
+            chart.Series[0].ChartType = SeriesChartType.Line;
+            chart.Series[0].BorderWidth = 3;
 
             for (int i = 0; i < chartData.Count; i++)
             {
-                chart.Series[1].Points.AddXY(chartData[i][0], chartData[i][1]);
+                chart.Series[0].Points.AddXY(chartData[i][0], chartData[i][1]);
             }
 
-            chart.Series[1].Points.AddXY(chartData[0][0], chartData[0][1]);
+            chart.Series[0].Points.AddXY(chartData[0][0], chartData[0][1]);
         }
 
         private List<List<double>> MakeMatrixForChart(List<List<double>> listToConvert)

@@ -76,6 +76,7 @@
             this.btnClearNP = new System.Windows.Forms.Button();
             this.btnCheckNP = new System.Windows.Forms.Button();
             this.groupEnterNP = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnToCalcNP = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.numPorogZn = new System.Windows.Forms.NumericUpDown();
@@ -84,7 +85,6 @@
             this.numGameCountNP = new System.Windows.Forms.NumericUpDown();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.richTxtNerand = new System.Windows.Forms.RichTextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupPerevirMM.SuspendLayout();
@@ -147,7 +147,7 @@
             this.groupPerevirMM.Controls.Add(this.numFirstElemMM);
             this.groupPerevirMM.Controls.Add(this.label2);
             this.groupPerevirMM.Controls.Add(this.btnNext);
-            this.groupPerevirMM.Location = new System.Drawing.Point(485, 110);
+            this.groupPerevirMM.Location = new System.Drawing.Point(486, 109);
             this.groupPerevirMM.Name = "groupPerevirMM";
             this.groupPerevirMM.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirMM.TabIndex = 8;
@@ -308,7 +308,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(464, 40);
             this.textBox3.TabIndex = 16;
-            this.textBox3.Text = "Введіть ціну гри:";
+            this.textBox3.Text = "Введіть мінімальні втрати:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -465,7 +465,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(975, 670);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Критерій Неймана-Пірса";
+            this.tabPage2.Text = "Критерій Неймана-Пірсона";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
@@ -478,7 +478,7 @@
             this.groupPerevirNP.Controls.Add(this.numFirstElemNP);
             this.groupPerevirNP.Controls.Add(this.label10);
             this.groupPerevirNP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupPerevirNP.Location = new System.Drawing.Point(483, 103);
+            this.groupPerevirNP.Location = new System.Drawing.Point(480, 107);
             this.groupPerevirNP.Name = "groupPerevirNP";
             this.groupPerevirNP.Size = new System.Drawing.Size(481, 555);
             this.groupPerevirNP.TabIndex = 11;
@@ -575,9 +575,9 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(952, 89);
             this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "Для запуску калькулятору введіть кількість ігор(рядків матриці корисності) і поро" +
-    "гове значення. Після відображення таблиці внесіть в неї відповідні дані для наст" +
-    "упних обчислень.";
+            this.textBox2.Text = "Для запуску калькулятору введіть кількість рядків матриці корисності і порогове з" +
+    "начення. Після відображення таблиці внесіть в неї відповідні дані для наступних " +
+    "обчислень.";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupExitNP
@@ -674,7 +674,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(464, 33);
             this.textBox5.TabIndex = 25;
-            this.textBox5.Text = "Введіть ціну гри:";
+            this.textBox5.Text = "Введіть мінімальні втрати:";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
@@ -745,6 +745,16 @@
             this.groupEnterNP.TabIndex = 8;
             this.groupEnterNP.TabStop = false;
             this.groupEnterNP.Text = "Вхідні дані";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(50, 23);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(370, 20);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "За умови, що контрольваний стан перший.\r\n";
             // 
             // btnToCalcNP
             // 
@@ -849,16 +859,6 @@
             this.richTxtNerand.Size = new System.Drawing.Size(969, 664);
             this.richTxtNerand.TabIndex = 0;
             this.richTxtNerand.Text = "";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(50, 23);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(370, 20);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "За умови, що контрольваний стан перший.\r\n";
             // 
             // FrmNerandomiz
             // 

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupPerevirMM = new System.Windows.Forms.GroupBox();
@@ -278,16 +278,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(22, 26);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(532, 305);
             this.chart1.TabIndex = 28;
             this.chart1.Text = "chart1";
@@ -342,7 +342,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(543, 33);
             this.textBox3.TabIndex = 24;
-            this.textBox3.Text = "Введіть ціну гри:";
+            this.textBox3.Text = "Введіть мінімальні втрати:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
@@ -464,7 +464,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1016, 761);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Критерій Неймана-Пірса";
+            this.tabPage2.Text = "Критерій Неймана-Пірсона";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
@@ -480,9 +480,9 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(952, 89);
             this.textBox2.TabIndex = 13;
-            this.textBox2.Text = "Для запуску калькулятору введіть кількість ігор(рядків матриці корисності) і поро" +
-    "гове значення. Після відображення таблиці внесіть в неї відповідні дані для наст" +
-    "упних обчислень.";
+            this.textBox2.Text = "Для запуску калькулятору введіть кількість рядків матриці корисності і порогове з" +
+    "начення. Після відображення таблиці внесіть в неї відповідні дані для наступних " +
+    "обчислень.";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupEnterNP
@@ -610,7 +610,7 @@
             this.groupPerevirNP.Size = new System.Drawing.Size(566, 613);
             this.groupPerevirNP.TabIndex = 14;
             this.groupPerevirNP.TabStop = false;
-            this.groupPerevirNP.Text = "  ";
+            this.groupPerevirNP.Text = "Параметри для перевірки матриці втрат";
             this.groupPerevirNP.Visible = false;
             // 
             // btnNextNP
@@ -735,16 +735,16 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
             this.chart2.Location = new System.Drawing.Point(19, 26);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(541, 308);
             this.chart2.TabIndex = 39;
             this.chart2.Text = "chart3";
@@ -788,7 +788,7 @@
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(464, 33);
             this.textBox5.TabIndex = 36;
-            this.textBox5.Text = "Введіть ціну гри:";
+            this.textBox5.Text = "Введіть мінімальні втрати:";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
